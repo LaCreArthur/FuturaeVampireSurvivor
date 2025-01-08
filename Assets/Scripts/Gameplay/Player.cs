@@ -3,6 +3,14 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] float jumpForce;
+    [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float smoothTime = 0.1f;
+
+    Vector3 _velocity = Vector3.zero;
+    Vector3 _targetPosition;
+    bool _isDragging;
+    float _startMouseX;
+    float _startPlayerX;
 
     Rigidbody2D _rb;
     Vector3 _startPosition;
@@ -16,16 +24,13 @@ public class Player : MonoBehaviour
     }
 
     void Start() => GameManager.OnGameRestart += ResetPlayer;
-
-    void Update()
+    void OnDestroy() => GameManager.OnGameRestart -= ResetPlayer;
+    void OnCollisionEnter(Collision other)
     {
-        if (Input.GetMouseButtonDown(0))
-            _rb.linearVelocity = Vector2.up * jumpForce;
+        if (other.transform.CompareTag("Obstacle"))
+            GameManager.OnGameEnd?.Invoke();
     }
 
-    void OnDestroy() => GameManager.OnGameRestart -= ResetPlayer;
-    void OnCollisionEnter2D(Collision2D other) => GameManager.OnGameEnd?.Invoke();
-    void OnTriggerEnter2D(Collider2D other) => ScoreManager.IncreaseScore();
     void ResetPlayer()
     {
         transform.position = _startPosition;
