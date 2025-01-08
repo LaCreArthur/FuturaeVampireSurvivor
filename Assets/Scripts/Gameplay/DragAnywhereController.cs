@@ -2,27 +2,27 @@
 
 public class DragAnywhereController : MonoBehaviour
 {
-    [Header("Paramètres de drag")]
-    [Tooltip("Facteur de multiplication du déplacement.\n1 = déplacement identique,\n>1 = déplacement amplifié,\n<1 = déplacement réduit.")]
+    [Header("Drag Parameters")]
+    [Tooltip("Movement multiplication factor.\n1 = identical movement,\n>1 = amplified movement,\n<1 = reduced movement.")]
     public float dragScale = 1f;
 
-    [Header("Contraintes de mouvement")]
-    [Tooltip("Geler le déplacement sur l'axe X si vrai.")]
+    [Header("Movement Constraints")]
+    [Tooltip("Freeze movement on X axis if true.")]
     public bool freezeX;
 
-    [Tooltip("Geler le déplacement sur l'axe Z si vrai.")]
+    [Tooltip("Freeze movement on Z axis if true.")]
     public bool freezeZ;
 
     bool isDragging;
 
-    // Positions mémorisées au début du drag
-    Vector3 objectStartPos; // Position initiale de l'objet
-    Vector3 pointerStartWorldPos; // Position initiale du pointeur en coordonnées monde
-    float zCoord; // Distance entre la caméra et l'objet
+    // Positions stored at the start of dragging
+    Vector3 objectStartPos; // Initial object position
+    Vector3 pointerStartWorldPos; // Initial pointer position in world coordinates
+    float zCoord; // Distance between camera and object
 
     void Update()
     {
-        // Détecter l'entrée (Touch sur mobile, Souris sur PC)
+        // Detect input (Touch on mobile, Mouse on PC)
         if (Input.touchCount > 0)
         {
             HandleTouchInput(Input.GetTouch(0));
@@ -34,9 +34,9 @@ public class DragAnywhereController : MonoBehaviour
     }
 
     /// <summary>
-    ///     Gère les entrées tactiles (mobile).
+    ///     Handles touch inputs (mobile).
     /// </summary>
-    /// <param name="touch">Le toucher actuel.</param>
+    /// <param name="touch">The current touch.</param>
     void HandleTouchInput(Touch touch)
     {
         switch (touch.phase)
@@ -60,7 +60,7 @@ public class DragAnywhereController : MonoBehaviour
     }
 
     /// <summary>
-    ///     Gère les entrées de la souris (PC).
+    ///     Handles mouse inputs (PC).
     /// </summary>
     void HandleMouseInput()
     {
@@ -79,43 +79,43 @@ public class DragAnywhereController : MonoBehaviour
     }
 
     /// <summary>
-    ///     Démarre le processus de dragging.
+    ///     Starts the dragging process.
     /// </summary>
-    /// <param name="screenPosition">La position de l'écran du pointeur (souris ou touch).</param>
+    /// <param name="screenPosition">The screen position of the pointer (mouse or touch).</param>
     void StartDragging(Vector3 screenPosition)
     {
         isDragging = true;
 
-        // Calculer la distance en Z entre la caméra et l'objet
+        // Calculate Z distance between camera and object
         zCoord = transform.position.z - Camera.main.transform.position.z;
 
-        // Mémoriser la position initiale de l'objet
+        // Store initial object position
         objectStartPos = transform.position;
 
-        // Convertir la position du pointeur en coordonnées monde
+        // Convert pointer position to world coordinates
         pointerStartWorldPos = Camera.main.ScreenToWorldPoint(
             new Vector3(screenPosition.x, screenPosition.y, zCoord)
         );
     }
 
     /// <summary>
-    ///     Met à jour la position de l'objet pendant le dragging.
+    ///     Updates object position during dragging.
     /// </summary>
-    /// <param name="screenPosition">La position actuelle de l'écran du pointeur.</param>
+    /// <param name="screenPosition">The current screen position of the pointer.</param>
     void UpdateDragging(Vector3 screenPosition)
     {
-        // Convertir la position actuelle du pointeur en coordonnées monde
+        // Convert current pointer position to world coordinates
         Vector3 pointerCurrentWorldPos = Camera.main.ScreenToWorldPoint(
             new Vector3(screenPosition.x, screenPosition.y, zCoord)
         );
 
-        // Calcul de la différence (delta) et application du facteur de scale
+        // Calculate difference (delta) and apply scale factor
         Vector3 delta = (pointerCurrentWorldPos - pointerStartWorldPos) * dragScale;
 
-        // Calculer la nouvelle position en ajoutant le delta à la position initiale
+        // Calculate new position by adding delta to initial position
         Vector3 newPosition = objectStartPos + delta;
 
-        // Appliquer les contraintes de mouvement
+        // Apply movement constraints
         if (freezeX)
         {
             newPosition.x = objectStartPos.x;
@@ -126,15 +126,15 @@ public class DragAnywhereController : MonoBehaviour
             newPosition.z = objectStartPos.z;
         }
 
-        // Garder la position Y inchangée pour figer le mouvement en Y (déjà géré par les contraintes Rigidbody si nécessaire)
+        // Keep Y position unchanged to lock Y movement (already handled by Rigidbody constraints if needed)
         newPosition.y = objectStartPos.y;
 
-        // Appliquer la position finale
+        // Apply final position
         transform.position = newPosition;
     }
 
     /// <summary>
-    ///     Termine le processus de dragging.
+    ///     Ends the dragging process.
     /// </summary>
     void StopDragging() => isDragging = false;
 }
