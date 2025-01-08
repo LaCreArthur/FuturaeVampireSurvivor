@@ -3,6 +3,8 @@ using Random = UnityEngine.Random;
 
 public class LevelGenerator : MonoBehaviour
 {
+
+    const float NEXT_FLOOR_DISTANCE = 10;
     [Header("Prefabs")]
     [SerializeField] GameObject floorPrefab;
     [SerializeField] GameObject pipePrefab;
@@ -20,7 +22,9 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] float levelSpeed = 2.0f;
 
     Transform _lastPipeSet;
+    Transform _lastFloor;
     float LastPipeX => _lastPipeSet?.position.x ?? 0;
+    float LastFloorX => _lastFloor?.position.x ?? -15f;
 
     void Start()
     {
@@ -30,9 +34,10 @@ public class LevelGenerator : MonoBehaviour
 
     void Update()
     {
-        MovePipeSets();
+        MoveElements();
         HandlePipeSpawning();
-        DespawnOldPipes();
+        HandleFloorSpawning();
+        DespawnOldElements();
     }
 
     void OnDestroy() => GameManager.OnGameRestart -= OnRestart;
@@ -40,7 +45,8 @@ public class LevelGenerator : MonoBehaviour
     void OnRestart()
     {
         _lastPipeSet = null;
-        DespawnAllPipes();
+        _lastFloor = null;
+        DespawnAllElements();
         GenerateInitialLevel();
     }
 
@@ -49,7 +55,14 @@ public class LevelGenerator : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             GeneratePipeSet();
+            GenerateFloor();
         }
+    }
+
+    void GenerateFloor()
+    {
+        GameObject lastFloorGo = Instantiate(floorPrefab, new Vector3(LastFloorX + NEXT_FLOOR_DISTANCE, 0.5f, 0), Quaternion.identity, transform);
+        _lastFloor = lastFloorGo.transform;
     }
 
     void GeneratePipeSet()
@@ -99,11 +112,11 @@ public class LevelGenerator : MonoBehaviour
         pipe.transform.localScale = new Vector3(1, Mathf.Abs(height), 1); // Ensure height is positive
     }
 
-    void MovePipeSets()
+    void MoveElements()
     {
-        foreach (Transform pipeSet in transform)
+        foreach (Transform element in transform)
         {
-            pipeSet.position += Vector3.left * (levelSpeed * Time.deltaTime);
+            element.position += Vector3.left * (levelSpeed * Time.deltaTime);
         }
     }
 
@@ -115,22 +128,30 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    void DespawnOldPipes()
+    void HandleFloorSpawning()
     {
-        foreach (Transform pipeSet in transform)
+        if (LastFloorX < spawnDistance)
         {
-            if (pipeSet.position.x < despawnDistance)
+            GenerateFloor();
+        }
+    }
+
+    void DespawnOldElements()
+    {
+        foreach (Transform element in transform)
+        {
+            if (element.position.x < despawnDistance)
             {
-                Destroy(pipeSet.gameObject);
+                Destroy(element.gameObject);
             }
         }
     }
 
-    void DespawnAllPipes()
+    void DespawnAllElements()
     {
-        foreach (Transform pipeSet in transform)
+        foreach (Transform element in transform)
         {
-            Destroy(pipeSet.gameObject);
+            Destroy(element.gameObject);
         }
     }
 }
