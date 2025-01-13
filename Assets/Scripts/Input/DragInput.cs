@@ -10,6 +10,8 @@ public class DragInput : MonoBehaviour, IPlayerInput
     Vector3 _pointerStartWorldPos; // Initial pointer position in world coordinates
     float _zCoord; // Distance between camera and object
 
+    void Awake() => _input = new Vector2(transform.position.x, transform.position.z);
+
     void Update()
     {
         // Detect input (Touch on mobile, Mouse on PC)

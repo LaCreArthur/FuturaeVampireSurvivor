@@ -34,8 +34,6 @@ public class InputManager : MonoBehaviour
         }
         InputType = inputType;
         Vector2 input = _playerInput.ReadInput();
-        if (freezeX) input.x = 0;
-        if (freezeZ) input.y = 0;
 
         switch (inputType)
         {
@@ -49,10 +47,20 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    void JoystickMove(Vector2 input) => transform.position +=
-        new Vector3(input.x, 0f, input.y) * (joystickSensitivity * Time.deltaTime);
+    void JoystickMove(Vector2 input)
+    {
+        if (freezeX) input.x = 0;
+        if (freezeZ) input.y = 0;
+        transform.position +=
+            new Vector3(input.x, 0f, input.y) * (joystickSensitivity * Time.deltaTime);
+    }
 
-    void DragMove(Vector2 input) => transform.position = new Vector3(input.x, 0f, input.y) * dragScale;
+    void DragMove(Vector2 input)
+    {
+        if (freezeX) input.x = transform.position.x;
+        if (freezeZ) input.y = transform.position.z;
+        transform.position = new Vector3(input.x, 0f, input.y) * dragScale;
+    }
 }
 
 public enum InputType
