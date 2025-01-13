@@ -8,6 +8,6 @@ public class ButtonPause : MonoBehaviour
     void Awake()
     {
         _button = GetComponent<Button>();
-        _button.onClick.AddListener(() => GameManager.OnGamePause?.Invoke());
+        _button.onClick.AddListener(() => GameStateManager.SetState(GameState.Pause));
     }
 }

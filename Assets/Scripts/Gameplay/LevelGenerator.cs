@@ -28,8 +28,8 @@ public class LevelGenerator : MonoBehaviour
 
     void Start()
     {
-        OnRestart();
-        GameManager.OnGameRestart += OnRestart;
+        ResetLevel();
+        GameStateManager.OnHome += ResetLevel;
     }
 
     void Update()
@@ -40,9 +40,9 @@ public class LevelGenerator : MonoBehaviour
         DespawnOldElements();
     }
 
-    void OnDestroy() => GameManager.OnGameRestart -= OnRestart;
+    void OnDestroy() => GameStateManager.OnHome -= ResetLevel;
 
-    void OnRestart()
+    void ResetLevel()
     {
         _lastPipeSet = null;
         _lastFloor = null;

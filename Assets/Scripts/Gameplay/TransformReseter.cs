@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 
-public class PlayerReseter : MonoBehaviour
+public class TransformReseter : MonoBehaviour
 {
+    [SerializeField] GameState onState;
+
     Rigidbody _rb;
     Vector3 _startPosition;
     Quaternion _startRotation;
@@ -13,8 +15,16 @@ public class PlayerReseter : MonoBehaviour
         _startRotation = transform.rotation;
     }
 
-    void Start() => GameManager.OnGameRestart += ResetPlayer;
-    void OnDestroy() => GameManager.OnGameRestart -= ResetPlayer;
+    void Start() => GameStateManager.OnStateChange += OnStateChanged;
+    void OnDestroy() => GameStateManager.OnStateChange -= OnStateChanged;
+
+    void OnStateChanged(GameState state)
+    {
+        if (state == onState)
+        {
+            ResetPlayer();
+        }
+    }
 
     void ResetPlayer()
     {

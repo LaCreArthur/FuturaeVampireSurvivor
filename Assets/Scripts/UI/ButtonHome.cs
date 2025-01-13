@@ -8,6 +8,6 @@ public class ButtonHome : MonoBehaviour
     void Awake()
     {
         _button = GetComponent<Button>();
-        _button.onClick.AddListener(() => GameManager.OnGameRestart?.Invoke());
+        _button.onClick.AddListener(() => GameStateManager.SetState(GameState.Home));
     }
 }

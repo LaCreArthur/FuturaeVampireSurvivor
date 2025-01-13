@@ -1,11 +1,10 @@
-using System;
 using UnityEngine;
 
 public class PlayerCollisionDetector : MonoBehaviour
 {
     void OnCollisionEnter(Collision other)
     {
-        if (other.transform.TryGetComponent<ICollidable>(out ICollidable collidable))
+        if (other.transform.TryGetComponent(out ICollidable collidable))
         {
             switch (collidable.CollisionType)
             {
@@ -22,25 +21,4 @@ public class PlayerCollisionDetector : MonoBehaviour
             }
         }
     }
-}
-
-public enum CollisionType
-{
-    Enemy,
-    Ally,
-}
-
-public class Enemy : MonoBehaviour, ICollidable
-{
-    public CollisionType CollisionType => CollisionType.Enemy;
-}
-
-public class Ally : MonoBehaviour, ICollidable
-{
-    public CollisionType CollisionType => CollisionType.Ally;
-}
-
-public interface ICollidable
-{
-    public CollisionType CollisionType { get; }
 }

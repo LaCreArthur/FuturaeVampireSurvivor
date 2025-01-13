@@ -8,6 +8,6 @@ public class ButtonLeaderboard : MonoBehaviour
     void Awake()
     {
         _button = GetComponent<Button>();
-        _button.onClick.AddListener(() => GameManager.OnLeaderboard?.Invoke());
+        _button.onClick.AddListener(() => GameStateManager.SetState(GameState.Leaderboard));
     }
 }

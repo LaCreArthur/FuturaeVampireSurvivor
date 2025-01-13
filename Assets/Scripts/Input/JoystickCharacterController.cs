@@ -6,7 +6,6 @@ public class JoystickCharacterController : MonoBehaviour
 
     [SerializeField] bool isJoystickDirectionInverted;
     [SerializeField] float joystickSensitivity = 10f;
-    [SerializeField] float rotateSpeed = 10f;
     [SerializeField] Animator animator;
     [SerializeField] AnimationCurve accelerationCurve;
 

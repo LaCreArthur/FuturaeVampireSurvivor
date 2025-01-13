@@ -2707,8 +2707,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useAxis: 0
-  dragJoystickProvider: {fileID: 2060012201}
-  axisJoystickProvider: {fileID: 1177442471}
   movementSpeed: 10
 --- !u!1001 &1250639499
 PrefabInstance:

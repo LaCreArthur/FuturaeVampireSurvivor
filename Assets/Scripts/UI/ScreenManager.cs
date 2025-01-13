@@ -15,22 +15,20 @@ public class ScreenManager : MonoBehaviour
 
     void Start()
     {
-        GameManager.OnGameStart += ShowGameScreen;
-        GameManager.OnGameEnd += ShowEndScreen;
-        GameManager.OnGameRestart += ShowHomeScreen;
-        GameManager.OnGamePause += ShowPauseScreen;
-        GameManager.OnGameResume += ShowGameScreen;
-        GameManager.OnLeaderboard += ShowLeaderboard;
+        GameStateManager.OnInGame += ShowGameScreen;
+        GameStateManager.OnGameOver += ShowEndScreen;
+        GameStateManager.OnHome += ShowHomeScreen;
+        GameStateManager.OnPause += ShowPauseScreen;
+        GameStateManager.OnLeaderboard += ShowLeaderboard;
     }
 
     void OnDestroy()
     {
-        GameManager.OnGameStart -= ShowGameScreen;
-        GameManager.OnGameEnd -= ShowEndScreen;
-        GameManager.OnGameRestart -= ShowHomeScreen;
-        GameManager.OnGamePause -= ShowPauseScreen;
-        GameManager.OnGameResume -= ShowGameScreen;
-        GameManager.OnLeaderboard -= ShowLeaderboard;
+        GameStateManager.OnInGame -= ShowGameScreen;
+        GameStateManager.OnGameOver -= ShowEndScreen;
+        GameStateManager.OnHome -= ShowHomeScreen;
+        GameStateManager.OnPause -= ShowPauseScreen;
+        GameStateManager.OnLeaderboard -= ShowLeaderboard;
     }
 
     void ShowGameScreen()
