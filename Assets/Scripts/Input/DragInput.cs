@@ -1,24 +1,14 @@
 ﻿using UnityEngine;
 
-public class DragController : MonoBehaviour
+public class DragInput : MonoBehaviour, IPlayerInput
 {
-    [Header("Drag Parameters")]
-    [Tooltip("Movement multiplication factor.\n1 = identical movement,\n>1 = amplified movement,\n<1 = reduced movement.")]
-    public float dragScale = 1f;
-
-    [Header("Movement Constraints")]
-    [Tooltip("Freeze movement on X axis if true.")]
-    public bool freezeX;
-
-    [Tooltip("Freeze movement on Z axis if true.")]
-    public bool freezeZ;
-
-    bool isDragging;
+    bool _isDragging;
+    Vector2 _input;
 
     // Positions stored at the start of dragging
-    Vector3 objectStartPos; // Initial object position
-    Vector3 pointerStartWorldPos; // Initial pointer position in world coordinates
-    float zCoord; // Distance between camera and object
+    Vector3 _objectStartPos; // Initial object position
+    Vector3 _pointerStartWorldPos; // Initial pointer position in world coordinates
+    float _zCoord; // Distance between camera and object
 
     void Update()
     {
@@ -33,6 +23,8 @@ public class DragController : MonoBehaviour
         }
     }
 
+    public Vector2 ReadInput() => _input;
+
     /// <summary>
     ///     Handles touch inputs (mobile).
     /// </summary>
@@ -46,7 +38,7 @@ public class DragController : MonoBehaviour
                 break;
 
             case TouchPhase.Moved:
-                if (isDragging)
+                if (_isDragging)
                 {
                     UpdateDragging(touch.position);
                 }
@@ -68,7 +60,7 @@ public class DragController : MonoBehaviour
         {
             StartDragging(Input.mousePosition);
         }
-        else if (Input.GetMouseButton(0) && isDragging)
+        else if (Input.GetMouseButton(0) && _isDragging)
         {
             UpdateDragging(Input.mousePosition);
         }
@@ -84,18 +76,20 @@ public class DragController : MonoBehaviour
     /// <param name="screenPosition">The screen position of the pointer (mouse or touch).</param>
     void StartDragging(Vector3 screenPosition)
     {
-        isDragging = true;
+        _isDragging = true;
 
         // Calculate Z distance between camera and object
-        zCoord = transform.position.z - Camera.main.transform.position.z;
+        _zCoord = transform.position.z - Camera.main.transform.position.z;
 
         // Store initial object position
-        objectStartPos = transform.position;
+        _objectStartPos = transform.position;
 
         // Convert pointer position to world coordinates
-        pointerStartWorldPos = Camera.main.ScreenToWorldPoint(
-            new Vector3(screenPosition.x, screenPosition.y, zCoord)
+        _pointerStartWorldPos = Camera.main.ScreenToWorldPoint(
+            new Vector3(screenPosition.x, screenPosition.y, _zCoord)
         );
+
+        _input = new Vector2(_objectStartPos.x, _objectStartPos.z);
     }
 
     /// <summary>
@@ -106,35 +100,20 @@ public class DragController : MonoBehaviour
     {
         // Convert current pointer position to world coordinates
         Vector3 pointerCurrentWorldPos = Camera.main.ScreenToWorldPoint(
-            new Vector3(screenPosition.x, screenPosition.y, zCoord)
+            new Vector3(screenPosition.x, screenPosition.y, _zCoord)
         );
 
         // Calculate difference (delta) and apply scale factor
-        Vector3 delta = (pointerCurrentWorldPos - pointerStartWorldPos) * dragScale;
+        Vector3 delta = pointerCurrentWorldPos - _pointerStartWorldPos;
 
         // Calculate new position by adding delta to initial position
-        Vector3 newPosition = objectStartPos + delta;
+        Vector3 newPosition = _objectStartPos + delta;
 
-        // Apply movement constraints
-        if (freezeX)
-        {
-            newPosition.x = objectStartPos.x;
-        }
-
-        if (freezeZ)
-        {
-            newPosition.z = objectStartPos.z;
-        }
-
-        // Keep Y position unchanged to lock Y movement (already handled by Rigidbody constraints if needed)
-        newPosition.y = objectStartPos.y;
-
-        // Apply final position
-        transform.position = newPosition;
+        _input = new Vector2(newPosition.x, newPosition.z);
     }
 
     /// <summary>
     ///     Ends the dragging process.
     /// </summary>
-    void StopDragging() => isDragging = false;
+    void StopDragging() => _isDragging = false;
 }

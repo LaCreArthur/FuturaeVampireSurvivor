@@ -2568,7 +2568,6 @@ GameObject:
   - component: {fileID: 1177442470}
   - component: {fileID: 1177442469}
   - component: {fileID: 1177442471}
-  - component: {fileID: 1177442472}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2659,14 +2658,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1177442464}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c181356827704907bdcef760e8258ac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragScale: 1
-  freezeX: 1
-  freezeZ: 0
 --- !u!114 &1177442470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2679,6 +2675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e7387b3a1c4c9eb5b0e5aac22cf282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onState: 0
 --- !u!114 &1177442471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2688,26 +2685,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1177442464}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfd71fbff79c4f789a7d095a8330244f, type: 3}
+  m_Script: {fileID: 11500000, guid: d60beea73ceb417fb35b4628c7bfa9f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  freezeX: 1
-  freezeY: 0
-  sensitivity: 1
---- !u!114 &1177442472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1177442464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8929dbe66fd44aa7b68b18ebc134e6ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  useAxis: 0
-  movementSpeed: 10
+  joystickSensitivity: 10
+  dragScale: 1
+  freezeX: 0
+  freezeZ: 0
+  inputType: 0
+  uiJoystickInput: {fileID: 2060012201}
+  dragInput: {fileID: 1177442469}
 --- !u!1001 &1250639499
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4974,12 +4961,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e65a21ecde274b989dbb2b86bc0536f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  freezeX: 0
-  freezeY: 0
   outerCircleImage: {fileID: 1355275103}
   handleImage: {fileID: 1816490227}
   maxDragDistanceInInches: 1
-  sensitivity: 1
 --- !u!114 &2060012202
 MonoBehaviour:
   m_ObjectHideFlags: 0
