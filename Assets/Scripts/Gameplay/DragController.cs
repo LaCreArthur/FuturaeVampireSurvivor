@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class DragAnywhereController : MonoBehaviour
+public class DragController : MonoBehaviour
 {
     [Header("Drag Parameters")]
     [Tooltip("Movement multiplication factor.\n1 = identical movement,\n>1 = amplified movement,\n<1 = reduced movement.")]

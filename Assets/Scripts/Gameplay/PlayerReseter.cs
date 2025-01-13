@@ -2,12 +2,13 @@
 
 public class PlayerReseter : MonoBehaviour
 {
-    Rigidbody2D _rb;
+    Rigidbody _rb;
     Vector3 _startPosition;
     Quaternion _startRotation;
 
     void Awake()
     {
+        _rb = GetComponent<Rigidbody>();
         _startPosition = transform.position;
         _startRotation = transform.rotation;
     }
