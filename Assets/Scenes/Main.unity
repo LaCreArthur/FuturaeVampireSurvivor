@@ -2652,7 +2652,7 @@ MonoBehaviour:
   dragScale: 1
   freezeX: 1
   freezeZ: 0
-  inputType: 2
+  inputType: 1
   uiJoystickInput: {fileID: 2060012201}
   dragInput: {fileID: 1177442469}
 --- !u!1001 &1250639499
