@@ -4,13 +4,22 @@ public class DragInput : MonoBehaviour, IPlayerInput
 {
     bool _isDragging;
     Vector2 _input;
+    Camera _mainCam;
+
+    Vector3 _initialPos;
 
     // Positions stored at the start of dragging
     Vector3 _objectStartPos; // Initial object position
     Vector3 _pointerStartWorldPos; // Initial pointer position in world coordinates
     float _zCoord; // Distance between camera and object
 
-    void Awake() => _input = new Vector2(transform.position.x, transform.position.z);
+    void Start()
+    {
+        _mainCam = Camera.main;
+        _initialPos = transform.position;
+        GameStateManager.OnHome += ResetInput;
+        ResetInput();
+    }
 
     void Update()
     {
@@ -25,12 +34,12 @@ public class DragInput : MonoBehaviour, IPlayerInput
         }
     }
 
+    void OnDestroy() => GameStateManager.OnHome -= ResetInput;
+
     public Vector2 ReadInput() => _input;
 
-    /// <summary>
-    ///     Handles touch inputs (mobile).
-    /// </summary>
-    /// <param name="touch">The current touch.</param>
+    void ResetInput() => _input = new Vector2(_initialPos.x, _initialPos.z);
+
     void HandleTouchInput(Touch touch)
     {
         switch (touch.phase)
@@ -53,9 +62,6 @@ public class DragInput : MonoBehaviour, IPlayerInput
         }
     }
 
-    /// <summary>
-    ///     Handles mouse inputs (PC).
-    /// </summary>
     void HandleMouseInput()
     {
         if (Input.GetMouseButtonDown(0))
@@ -72,36 +78,28 @@ public class DragInput : MonoBehaviour, IPlayerInput
         }
     }
 
-    /// <summary>
-    ///     Starts the dragging process.
-    /// </summary>
-    /// <param name="screenPosition">The screen position of the pointer (mouse or touch).</param>
     void StartDragging(Vector3 screenPosition)
     {
         _isDragging = true;
 
         // Calculate Z distance between camera and object
-        _zCoord = transform.position.z - Camera.main.transform.position.z;
+        _zCoord = transform.position.z - _mainCam.transform.position.z;
 
         // Store initial object position
         _objectStartPos = transform.position;
 
         // Convert pointer position to world coordinates
-        _pointerStartWorldPos = Camera.main.ScreenToWorldPoint(
+        _pointerStartWorldPos = _mainCam.ScreenToWorldPoint(
             new Vector3(screenPosition.x, screenPosition.y, _zCoord)
         );
 
         _input = new Vector2(_objectStartPos.x, _objectStartPos.z);
     }
 
-    /// <summary>
-    ///     Updates object position during dragging.
-    /// </summary>
-    /// <param name="screenPosition">The current screen position of the pointer.</param>
     void UpdateDragging(Vector3 screenPosition)
     {
         // Convert current pointer position to world coordinates
-        Vector3 pointerCurrentWorldPos = Camera.main.ScreenToWorldPoint(
+        Vector3 pointerCurrentWorldPos = _mainCam.ScreenToWorldPoint(
             new Vector3(screenPosition.x, screenPosition.y, _zCoord)
         );
 
@@ -114,8 +112,5 @@ public class DragInput : MonoBehaviour, IPlayerInput
         _input = new Vector2(newPosition.x, newPosition.z);
     }
 
-    /// <summary>
-    ///     Ends the dragging process.
-    /// </summary>
     void StopDragging() => _isDragging = false;
 }

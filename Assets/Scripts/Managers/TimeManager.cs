@@ -4,6 +4,7 @@ public class TimeManager : MonoBehaviour
 {
     void Start()
     {
+        GameStateManager.OnHome += PauseTime;
         GameStateManager.OnPause += PauseTime;
         GameStateManager.OnInGame += ResumeTime;
         Time.timeScale = 0;
@@ -11,6 +12,7 @@ public class TimeManager : MonoBehaviour
 
     void OnDestroy()
     {
+        GameStateManager.OnHome -= PauseTime;
         GameStateManager.OnPause -= PauseTime;
         GameStateManager.OnInGame -= ResumeTime;
     }

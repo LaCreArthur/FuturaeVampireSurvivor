@@ -18,6 +18,11 @@ public class InputManager : MonoBehaviour
     [SerializeField] DragInput dragInput;
 
     IPlayerInput _playerInput;
+
+    float _pY;
+
+    void Awake() => _pY = transform.position.y;
+
     void Update()
     {
         switch (inputType)
@@ -52,14 +57,14 @@ public class InputManager : MonoBehaviour
         if (freezeX) input.x = 0;
         if (freezeZ) input.y = 0;
         transform.position +=
-            new Vector3(input.x, 0f, input.y) * (joystickSensitivity * Time.deltaTime);
+            new Vector3(input.x, _pY, input.y) * (joystickSensitivity * Time.deltaTime);
     }
 
     void DragMove(Vector2 input)
     {
         if (freezeX) input.x = transform.position.x;
         if (freezeZ) input.y = transform.position.z;
-        transform.position = new Vector3(input.x, 0f, input.y) * dragScale;
+        transform.position = new Vector3(input.x, _pY, input.y) * dragScale;
     }
 }
 

@@ -66,7 +66,8 @@ public class UIJoystickInput : MonoBehaviour, IPlayerInput, IDragHandler, IPoint
         _startPosition = handleImage.rectTransform.anchoredPosition;
 
         // Show the joystick UI
-        if (InputManager.InputType == InputType.UIJoystick) SetImagesActive(true);
+        if (InputManager.InputType == InputType.UIJoystick)
+            SetImagesActive(true);
 
         // Immediately call OnDrag to set the initial vector
         OnDrag(eventData);
