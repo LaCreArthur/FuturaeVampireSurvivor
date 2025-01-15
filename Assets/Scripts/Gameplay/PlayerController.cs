@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float startSpeed = 5f;
@@ -7,11 +8,12 @@ public class PlayerController : MonoBehaviour
 
     float _currentSpeed;
     bool _isMoving;
-
+    Rigidbody _rb;
 
     void Start()
     {
-        GameStateManager.OnInGame += Restart;
+        _rb = GetComponent<Rigidbody>();
+        GameStateManager.OnInGame += OnInGame;
         GameStateManager.OnGameOver += OnGameOver;
     }
 
@@ -25,14 +27,20 @@ public class PlayerController : MonoBehaviour
 
     void OnDestroy()
     {
-        GameStateManager.OnInGame -= Restart;
+        GameStateManager.OnInGame -= OnInGame;
         GameStateManager.OnGameOver -= OnGameOver;
     }
-    void OnGameOver() => _isMoving = false;
+    void OnGameOver()
+    {
+        _isMoving = false;
+        _rb.isKinematic = false;
+        _rb.linearVelocity = Vector3.zero;
+    }
 
-    void Restart()
+    void OnInGame()
     {
         _currentSpeed = startSpeed;
         _isMoving = true;
+        _rb.isKinematic = true;
     }
 }
