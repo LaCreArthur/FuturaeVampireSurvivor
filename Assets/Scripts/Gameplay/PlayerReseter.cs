@@ -16,6 +16,7 @@ public class PlayerReseter : MonoBehaviour
 
     void ResetPlayer()
     {
+        Debug.Log("Resetting player position and rotation.");
         transform.position = _startPosition;
         transform.rotation = _startRotation;
     }

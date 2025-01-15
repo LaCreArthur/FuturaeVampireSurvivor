@@ -12,6 +12,8 @@ public class UIJoystickInput : MonoBehaviour, IPlayerInput, IDragHandler, IPoint
     Vector2 _startPosition;
     Vector2 _input;
 
+    public float JoystickSensitivity { get; set; }
+
     void OnEnable()
     {
         UpdateInput(Vector2.zero);

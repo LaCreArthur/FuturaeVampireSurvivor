@@ -2,10 +2,10 @@
 
 public class InputManager : MonoBehaviour
 {
-
     public static InputType InputType;
+
+    [Header("Shared Joystick Settings")]
     [SerializeField] float joystickSensitivity = 1;
-    [SerializeField] float dragScale = 1;
 
     [Header("Movement Constraints")]
     [Tooltip("Freeze movement on X axis if true.")]
@@ -17,54 +17,41 @@ public class InputManager : MonoBehaviour
     [SerializeField] UIJoystickInput uiJoystickInput;
     [SerializeField] DragInput dragInput;
 
+    AxisJoystickInput _axisJoystickInput;
     IPlayerInput _playerInput;
 
-    float _pY;
-
-    void Awake() => _pY = transform.position.y;
+    void Start()
+    {
+        _axisJoystickInput = new AxisJoystickInput(joystickSensitivity);
+        uiJoystickInput.JoystickSensitivity = joystickSensitivity;
+    }
 
     void Update()
     {
-        switch (inputType)
-        {
-            case InputType.AxisJoystick:
-                _playerInput = new AxisJoystickInput();
-                break;
-            case InputType.UIJoystick:
-                _playerInput = uiJoystickInput;
-                break;
-            case InputType.Drag:
-                _playerInput = dragInput;
-                break;
-        }
-        InputType = inputType;
-        Vector2 input = _playerInput.ReadInput();
-
-        switch (inputType)
-        {
-            case InputType.AxisJoystick:
-            case InputType.UIJoystick:
-                JoystickMove(input);
-                break;
-            case InputType.Drag:
-                DragMove(input);
-                break;
-        }
+        if (GameStateManager.CurrentState != GameState.InGame) return;
+        SelectInputType();
+        Move();
     }
 
-    void JoystickMove(Vector2 input)
+    void SelectInputType()
     {
+        // in case the input type is changed during gameplay
+        _playerInput = inputType switch
+        {
+            InputType.AxisJoystick => _axisJoystickInput,
+            InputType.UIJoystick => uiJoystickInput,
+            InputType.Drag => dragInput,
+            _ => _playerInput,
+        };
+        InputType = inputType;
+    }
+
+    void Move()
+    {
+        Vector2 input = _playerInput.ReadInput();
         if (freezeX) input.x = 0;
         if (freezeZ) input.y = 0;
-        transform.position +=
-            new Vector3(input.x, _pY, input.y) * (joystickSensitivity * Time.deltaTime);
-    }
-
-    void DragMove(Vector2 input)
-    {
-        if (freezeX) input.x = transform.position.x;
-        if (freezeZ) input.y = transform.position.z;
-        transform.position = new Vector3(input.x, _pY, input.y) * dragScale;
+        transform.position += new Vector3(input.x, 0, input.y);
     }
 }
 

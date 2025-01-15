@@ -2,28 +2,26 @@
 
 public class DragInput : MonoBehaviour, IPlayerInput
 {
+    [SerializeField] float speedToReachDestination = 10f;
+    [SerializeField] float dragScale = 1f;
+
+    Camera _mainCamera;
+    Vector3 _initialObjectPosition;
+    Vector3 _initialPointerWorldPosition;
+    Vector2 _inputVector;
+    float _zDistance;
     bool _isDragging;
-    Vector2 _input;
-    Camera _mainCam;
-
-    Vector3 _initialPos;
-
-    // Positions stored at the start of dragging
-    Vector3 _objectStartPos; // Initial object position
-    Vector3 _pointerStartWorldPos; // Initial pointer position in world coordinates
-    float _zCoord; // Distance between camera and object
 
     void Start()
     {
-        _mainCam = Camera.main;
-        _initialPos = transform.position;
-        GameStateManager.OnHome += ResetInput;
+        _mainCamera = Camera.main;
+        _initialObjectPosition = transform.position;
         ResetInput();
     }
 
-    void Update()
+
+    public Vector2 ReadInput()
     {
-        // Detect input (Touch on mobile, Mouse on PC)
         if (Input.touchCount > 0)
         {
             HandleTouchInput(Input.GetTouch(0));
@@ -32,32 +30,29 @@ public class DragInput : MonoBehaviour, IPlayerInput
         {
             HandleMouseInput();
         }
+        return _inputVector;
     }
 
-    void OnDestroy() => GameStateManager.OnHome -= ResetInput;
-
-    public Vector2 ReadInput() => _input;
-
-    void ResetInput() => _input = new Vector2(_initialPos.x, _initialPos.z);
+    void ResetInput() => _inputVector = Vector2.zero;
 
     void HandleTouchInput(Touch touch)
     {
         switch (touch.phase)
         {
             case TouchPhase.Began:
-                StartDragging(touch.position);
+                BeginDrag(touch.position);
                 break;
 
             case TouchPhase.Moved:
                 if (_isDragging)
                 {
-                    UpdateDragging(touch.position);
+                    PerformDrag(touch.position);
                 }
                 break;
 
             case TouchPhase.Ended:
             case TouchPhase.Canceled:
-                StopDragging();
+                EndDrag();
                 break;
         }
     }
@@ -66,51 +61,42 @@ public class DragInput : MonoBehaviour, IPlayerInput
     {
         if (Input.GetMouseButtonDown(0))
         {
-            StartDragging(Input.mousePosition);
+            BeginDrag(Input.mousePosition);
         }
         else if (Input.GetMouseButton(0) && _isDragging)
         {
-            UpdateDragging(Input.mousePosition);
+            PerformDrag(Input.mousePosition);
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            StopDragging();
+            EndDrag();
         }
     }
 
-    void StartDragging(Vector3 screenPosition)
+    void BeginDrag(Vector3 screenPosition)
     {
         _isDragging = true;
-
-        // Calculate Z distance between camera and object
-        _zCoord = transform.position.z - _mainCam.transform.position.z;
-
-        // Store initial object position
-        _objectStartPos = transform.position;
-
-        // Convert pointer position to world coordinates
-        _pointerStartWorldPos = _mainCam.ScreenToWorldPoint(
-            new Vector3(screenPosition.x, screenPosition.y, _zCoord)
-        );
-
-        _input = new Vector2(_objectStartPos.x, _objectStartPos.z);
+        _zDistance = Mathf.Abs(transform.position.z - _mainCamera.transform.position.z);
+        _initialObjectPosition = transform.position;
+        _initialPointerWorldPosition = _mainCamera.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, _zDistance));
+        _inputVector = Vector2.zero;
     }
 
-    void UpdateDragging(Vector3 screenPosition)
+    void PerformDrag(Vector3 screenPosition)
     {
-        // Convert current pointer position to world coordinates
-        Vector3 pointerCurrentWorldPos = _mainCam.ScreenToWorldPoint(
-            new Vector3(screenPosition.x, screenPosition.y, _zCoord)
-        );
+        Vector3 currentPointerWorldPos = _mainCamera.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, _zDistance));
+        Vector3 delta = (currentPointerWorldPos - _initialPointerWorldPosition) * dragScale;
+        Vector3 targetPosition = _initialObjectPosition + delta;
 
-        // Calculate difference (delta) and apply scale factor
-        Vector3 delta = pointerCurrentWorldPos - _pointerStartWorldPos;
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, targetPosition, speedToReachDestination * Time.deltaTime);
+        Vector3 movement = smoothedPosition - transform.position;
 
-        // Calculate new position by adding delta to initial position
-        Vector3 newPosition = _objectStartPos + delta;
-
-        _input = new Vector2(newPosition.x, newPosition.z);
+        _inputVector = new Vector2(movement.x, movement.z);
     }
 
-    void StopDragging() => _isDragging = false;
+    void EndDrag()
+    {
+        _isDragging = false;
+        _inputVector = Vector2.zero;
+    }
 }
