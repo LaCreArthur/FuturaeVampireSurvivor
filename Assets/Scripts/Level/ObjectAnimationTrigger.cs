@@ -7,13 +7,18 @@ public class ObjectAnimationTrigger : MonoBehaviour
     [SerializeField] List<GameObject> objects;
     [SerializeField] float delay = 0.5f;
 
-    void OnTriggerEnter(Collider other) => StartCoroutine(AnimationCoroutine());
+    void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag("Player")) return;
+        StartCoroutine(AnimationCoroutine());
+    }
 
     IEnumerator AnimationCoroutine()
     {
-        foreach (GameObject stage in objects)
+        for (int i = 0; i < objects.Count; i++)
         {
-            if (stage.TryGetComponent(out IObjectAnimation objectAnimation))
+            GameObject o = objects[i];
+            if (o.TryGetComponent(out IObjectAnimation objectAnimation))
             {
                 objectAnimation.PlayAnimation();
             }

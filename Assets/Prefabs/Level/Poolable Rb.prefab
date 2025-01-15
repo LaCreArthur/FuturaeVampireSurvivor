@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 341460868701748534}
   - component: {fileID: 7043841953982550143}
   m_Layer: 0
-  m_Name: Rb Enemy
-  m_TagString: Obstacle
+  m_Name: Poolable Rb
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
