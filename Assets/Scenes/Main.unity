@@ -2709,7 +2709,7 @@ MonoBehaviour:
   joystickSensitivity: 10
   freezeX: 1
   freezeZ: 0
-  inputType: 1
+  inputType: 2
   uiJoystickInput: {fileID: 2060012201}
   dragInput: {fileID: 1177442469}
 --- !u!114 &1177442472
