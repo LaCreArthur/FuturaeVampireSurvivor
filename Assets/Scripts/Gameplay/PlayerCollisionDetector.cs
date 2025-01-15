@@ -4,21 +4,14 @@ public class PlayerCollisionDetector : MonoBehaviour
 {
     void OnCollisionEnter(Collision other)
     {
-        if (other.transform.TryGetComponent(out ICollidable collidable))
+        if (other.transform.CompareTag("Obstacle"))
         {
-            switch (collidable.CollisionType)
-            {
-                case CollisionType.Enemy:
-                    Debug.Log("Enemy collision detected!");
-                    GameStateManager.SetState(GameState.GameOver);
-                    break;
-                case CollisionType.Ally:
-                    Debug.Log("Ally collision detected!");
-                    break;
-                default:
-                    Debug.Log("Unknown collision detected!");
-                    break;
-            }
+            Debug.Log("Enemy collision detected!");
+            GameStateManager.SetState(GameState.GameOver);
         }
+        else if (other.transform.CompareTag("Ally"))
+            Debug.Log("Ally collision detected!");
+        else
+            Debug.Log("Unknown collision detected!");
     }
 }
