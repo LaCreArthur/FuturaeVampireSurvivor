@@ -10,26 +10,11 @@ public class UIJoystickInput : MonoBehaviour, IPlayerInput, IDragHandler, IPoint
 
     float _maxDragDistance;
     Vector2 _startPosition;
-    Vector2 _joystickInput;
-    Vector2 InputVector
-    {
-        set {
-            // Normalize if magnitude > 1
-            _joystickInput = value.magnitude > 1f ? value.normalized : value;
-
-            // Scale and clamp the handle’s position relative to the center
-            Vector2 desiredPosition = _joystickInput * _maxDragDistance;
-            Vector2 clampedPosition = Vector2.ClampMagnitude(desiredPosition, 100f);
-
-            // Update the handle’s anchored position
-            handleImage.rectTransform.anchoredPosition = _startPosition + clampedPosition;
-
-        }
-    }
+    Vector2 _input;
 
     void OnEnable()
     {
-        InputVector = Vector2.zero;
+        UpdateInput(Vector2.zero);
         SetImagesActive(false);
     }
 
@@ -46,10 +31,10 @@ public class UIJoystickInput : MonoBehaviour, IPlayerInput, IDragHandler, IPoint
     {
         // Calculate drag offset from the outer circle’s position
         Vector2 dragPosition = eventData.position - (Vector2)outerCircleImage.rectTransform.position;
-        InputVector = dragPosition / _maxDragDistance;
+        UpdateInput(dragPosition / _maxDragDistance);
     }
 
-    public Vector2 ReadInput() => _joystickInput;
+    public Vector2 ReadInput() => _input;
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -76,8 +61,21 @@ public class UIJoystickInput : MonoBehaviour, IPlayerInput, IDragHandler, IPoint
     public void OnPointerUp(PointerEventData eventData)
     {
         // Reset input and hide the joystick
-        InputVector = Vector2.zero;
+        UpdateInput(Vector2.zero);
         SetImagesActive(false);
+    }
+
+    void UpdateInput(Vector2 value)
+    {
+        // Normalize if magnitude > 1
+        _input = value.magnitude > 1f ? value.normalized : value;
+
+        // Scale and clamp the handle’s position relative to the center
+        Vector2 desiredPosition = _input * _maxDragDistance;
+        Vector2 clampedPosition = Vector2.ClampMagnitude(desiredPosition, 100f);
+
+        // Update the handle’s anchored position
+        handleImage.rectTransform.anchoredPosition = _startPosition + clampedPosition;
     }
 
     void SetImagesActive(bool value)
