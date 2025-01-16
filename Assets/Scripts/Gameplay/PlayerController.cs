@@ -6,6 +6,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float startSpeed = 5f;
     [SerializeField] float speedIncreasePerSecond = 0.05f;
 
+    // static ref to transform for quick reference in other scripts
+    public static Transform PlayerTransform;
+    
     float _currentSpeed;
     bool _isMoving;
     Rigidbody _rb;
@@ -13,6 +16,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        PlayerTransform = transform;
         GameStateManager.OnInGame += OnInGame;
         GameStateManager.OnGameOver += OnGameOver;
     }

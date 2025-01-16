@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ImpulseForceObjectAnimation : MonoBehaviour, IObjectAnimation
+public class ImpulseForceVectorObjectAnimation : MonoBehaviour, IObjectAnimation
 {
     [SerializeField] Vector3 forceDirection;
 
