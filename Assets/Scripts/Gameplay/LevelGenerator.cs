@@ -23,9 +23,6 @@ public class LevelGenerator : MonoBehaviour
     // Reference to the player's transform to know when to spawn new segments
     Transform _playerTransform;
 
-    // Dictionary to manage object pools for each prefab
-    Dictionary<GameObject, ObjectPool> _objectPools;
-
     // Property shortcut to get the X position of the last segment
     float LastSegmentX => _lastSegment?.position.x ?? 0;
 
@@ -35,7 +32,6 @@ public class LevelGenerator : MonoBehaviour
 
     void Start()
     {
-        InitializePools();
         _playerTransform = transform; // this script is attached to the player
         GameStateManager.OnHome += ResetLevel;
         ResetLevel();
@@ -48,15 +44,6 @@ public class LevelGenerator : MonoBehaviour
     }
 
     void OnDestroy() => GameStateManager.OnHome -= ResetLevel;
-
-    void InitializePools()
-    {
-        _objectPools = new Dictionary<GameObject, ObjectPool>();
-        foreach (GameObject prefab in segmentPrefabs)
-        {
-            _objectPools[prefab] = new ObjectPool(prefab, 3);
-        }
-    }
 
     void ResetLevel()
     {
@@ -80,10 +67,8 @@ public class LevelGenerator : MonoBehaviour
         // Randomly select a segment prefab from the list and get its pool
         GameObject selectedPrefab = segmentPrefabs[Random.Range(0, segmentPrefabs.Count)];
 
-        ObjectPool pool = _objectPools[selectedPrefab];
-
         // Spawn a new segment from the pool
-        GameObject nextSegment = pool.Spawn(new Vector3(nextSegmentX, 0f, 0f), Quaternion.identity, segmentParent);
+        GameObject nextSegment = PoolManager.Spawn(selectedPrefab, new Vector3(nextSegmentX, 0f, 0f), Quaternion.identity, segmentParent);
 
         // Enqueue the new segment as active
         _activeSegments.Enqueue(new ActiveSegment(selectedPrefab, nextSegment));
@@ -110,7 +95,7 @@ public class LevelGenerator : MonoBehaviour
         if (oldestSegment.Instance.transform.position.x < PlayerX + despawnDistance)
         {
             // Despawn the segment back to its pool
-            _objectPools[oldestSegment.Prefab].Despawn(oldestSegment.Instance);
+            PoolManager.Despawn(oldestSegment.Prefab, oldestSegment.Instance);
 
             // Dequeue the segment from the active queue
             _activeSegments.Dequeue();
@@ -123,7 +108,7 @@ public class LevelGenerator : MonoBehaviour
         while (_activeSegments.Count > 0)
         {
             ActiveSegment segment = _activeSegments.Dequeue();
-            _objectPools[segment.Prefab].Despawn(segment.Instance);
+            PoolManager.Despawn(segment.Prefab, segment.Instance);
         }
     }
 }
