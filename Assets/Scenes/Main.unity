@@ -2725,7 +2725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d15d4e18d25e473486a7701cbc4242bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSpeed: 30
+  startSpeed: 15
   speedIncreasePerSecond: 0.05
 --- !u!114 &1177442475
 MonoBehaviour:
@@ -2740,7 +2740,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   segmentPrefabs:
-  - {fileID: 6638166349142818006, guid: bcf214575b046a543b00dc63e16dc923, type: 3}
   - {fileID: 6638166349142818006, guid: 486f282bdc31c00479c1bceda69cd7c9, type: 3}
   segmentParent: {fileID: 2072572568}
   spawnDistance: 10

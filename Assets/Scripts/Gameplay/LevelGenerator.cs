@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
@@ -49,7 +50,8 @@ public class LevelGenerator : MonoBehaviour
     {
         _lastSegment = null;
         DespawnAllSegments();
-        GenerateInitialLevel();
+        // delay the generation of the initial level to avoid despawning the physic objects in the same frame of the GameStateManager.OnHome event
+        DOVirtual.DelayedCall(0.1f, GenerateInitialLevel);
     }
 
     void GenerateInitialLevel()
@@ -68,7 +70,7 @@ public class LevelGenerator : MonoBehaviour
         GameObject selectedPrefab = segmentPrefabs[Random.Range(0, segmentPrefabs.Count)];
 
         // Spawn a new segment from the pool
-        GameObject nextSegment = PoolManager.Spawn(selectedPrefab, new Vector3(nextSegmentX, 0f, 0f), Quaternion.identity, segmentParent);
+        GameObject nextSegment = PoolManager.Spawn(selectedPrefab, new Vector3(nextSegmentX, 0f, 0f), Quaternion.identity, null);
 
         // Enqueue the new segment as active
         _activeSegments.Enqueue(new ActiveSegment(selectedPrefab, nextSegment));

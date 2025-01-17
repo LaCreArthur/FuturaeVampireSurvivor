@@ -33,6 +33,7 @@ public class PoolableRBObject : MonoBehaviour, IPoolable
     }
 
     public void OnDespawn() {}
+
     void Despawn()
     {
         // Check if the object is enabled before despawning it (to avoid despawning it twice)

@@ -43,7 +43,6 @@ public class GameObjectPool
                 go.transform.SetParent(parent, false);
             // Assign position and rotation
             go.transform.SetPositionAndRotation(position, rotation);
-            go.SetActive(true);
         }
         else
         {
@@ -52,6 +51,7 @@ public class GameObjectPool
             _poolableComponents[go] = go.GetComponents<IPoolable>();
         }
 
+        go.SetActive(true);
         _activeObjects.Add(go);
         // call OnSpawn on IPoolable components of the object
         foreach (IPoolable p in _poolableComponents[go])
