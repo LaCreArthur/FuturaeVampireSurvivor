@@ -58,6 +58,7 @@ public class GameObjectPool
         {
             p.OnSpawn();
         }
+
         return go;
     }
 
@@ -65,16 +66,13 @@ public class GameObjectPool
     {
         if (_activeObjects.Remove(go))
         {
-            foreach (IPoolable p in _poolableComponents[go])
-            {
-                p.OnDespawn();
-            }
             go.SetActive(false);
+            go.transform.SetParent(null);
             _inactiveObjects.Add(go);
         }
         else
         {
-            Debug.LogWarning("Trying to despawn an object that isn't in the active list.");
+            Debug.LogWarning("Trying to despawn a game object that is not in the active pool.", go);
         }
     }
 }

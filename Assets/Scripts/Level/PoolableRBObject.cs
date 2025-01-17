@@ -4,13 +4,14 @@
 public class PoolableRBObject : MonoBehaviour, IPoolable
 {
     const float DISTANCE_TO_DESPAWN = 10;
-
-    [HideInInspector] public GameObject prefab;
+    public GameObject prefab;
     [SerializeField] int despawnCheckRefreshRate = 10;
 
     Rigidbody _rb;
 
     void Awake() => _rb = GetComponent<Rigidbody>();
+
+    void Start() => GameStateManager.OnHome += Despawn;
 
     void Update()
     {
@@ -19,10 +20,11 @@ public class PoolableRBObject : MonoBehaviour, IPoolable
         {
             if (transform.position.x < PlayerController.PlayerTransform.position.x - DISTANCE_TO_DESPAWN)
             {
-                PoolManager.Despawn(prefab, gameObject);
+                Despawn();
             }
         }
     }
+    void OnDestroy() => GameStateManager.OnHome -= Despawn;
 
     public void OnSpawn()
     {
@@ -31,4 +33,9 @@ public class PoolableRBObject : MonoBehaviour, IPoolable
     }
 
     public void OnDespawn() {}
+    void Despawn()
+    {
+        // Check if the object is enabled before despawning it (to avoid despawning it twice)
+        if (gameObject.activeSelf) PoolManager.Despawn(prefab, gameObject);
+    }
 }
