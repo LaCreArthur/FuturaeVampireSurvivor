@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Segment : MonoBehaviour, IPoolable
 {
     PoolableRbSpot[] _poolableRbSpots;
+    public event Action SpotObjectsSpawned;
     void Awake() => _poolableRbSpots = GetComponentsInChildren<PoolableRbSpot>();
     public void OnSpawn()
     {
@@ -17,8 +19,10 @@ public class Segment : MonoBehaviour, IPoolable
             if (instance.TryGetComponent(out PoolableRBObject poolableRBObject))
             {
                 poolableRBObject.prefab = spot.prefabToSpawn;
+                spot.activeInstance = instance;
             }
         }
+        SpotObjectsSpawned?.Invoke();
     }
     public void OnDespawn() {}
 }

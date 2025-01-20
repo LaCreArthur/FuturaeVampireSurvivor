@@ -9,7 +9,7 @@ public static class PoolManager
     {
         if (!Pools.ContainsKey(prefab))
         {
-            Pools[prefab] = new GameObjectPool(prefab, 10);
+            Pools[prefab] = new GameObjectPool(prefab, 3);
         }
         return Pools[prefab].Spawn(position, rotation, parent);
     }
@@ -22,7 +22,7 @@ public static class PoolManager
         }
         else
         {
-            Debug.LogWarning("Trying to despawn a game object that is not in the pool.", instance);
+            Debug.LogWarning($"Trying to despawn a game object that is not in the pool. (object: {instance.name}, pool: {prefab.name}", instance);
         }
     }
 }
