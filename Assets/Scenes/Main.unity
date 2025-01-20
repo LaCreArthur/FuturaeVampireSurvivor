@@ -1180,7 +1180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5295400131297545308, guid: ce4e7249652e8a645ae20602c18c7276, type: 3}
       propertyPath: segmentPrefabs.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5295400131297545308, guid: ce4e7249652e8a645ae20602c18c7276, type: 3}
       propertyPath: 'segmentPrefabs.Array.data[0]'
@@ -1198,6 +1198,10 @@ PrefabInstance:
       propertyPath: 'segmentPrefabs.Array.data[3]'
       value: 
       objectReference: {fileID: 6638166349142818006, guid: e779940107c7dd4409e9d524c6d24284, type: 3}
+    - target: {fileID: 5295400131297545308, guid: ce4e7249652e8a645ae20602c18c7276, type: 3}
+      propertyPath: 'segmentPrefabs.Array.data[4]'
+      value: 
+      objectReference: {fileID: 7241541459312595961, guid: c883252283cd9f7479f12a2ae05c2d0e, type: 3}
     - target: {fileID: 6785265474079788035, guid: ce4e7249652e8a645ae20602c18c7276, type: 3}
       propertyPath: m_Name
       value: Player
