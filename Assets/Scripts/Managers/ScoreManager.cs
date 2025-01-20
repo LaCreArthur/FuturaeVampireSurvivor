@@ -48,6 +48,7 @@ public class ScoreManager : MonoBehaviour
 
     void StartIncreasingScore()
     {
+        Score = 0;
         if (_scoreCoroutine != null)
             StopIncreasingScore();
         _scoreCoroutine = StartCoroutine(IncreaseScoreRoutine());

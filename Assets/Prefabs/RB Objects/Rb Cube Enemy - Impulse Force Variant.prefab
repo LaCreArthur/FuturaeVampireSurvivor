@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2758450534347846440, guid: 4f641a7b77b47e34ab88c41919eea4da, type: 3}
       propertyPath: m_Constraints
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2758450534347846440, guid: 4f641a7b77b47e34ab88c41919eea4da, type: 3}
       propertyPath: m_IsKinematic
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73e2a1f7dcad4603941e09bd36ca12c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceDirection: {x: -2, y: 0, z: -2}
+  forceDirection: {x: -1.2, y: 0, z: -1.2}
 --- !u!65 &328932240129934238
 BoxCollider:
   m_ObjectHideFlags: 0

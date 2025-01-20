@@ -176,5 +176,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a808a07c8f04a2eaf553f4a5f851854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magnitude: 5
+  magnitude: 1.2
   offset: {x: 1, y: 0, z: 0}

@@ -9,7 +9,6 @@ public class LevelGenerator : MonoBehaviour
 
     [Header("Prefabs")]
     [SerializeField] List<GameObject> segmentPrefabs;
-    [SerializeField] Transform segmentParent;
 
     [Header("Spawning Parameters")]
     [SerializeField] float spawnDistance = 10f;
