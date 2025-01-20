@@ -1072,7 +1072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RenderShadows: 1
+  m_RenderShadows: 0
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
@@ -2725,7 +2725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d15d4e18d25e473486a7701cbc4242bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSpeed: 15
+  startSpeed: 10
   speedIncreasePerSecond: 0.05
 --- !u!114 &1177442475
 MonoBehaviour:
@@ -2740,7 +2740,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   segmentPrefabs:
+  - {fileID: 7241541459312595961, guid: c8067c7f8d4db5241a28b1dae99fa76e, type: 3}
+  - {fileID: 6638166349142818006, guid: 09ed141385bd5c7438d102c24c446e26, type: 3}
   - {fileID: 6638166349142818006, guid: 486f282bdc31c00479c1bceda69cd7c9, type: 3}
+  - {fileID: 6638166349142818006, guid: e779940107c7dd4409e9d524c6d24284, type: 3}
   segmentParent: {fileID: 2072572568}
   spawnDistance: 10
   despawnDistance: -20
