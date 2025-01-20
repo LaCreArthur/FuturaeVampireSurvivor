@@ -1,5 +1,10 @@
+using System;
 using UnityEngine;
 
+/// <summary>
+///     A safe singleton pattern for MonoBehaviour classes.
+/// </summary>
+/// <typeparam name="T"></typeparam>
 public abstract class SingletonMono<T> : MonoBehaviour where T : SingletonMono<T>
 {
     static T s_instance;
@@ -21,7 +26,7 @@ public abstract class SingletonMono<T> : MonoBehaviour where T : SingletonMono<T
                 s_instance = FindAnyObjectByType<T>();
                 if (s_instance == null)
                 {
-                    var t = typeof(T);
+                    Type t = typeof(T);
                     s_instance = new GameObject(t.Name, t).GetComponent<T>();
                 }
 
@@ -34,7 +39,7 @@ public abstract class SingletonMono<T> : MonoBehaviour where T : SingletonMono<T
 
     void Awake()
     {
-        if ((s_instance != null) && (s_instance != this))
+        if (s_instance != null && s_instance != this)
         {
             Debug.LogWarning($"An instance of \"{typeof(T).Name}\" already exists. Destroying duplicate one.",
                 s_instance.gameObject);
@@ -47,6 +52,9 @@ public abstract class SingletonMono<T> : MonoBehaviour where T : SingletonMono<T
         }
     }
 
+    /// <summary>
+    ///     Will be called only once when the instance is created.
+    /// </summary>
     protected virtual void OnAwake() {}
 
     void Init()

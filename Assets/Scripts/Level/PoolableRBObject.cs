@@ -26,6 +26,7 @@ public class PoolableRBObject : MonoBehaviour, IPoolable
     }
     void OnDestroy() => GameStateManager.OnHome -= Despawn;
 
+    // IPoolable implementation to reset the object rigidbody when it's spawned
     public void OnSpawn()
     {
         _rb.linearVelocity = _rb.angularVelocity = Vector3.zero;

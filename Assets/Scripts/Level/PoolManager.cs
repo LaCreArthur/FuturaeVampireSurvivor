@@ -17,12 +17,8 @@ public static class PoolManager
     public static void Despawn(GameObject prefab, GameObject instance)
     {
         if (Pools.TryGetValue(prefab, out GameObjectPool pool))
-        {
             pool.Despawn(instance);
-        }
         else
-        {
             Debug.LogWarning($"Trying to despawn a game object that is not in the pool. (object: {instance.name}, pool: {prefab.name}", instance);
-        }
     }
 }

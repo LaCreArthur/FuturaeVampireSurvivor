@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class ObjectAnimationTrigger : MonoBehaviour
 {
@@ -21,8 +20,10 @@ public class ObjectAnimationTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Player")) return;
-        StartCoroutine(AnimationCoroutine());
+        if (other.CompareTag("Player"))
+        {
+            StartCoroutine(AnimationCoroutine());
+        }
     }
     void OnSpotObjectsSpawned()
     {
@@ -38,6 +39,7 @@ public class ObjectAnimationTrigger : MonoBehaviour
         for (int i = 0; i < _pooledObjects.Count; i++)
         {
             GameObject o = _pooledObjects[i];
+            // thanks to the IObjectAnimation interface, we can call PlayAnimation regardless of the animation type
             if (o.TryGetComponent(out IObjectAnimation objectAnimation))
             {
                 objectAnimation.PlayAnimation();

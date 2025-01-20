@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 
+/// <summary>
+///     This instantiates a fragmented sphere on game over and applies a force to each fragment based on the velocity of
+///     the player.
+/// </summary>
 public class DestructibleSphere : MonoBehaviour
 {
     [SerializeField] Transform fragmentedSphere;

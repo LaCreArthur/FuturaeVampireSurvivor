@@ -2,6 +2,10 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
+/// <summary>
+///     Spawn and despawn level segments to create an infinite runner experience.
+///     Must be attached to the player object because we use its position to determine when to spawn new segments.
+/// </summary>
 public class LevelGenerator : MonoBehaviour
 {
     // Distance between consecutive segments on the X-axis

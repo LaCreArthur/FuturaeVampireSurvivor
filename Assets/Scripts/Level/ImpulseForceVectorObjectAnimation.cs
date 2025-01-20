@@ -7,10 +7,5 @@ public class ImpulseForceVectorObjectAnimation : MonoBehaviour, IObjectAnimation
     Rigidbody _rb;
 
     void Start() => _rb = GetComponent<Rigidbody>();
-
-    public void PlayAnimation()
-    {
-        Debug.Log("Playing object animation.");
-        _rb.AddForce(forceDirection, ForceMode.Impulse);
-    }
+    public void PlayAnimation() => _rb.AddForce(forceDirection, ForceMode.Impulse);
 }

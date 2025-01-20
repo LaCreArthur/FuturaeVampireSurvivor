@@ -1,7 +1,7 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 
-public class DOTweenMovingWall : MonoBehaviour
+public class MovingWall : MonoBehaviour
 {
     [SerializeField] Ease ease;
     [SerializeField] float zMove = 10f;
@@ -22,6 +22,10 @@ public class DOTweenMovingWall : MonoBehaviour
     // the SetRelative(true) method is used to move the object relative to its current position
     void StartTween() => transform.DOMoveZ(zMove, duration).SetEase(ease).SetLoops(-1, LoopType.Yoyo).SetRelative(true).SetDelay(startDelay);
 
+    // this is only called in the editor
+    // it checks if the values have changed and restarts the tween if they have
+    // this is useful for testing the tween in the editor
+    // but it is not necessary for the game to function
     #if UNITY_EDITOR
     Ease _previousEase;
     float _previousZMove;
@@ -42,6 +46,5 @@ public class DOTweenMovingWall : MonoBehaviour
         }
 
     }
-
     #endif
 }
