@@ -7,14 +7,15 @@ public class PlayerController : MonoBehaviour
     public static Transform PlayerTransform;
     Rigidbody _rb;
 
+    void Awake() => PlayerTransform = transform;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        PlayerTransform = transform;
         GameStateManager.OnInGame += OnInGame;
         GameStateManager.OnGameOver += OnGameOver;
     }
-    
+
     void OnDestroy()
     {
         GameStateManager.OnInGame -= OnInGame;

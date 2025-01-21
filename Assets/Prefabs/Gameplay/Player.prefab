@@ -120,10 +120,8 @@ GameObject:
   - component: {fileID: 8681619738652679103}
   - component: {fileID: 3875698786219212871}
   - component: {fileID: 2531644454539880079}
-  - component: {fileID: 2749147846962152349}
   - component: {fileID: 543971837842966113}
   - component: {fileID: 3728629294848447511}
-  - component: {fileID: 5295400131297545308}
   - component: {fileID: 4356064457273887806}
   m_Layer: 0
   m_Name: Player
@@ -200,20 +198,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a19fe083c986454bb91accf77abfeb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2749147846962152349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6785265474079788035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c181356827704907bdcef760e8258ac7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedToReachDestination: 10
-  dragScale: 1
 --- !u!114 &543971837842966113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,8 +210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d15d4e18d25e473486a7701cbc4242bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSpeed: 10
-  speedIncreasePerSecond: 0.05
 --- !u!114 &3728629294848447511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,27 +225,6 @@ MonoBehaviour:
   joystickSensitivity: 10
   freezeX: 1
   freezeZ: 0
-  inputType: 2
-  uiJoystickInput: {fileID: 0}
-  dragInput: {fileID: 2749147846962152349}
---- !u!114 &5295400131297545308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6785265474079788035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 087467e26b9a4776b7057a4dd9a4e3e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  segmentPrefabs:
-  - {fileID: 6638166349142818006, guid: 486f282bdc31c00479c1bceda69cd7c9, type: 3}
-  - {fileID: 6638166349142818006, guid: e779940107c7dd4409e9d524c6d24284, type: 3}
-  segmentParent: {fileID: 0}
-  spawnDistance: 10
-  despawnDistance: -20
 --- !u!114 &4356064457273887806
 MonoBehaviour:
   m_ObjectHideFlags: 0
