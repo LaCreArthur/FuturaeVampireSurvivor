@@ -28,7 +28,7 @@ public class LevelGenerator : MonoBehaviour
     Transform _playerTransform;
 
     // Property shortcut to get the X position of the last segment
-    float LastSegmentX => _lastSegment?.position.x ?? 0;
+    float LastSegmentX => _lastSegment?.position.x ?? -NEXT_SEGMENT_DISTANCE;
 
     // Property shortcut to get the player's current X position
     float PlayerX => _playerTransform?.position.x ?? 0f;

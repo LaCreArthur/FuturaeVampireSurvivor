@@ -34,11 +34,13 @@ public static class Leaderboard
             else // we didn't find an entry with the same name, add new entry
                 LeaderboardEntries.Add(new LeaderboardEntry { name = entry.name, score = entry.score });
         }
+        #pragma warning disable CS0162 
         else
         {
             // we don't care about existing entries with the same name, just add new entry
             LeaderboardEntries.Add(new LeaderboardEntry { name = entry.name, score = entry.score });
         }
+        #pragma warning restore CS0162
 
         // Sort and limit entries
         LeaderboardEntries.Sort((a, b) => b.score.CompareTo(a.score)); // Sort descending
