@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIJoystickInput : MonoBehaviour, IPlayerInput, IDragHandler, IPointerUpHandler, IPointerDownHandler
+public class UIJoystickInput : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
 {
     [SerializeField] Image outerCircleImage;
     [SerializeField] Image handleImage;
@@ -10,9 +10,9 @@ public class UIJoystickInput : MonoBehaviour, IPlayerInput, IDragHandler, IPoint
 
     float _maxDragDistance;
     Vector2 _startPosition;
-    Vector2 _input;
+    static Vector2 s_input;
 
-    public float JoystickSensitivity { get; set; }
+    static float JoystickSensitivity => InputManager.JoystickSensitivity;
 
     void OnEnable()
     {
@@ -36,7 +36,7 @@ public class UIJoystickInput : MonoBehaviour, IPlayerInput, IDragHandler, IPoint
         UpdateInput(dragPosition / _maxDragDistance);
     }
 
-    public Vector2 ReadInput() => _input;
+    public static Vector2 ReadInput() => s_input * (JoystickSensitivity * Time.deltaTime);
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -53,8 +53,7 @@ public class UIJoystickInput : MonoBehaviour, IPlayerInput, IDragHandler, IPoint
         _startPosition = handleImage.rectTransform.anchoredPosition;
 
         // Show the joystick UI
-        if (InputManager.InputType == InputType.UIJoystick)
-            SetImagesActive(true);
+        SetImagesActive(true);
 
         // Immediately call OnDrag to set the initial vector
         OnDrag(eventData);
@@ -70,10 +69,10 @@ public class UIJoystickInput : MonoBehaviour, IPlayerInput, IDragHandler, IPoint
     void UpdateInput(Vector2 value)
     {
         // Normalize if magnitude > 1
-        _input = value.magnitude > 1f ? value.normalized : value;
+        s_input = value.magnitude > 1f ? value.normalized : value;
 
         // Scale and clamp the handle’s position relative to the center
-        Vector2 desiredPosition = _input * _maxDragDistance;
+        Vector2 desiredPosition = s_input * _maxDragDistance;
         Vector2 clampedPosition = Vector2.ClampMagnitude(desiredPosition, 100f);
 
         // Update the handle’s anchored position
