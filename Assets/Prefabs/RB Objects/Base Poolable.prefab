@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 341460868701748534}
   - component: {fileID: 7043841953982550143}
   - component: {fileID: 9152726068620032930}
+  - component: {fileID: 1901254381443967510}
   m_Layer: 0
   m_Name: Base Poolable
   m_TagString: Untagged
@@ -72,5 +73,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f64402ce76624763908c6da13be21dda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
-  despawnCheckRefreshRate: 10
+--- !u!114 &1901254381443967510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653075302469135174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96297b0cc824eb8979d4df51231e1ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

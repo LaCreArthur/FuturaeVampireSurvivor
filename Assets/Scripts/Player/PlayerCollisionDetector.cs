@@ -6,8 +6,7 @@ public class PlayerCollisionDetector : MonoBehaviour
     {
         if (other.transform.CompareTag("Obstacle"))
         {
-            var poolable = other.gameObject.GetComponent<DespawnPoolableByDistance>();
-            PoolManager.Despawn(poolable.prefab, other.gameObject);
+            PoolManager.Despawn(other.gameObject);
         }
     }
 }

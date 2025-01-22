@@ -1,16 +1,21 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    [SerializeField] float joystickSensitivity = 1;
-    public bool freezeX;
-    public bool freezeZ;
 
     public static float JoystickSensitivity;
+    [SerializeField] float joystickSensitivity = 1;
+    [SerializeField] bool freezeX;
+    [SerializeField] bool freezeZ;
     float _previousJoystickSensitivity;
-    
+
     void Start() => OnValidate();
+
+    void Update()
+    {
+        if (GameStateManager.CurrentState != GameState.InGame) return;
+        Move();
+    }
 
     void OnValidate()
     {
@@ -19,13 +24,6 @@ public class InputManager : MonoBehaviour
             JoystickSensitivity = joystickSensitivity;
             _previousJoystickSensitivity = joystickSensitivity;
         }
-    }
-
-    void Update()
-    {
-        if (GameStateManager.CurrentState != GameState.InGame) return;
-        ReadInput();
-        Move();
     }
 
     static Vector2 ReadInput()
