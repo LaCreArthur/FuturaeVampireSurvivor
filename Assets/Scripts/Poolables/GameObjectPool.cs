@@ -21,10 +21,17 @@ public class GameObjectPool
         for (int i = 0; i < count; i++)
         {
             GameObject go = Object.Instantiate(_prefab);
-            _poolableComponents[go] = go.GetComponents<IPoolable>();
+            InitializePoolableComponents(go);
             go.SetActive(false);
             _inactiveObjects.Add(go);
         }
+    }
+    void InitializePoolableComponents(GameObject go)
+    {
+        _poolableComponents[go] = go.GetComponents<IPoolable>();
+        var prefabRef = go.GetComponent<PoolablePrefabRef>();
+        if (prefabRef == null) prefabRef = go.AddComponent<PoolablePrefabRef>();
+        prefabRef.Prefab = _prefab;
     }
 
     public GameObject Spawn(Vector3 position, Quaternion rotation, Transform parent = null)
@@ -48,7 +55,7 @@ public class GameObjectPool
         {
             // Instantiate a fresh object if none are inactive
             go = Object.Instantiate(_prefab, position, rotation, parent);
-            _poolableComponents[go] = go.GetComponents<IPoolable>();
+            InitializePoolableComponents(go);
         }
 
         go.SetActive(true);
