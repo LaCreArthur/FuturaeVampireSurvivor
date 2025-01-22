@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7043841953982550143}
   - component: {fileID: 9152726068620032930}
   m_Layer: 0
-  m_Name: Base Poolable Rb
+  m_Name: Base Poolable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
