@@ -1,12 +1,13 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 /// <summary>
 ///     Should scale to screen size and be used to spawn enemies on the bounds of the screen.
 /// </summary>
-public class EnemySpawnBoundingBox : MonoBehaviour
+public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] GameObject prefab;
+    [SerializeField] List<EnemySO> enemySOs;
     [SerializeField] int maxSpawned;
     [SerializeField] int spawnRate;
     [SerializeField] float borderSize = 2f;
@@ -14,9 +15,6 @@ public class EnemySpawnBoundingBox : MonoBehaviour
     Camera _cam;
     float _nextSpawnTime;
     float SpawnInterval => 1f / spawnRate;
-    Vector2 Min { get; set; }
-
-    Vector2 Max { get; set; }
 
     void Awake()
     {
@@ -38,7 +36,7 @@ public class EnemySpawnBoundingBox : MonoBehaviour
     void Spawn()
     {
         Vector3 position = GetRandomSpawnPosition();
-        PoolManager.Spawn(prefab, position, Quaternion.identity, null);
+        enemySOs[Random.Range(0, enemySOs.Count)].CreateEnemy(position, Quaternion.identity);
     }
 
     Vector3 GetRandomSpawnPosition()

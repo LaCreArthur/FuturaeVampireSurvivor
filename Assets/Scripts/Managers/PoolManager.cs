@@ -5,7 +5,7 @@ public static class PoolManager
 {
     static readonly Dictionary<GameObject, GameObjectPool> Pools = new Dictionary<GameObject, GameObjectPool>();
 
-    public static GameObject Spawn(GameObject prefab, Vector3 position, Quaternion rotation, Transform parent)
+    public static GameObject Spawn(GameObject prefab, Vector3 position, Quaternion rotation, Transform parent = null)
     {
         if (!Pools.ContainsKey(prefab))
         {

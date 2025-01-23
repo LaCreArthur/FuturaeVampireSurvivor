@@ -2,11 +2,12 @@
 
 public class InputManager : MonoBehaviour
 {
-
     public static float JoystickSensitivity;
+
     [SerializeField] float joystickSensitivity = 1;
     [SerializeField] bool freezeX;
     [SerializeField] bool freezeZ;
+
     float _previousJoystickSensitivity;
 
     void Start() => OnValidate();
@@ -35,8 +36,12 @@ public class InputManager : MonoBehaviour
     void Move()
     {
         Vector2 input = ReadInput();
+        // dead zone
+        if (input.sqrMagnitude < 0.0001f) return;
         if (freezeX) input.x = 0;
         if (freezeZ) input.y = 0;
-        transform.position += new Vector3(input.x, 0, input.y);
+        Vector3 targetPos = transform.position + new Vector3(input.x, 0, input.y);
+        transform.LookAt(targetPos);
+        transform.position = targetPos;
     }
 }

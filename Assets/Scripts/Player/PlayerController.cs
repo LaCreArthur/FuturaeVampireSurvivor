@@ -3,7 +3,9 @@
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
-    // static ref to transform for quick reference in other scripts
+    //todo: this class purpose is unclear and should be refactored 
+
+    //static ref to transform for quick reference in other scripts
     public static Transform PlayerTransform;
     Rigidbody _rb;
 

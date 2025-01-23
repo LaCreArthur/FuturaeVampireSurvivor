@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb56fcfb4c7435c958f9fa273a5e13d, type: 3}
+  m_Name: Melee Toward Player Enemy
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1877273807043639096, guid: 326262f3ec0524d4e9771d22e8241957, type: 3}
+  maxHealth: 10
+  moveBehavior: {fileID: 11400000, guid: f536998d8bec6e044ba2eb1c355fc8c8, type: 2}
+  attackBehavior: {fileID: 11400000, guid: fc1f750c2f09d33419bf20b8b65d9dbf, type: 2}
