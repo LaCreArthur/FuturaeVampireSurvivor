@@ -182,7 +182,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
@@ -220,6 +220,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultMaxHealth: 10
+  maxHealth: 0
+  currentHealth: 0
 --- !u!114 &-3469435845795340728
 MonoBehaviour:
   m_ObjectHideFlags: 0

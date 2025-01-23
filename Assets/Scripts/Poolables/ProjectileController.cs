@@ -3,7 +3,7 @@
 public class ProjectileController : MonoBehaviour
 {
     float _moveSpeed;
-    float _damage;
+    int _damage;
     GameObject _attacker;
 
     void Update() => transform.position += transform.forward * (_moveSpeed * Time.deltaTime);
@@ -19,7 +19,7 @@ public class ProjectileController : MonoBehaviour
         }
     }
 
-    public void Initialize(float speed, float damage, GameObject attacker)
+    public void Initialize(float speed, int damage, GameObject attacker)
     {
         _moveSpeed = speed;
         _damage = damage;

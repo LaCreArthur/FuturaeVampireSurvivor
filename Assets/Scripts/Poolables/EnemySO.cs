@@ -4,7 +4,7 @@
 public class EnemySO : ScriptableObject
 {
     public GameObject prefab;
-    public float maxHealth;
+    public int maxHealth;
     public MoveBehaviorSO moveBehavior;
     public AttackBehaviorSO attackBehavior;
 

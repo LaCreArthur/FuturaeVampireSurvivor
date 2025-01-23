@@ -5,7 +5,7 @@ public class MeleeController : MonoBehaviour
 {
     GameObject _attacker;
     Vector3 _initialScale;
-    float _damage;
+    int _damage;
     float _cooldown;
 
     void Awake() => _initialScale = transform.localScale;
@@ -20,7 +20,7 @@ public class MeleeController : MonoBehaviour
         }
     }
 
-    public void Initialize(float damage, float cooldown, GameObject attacker)
+    public void Initialize(int damage, float cooldown, GameObject attacker)
     {
         _damage = damage;
         _attacker = attacker;

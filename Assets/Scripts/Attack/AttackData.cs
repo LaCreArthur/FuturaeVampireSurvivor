@@ -2,7 +2,7 @@
 
 public abstract class AttackBehaviorSO : ScriptableObject
 {
-    public float damage = 10f;
+    public int damage = 10;
     public float range = 1f;
     public float areaRadius = 2f;
     public float cooldown = 1f;
