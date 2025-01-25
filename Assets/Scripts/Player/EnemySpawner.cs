@@ -14,22 +14,18 @@ public class EnemySpawner : MonoBehaviour
 
     Camera _cam;
     float _nextSpawnTime;
-    float SpawnInterval => 1f / spawnRate;
 
-    void Awake()
-    {
-        _cam = Camera.main;
-        _nextSpawnTime = Time.time + SpawnInterval;
-    }
+    void Awake() => _cam = Camera.main;
 
 
 
     void Update()
     {
-        if (Time.time >= _nextSpawnTime)
+        _nextSpawnTime -= Time.deltaTime;
+        if (_nextSpawnTime <= 0)
         {
             Spawn();
-            _nextSpawnTime = Time.time + SpawnInterval;
+            _nextSpawnTime = spawnRate;
         }
     }
 

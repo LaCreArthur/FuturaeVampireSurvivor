@@ -11,7 +11,8 @@ public class ProjectileController : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(_attacker.tag)) return; // Ignore collisions with the attacker
-        var otherHealth = other.GetComponent<HealthSystem>();
+        // using .attachedRigidbody because the collider can be on a child object of the target
+        var otherHealth = other.attachedRigidbody?.GetComponent<HealthSystem>();
         if (otherHealth != null)
         {
             otherHealth.TakeDamage(_damage); // Deal damage to the target
