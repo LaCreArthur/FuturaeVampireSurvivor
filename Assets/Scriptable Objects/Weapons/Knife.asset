@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ff79a460ba54bf996ffa42435aac444, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e95f22d92e94bfb87f5f70bf1997de7, type: 3}
   m_Name: Knife
   m_EditorClassIdentifier: 
+  sprite: {fileID: -9005276204913121442, guid: b2f227dc898f4ba4ba769f85d21333af, type: 3}
   damage: 10
-  range: 1
-  areaRadius: 2
   cooldown: 1
-  speed: 3
-  projectilePrefab: {fileID: 4324995265172342908, guid: bb4d9f1aced9210468d1550dc65170d0, type: 3}
-  spawnOffset: {x: 0, y: 0.125, z: 0.175}

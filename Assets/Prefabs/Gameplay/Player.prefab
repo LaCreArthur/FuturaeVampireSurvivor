@@ -4904,7 +4904,7 @@ GameObject:
   - component: {fileID: 7192670775645544380}
   m_Layer: 0
   m_Name: Eyes
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4992,7 +4992,7 @@ GameObject:
   - component: {fileID: 5728979231568831326}
   m_Layer: 0
   m_Name: Circle
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5260,7 +5260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61b041aef1664cb28e3f8591559f9143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackBehavior: {fileID: 11400000, guid: fc1f750c2f09d33419bf20b8b65d9dbf, type: 2}
+  weaponBehavior: {fileID: 0}
 --- !u!114 &8829904435573759893
 MonoBehaviour:
   m_ObjectHideFlags: 0

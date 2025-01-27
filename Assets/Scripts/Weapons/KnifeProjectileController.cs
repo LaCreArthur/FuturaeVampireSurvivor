@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 
-public class ProjectileController : MonoBehaviour
+public class KnifeProjectileController : MonoBehaviour
 {
     float _moveSpeed;
     int _damage;
     GameObject _attacker;
 
-    void Update() => transform.position += transform.forward * (_moveSpeed * Time.deltaTime);
+    void Update() => transform.position += transform.up * (_moveSpeed * Time.deltaTime);
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag(_attacker.tag)) return; // Ignore collisions with the attacker
         // using .attachedRigidbody because the collider can be on a child object of the target

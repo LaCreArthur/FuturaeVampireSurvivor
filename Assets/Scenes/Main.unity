@@ -598,6 +598,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellSize: 10
   cellPrefab: {fileID: 6638166349142818006, guid: 486f282bdc31c00479c1bceda69cd7c9, type: 3}
+--- !u!1 &654792180 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6785265474079788035, guid: ce4e7249652e8a645ae20602c18c7276, type: 3}
+  m_PrefabInstance: {fileID: 5903237030954901160}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &863713537
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,6 +708,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 319907321013100283, guid: ce4e7249652e8a645ae20602c18c7276, type: 3}
   m_PrefabInstance: {fileID: 5903237030954901160}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1177442487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654792180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff79a460ba54bf996ffa42435aac444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponData: {fileID: 11400000, guid: d813c6460a6bd814aace916cf8e7c27b, type: 2}
+  knifePrefab: {fileID: 4324995265172342908, guid: bb4d9f1aced9210468d1550dc65170d0, type: 3}
+  knifeSpeed: 5
+  spawnOffset: {x: 0, y: 0.5, z: 0}
 --- !u!1 &1220986644
 GameObject:
   m_ObjectHideFlags: 0
@@ -1489,6 +1510,10 @@ PrefabInstance:
       propertyPath: weapon
       value: 
       objectReference: {fileID: 11400000, guid: fc1f750c2f09d33419bf20b8b65d9dbf, type: 2}
+    - target: {fileID: 3329506535470054369, guid: ce4e7249652e8a645ae20602c18c7276, type: 3}
+      propertyPath: weaponBehavior
+      value: 
+      objectReference: {fileID: 1177442487}
     - target: {fileID: 6785265474079788035, guid: ce4e7249652e8a645ae20602c18c7276, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1500,7 +1525,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6785265474079788035, guid: ce4e7249652e8a645ae20602c18c7276, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1177442487}
   m_SourcePrefab: {fileID: 100100000, guid: ce4e7249652e8a645ae20602c18c7276, type: 3}
 --- !u!1001 &6549690712118687933
 PrefabInstance:
