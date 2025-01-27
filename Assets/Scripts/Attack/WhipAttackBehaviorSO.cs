@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "MeleeAttack", menuName = "Attack Behaviors/MeleeAttack")]
-public class MeleeAttackBehaviorSO : AttackBehaviorSO
+[CreateAssetMenu(fileName = "WhipAttack", menuName = "Attack Behaviors/WhipAttack")]
+public class WhipAttackBehaviorSO : AttackBehaviorSO
 {
     [SerializeField] GameObject meleePrefab;
     [SerializeField] Vector3 spawnOffset;
@@ -10,7 +10,7 @@ public class MeleeAttackBehaviorSO : AttackBehaviorSO
     {
         GameObject meleeGO = PoolManager.Spawn(meleePrefab, attacker.transform.position, attacker.transform.rotation, attacker.transform);
         meleeGO.transform.localPosition = spawnOffset;
-        var meleeController = meleeGO.GetComponent<MeleeController>();
+        var meleeController = meleeGO.GetComponent<WhipController>();
         if (meleeController != null)
         {
             meleeController.Initialize(damage, cooldown, attacker);

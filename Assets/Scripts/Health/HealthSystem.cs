@@ -8,15 +8,20 @@ using UnityEngine;
 [RequireComponent(typeof(DeathBehavior))]
 public class HealthSystem : MonoBehaviour
 {
-    [SerializeField] int defaultMaxHealth = 10;
-    //todo: remove serialized field and make it private
     [SerializeField] int maxHealth;
-    [SerializeField] int currentHealth;
+    [SerializeField] [ReadOnly] int currentHealth;
+
+    [SerializeField] bool hasGracePeriod;
+    [SerializeField] float gracePeriod = 1f;
+
+    bool _isInGracePeriod;
+    float _graceTimer;
 
     DeathBehavior _deathBehavior;
 
     public event Action<int> OnHealthChanged;
     public event Action<int> OnMaxHealthChanged;
+    public event Action<bool> OnGracePeriodStatusChanged;
     public event Action OnDamage;
     public event Action OnDeath;
 
@@ -41,27 +46,55 @@ public class HealthSystem : MonoBehaviour
             }
         }
     }
+    public bool IsInGracePeriod
+    {
+        get => _isInGracePeriod;
+        set {
+            _isInGracePeriod = value;
+            OnGracePeriodStatusChanged?.Invoke(_isInGracePeriod);
+        }
+    }
 
     void Awake()
     {
         _deathBehavior = GetComponent<DeathBehavior>();
-        MaxHealth = CurrentHealth = defaultMaxHealth;
+        CurrentHealth = MaxHealth = maxHealth;
+    }
+
+    void Update()
+    {
+        if (hasGracePeriod && _graceTimer > 0)
+        {
+            _graceTimer -= Time.deltaTime;
+            if (_graceTimer <= 0) IsInGracePeriod = false;
+        }
     }
 
     public void InitializeHealth(int maxHealth) => MaxHealth = CurrentHealth = maxHealth;
 
     public void TakeDamage(int amount)
     {
+        if (hasGracePeriod && IsInGracePeriod)
+        {
+            Debug.Log("In grace period, no damage taken");
+            return;
+        }
+
         CurrentHealth -= amount;
         OnDamage?.Invoke();
         if (CurrentHealth <= 0)
         {
-            _deathBehavior.Die(gameObject);
+            _deathBehavior.Die();
             OnDeath?.Invoke();
         }
         else
         {
             transform.DOPunchScale(Vector3.one * 0.1f, 0.2f);
+            if (hasGracePeriod)
+            {
+                _graceTimer = gracePeriod;
+                IsInGracePeriod = true;
+            }
         }
     }
 }

@@ -8,5 +8,5 @@
 /// </summary>
 public abstract class DeathBehavior : MonoBehaviour
 {
-    public abstract void Die(GameObject owner);
+    public abstract void Die();
 }

@@ -148,9 +148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cad1f268c91e44a9946e34dc0f443c5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySOs:
-  - {fileID: 11400000, guid: e2302a2a5b73c474897119a0865a5e39, type: 2}
-  - {fileID: 11400000, guid: 7e22e1ac2cd3e3b4a8be18f4fe344754, type: 2}
+  enemyPrefabs:
+  - {fileID: 1877273807043639096, guid: 326262f3ec0524d4e9771d22e8241957, type: 3}
+  - {fileID: 1877273807043639096, guid: 2db8d7e368d05a34d8c6671001c66e3e, type: 3}
   maxSpawned: 50
   spawnRate: 1
   borderSize: 2
@@ -513,8 +513,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 5, y: 10.300001, z: 5.0000024}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5, y: 5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -991,13 +991,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1756872664}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 5, y: 10.300001, z: 5.0000024}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5, y: 5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1756872668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1451,11 +1451,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 319907321013100283, guid: ce4e7249652e8a645ae20602c18c7276, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 319907321013100283, guid: ce4e7249652e8a645ae20602c18c7276, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 319907321013100283, guid: ce4e7249652e8a645ae20602c18c7276, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1489,9 +1489,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8681619738652679103, guid: ce4e7249652e8a645ae20602c18c7276, type: 3}
-      propertyPath: m_Constraints
-      value: 116
+    - target: {fileID: 7412315211219819782, guid: ce4e7249652e8a645ae20602c18c7276, type: 3}
+      propertyPath: meshRenderer
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1,7 +1,7 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 
-public class MeleeController : MonoBehaviour
+public class WhipController : MonoBehaviour
 {
     GameObject _attacker;
     Vector3 _initialScale;

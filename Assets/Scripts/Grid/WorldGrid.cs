@@ -43,7 +43,7 @@ public class WorldGrid : MonoBehaviour
         SpawnNewCells();
     }
 
-    Vector2Int GetPlayerGridPos() => Grid.GetXY(Orientation.XZ, Vector3.zero, cellSize, PlayerController.PlayerTransform.position);
+    Vector2Int GetPlayerGridPos() => Grid.GetXY(Orientation.XY, Vector3.zero, cellSize, PlayerController.PlayerTransform.position);
 
     void SpawnNewCells()
     {
@@ -52,7 +52,7 @@ public class WorldGrid : MonoBehaviour
             var cellPos = new Vector2Int(_playerGridPos.x + pos.x, _playerGridPos.y + pos.y);
             if (_cells.ContainsKey(cellPos)) continue;
 
-            Vector3 worldPos = Grid.GetWorldPos(Orientation.XZ, Vector3.zero, cellSize, cellPos.x, cellPos.y, true);
+            Vector3 worldPos = Grid.GetWorldPos(Orientation.XY, Vector3.zero, cellSize, cellPos.x, cellPos.y, true);
             GameObject cell = Instantiate(cellPrefab, worldPos, Quaternion.identity);
             _cells[cellPos] = cell;
         }

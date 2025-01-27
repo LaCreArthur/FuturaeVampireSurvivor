@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3314965191567040610, guid: 3a1b34cf189aa0044bc3573b136397ec, type: 3}
       propertyPath: m_Name
-      value: Segment 3 - Allies Cube Push
+      value: Cell 0
       objectReference: {fileID: 0}
     - target: {fileID: 3815908860312743446, guid: 3a1b34cf189aa0044bc3573b136397ec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -51,6 +51,10 @@ PrefabInstance:
     - target: {fileID: 3815908860312743446, guid: 3a1b34cf189aa0044bc3573b136397ec, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848743686323158775, guid: 3a1b34cf189aa0044bc3573b136397ec, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

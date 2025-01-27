@@ -1,19 +1,18 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
     //todo: this class purpose is unclear and should be refactored 
-
     //static ref to transform for quick reference in other scripts
     public static Transform PlayerTransform;
-    Rigidbody _rb;
+    Rigidbody2D _rb;
 
     void Awake() => PlayerTransform = transform;
 
     void Start()
     {
-        _rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody2D>();
         GameStateManager.OnInGame += OnInGame;
         GameStateManager.OnGameOver += OnGameOver;
     }
@@ -25,9 +24,9 @@ public class PlayerController : MonoBehaviour
     }
     void OnGameOver()
     {
-        _rb.isKinematic = false;
+        _rb.bodyType = RigidbodyType2D.Static;
         _rb.linearVelocity = Vector3.zero;
     }
 
-    void OnInGame() => _rb.isKinematic = true;
+    void OnInGame() => _rb.bodyType = RigidbodyType2D.Kinematic;
 }

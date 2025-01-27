@@ -40,8 +40,20 @@ public class InputManager : MonoBehaviour
         if (input.sqrMagnitude < 0.0001f) return;
         if (freezeX) input.x = 0;
         if (freezeZ) input.y = 0;
-        Vector3 targetPos = transform.position + new Vector3(input.x, 0, input.y);
-        transform.LookAt(targetPos);
+        Vector3 targetPos = transform.position + new Vector3(input.x, input.y, 0);
+        LookAt(targetPos);
+        transform.position = targetPos;
+    }
+
+    void LookAt(Vector3 targetPos)
+    {
+        // Calculate the direction vector
+        Vector2 direction = targetPos - transform.position;
+
+        // Calculate the angle and set the rotation
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle - 90); // Adjust by -90 degrees to align with up direction
+
         transform.position = targetPos;
     }
 }

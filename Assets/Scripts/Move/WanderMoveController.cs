@@ -30,5 +30,5 @@ public class WanderMoveController : MonoBehaviour
 
     void SetNewTarget(Vector3 ownerPos) =>
         _targetPos =
-            ownerPos + new Vector3(Random.Range(-_nextMoveRadius, _nextMoveRadius), 0, Random.Range(-_nextMoveRadius, _nextMoveRadius));
+            ownerPos + new Vector3(Random.Range(-_nextMoveRadius, _nextMoveRadius), Random.Range(-_nextMoveRadius, _nextMoveRadius), 0);
 }

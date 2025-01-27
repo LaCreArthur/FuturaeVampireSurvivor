@@ -11,5 +11,11 @@ public class MoveSystem : MonoBehaviour
             moveBehavior.Initialize(gameObject);
         }
     }
+
+    void Start()
+    {
+        if (MoveBehavior != null) MoveBehavior.Initialize(gameObject);
+    }
+
     void Update() => MoveBehavior.Move(transform);
 }

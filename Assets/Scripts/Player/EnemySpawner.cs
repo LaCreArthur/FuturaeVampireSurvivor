@@ -29,13 +29,34 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    void OnDrawGizmos()
+    {
+        if (_cam == null) return;
+
+        float verticalOffset = _cam.orthographicSize + borderSize;
+        float horizontalOffset = verticalOffset * _cam.aspect;
+
+        // Drawing the spawn boundary
+        Vector3 topLeft = _cam.transform.TransformPoint(new Vector3(-horizontalOffset, verticalOffset, 0));
+        Vector3 topRight = _cam.transform.TransformPoint(new Vector3(horizontalOffset, verticalOffset, 0));
+        Vector3 bottomLeft = _cam.transform.TransformPoint(new Vector3(-horizontalOffset, -verticalOffset, 0));
+        Vector3 bottomRight = _cam.transform.TransformPoint(new Vector3(horizontalOffset, -verticalOffset, 0));
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(topLeft, topRight);
+        Gizmos.DrawLine(topRight, bottomRight);
+        Gizmos.DrawLine(bottomRight, bottomLeft);
+        Gizmos.DrawLine(bottomLeft, topLeft);
+    }
+
     void Spawn()
     {
-        Vector3 position = GetRandomSpawnPosition();
+        Vector2 position = GetRandomSpawnPosition();
         PoolManager.Spawn(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], position, Quaternion.identity);
     }
 
-    Vector3 GetRandomSpawnPosition()
+
+    Vector2 GetRandomSpawnPosition()
     {
         // Get viewport dimensions
         float verticalOffset = _cam.orthographicSize + borderSize;
@@ -65,28 +86,6 @@ public class EnemySpawner : MonoBehaviour
                 break;
         }
 
-        DebugBounds(horizontalOffset, verticalOffset);
-        Vector3 worldCamPos = _cam.transform.TransformPoint(new Vector3(x, y, 0));
-        worldCamPos.y = 0.3f;
-        return worldCamPos;
-    }
-
-    void DebugBounds(float horizontalOffset, float verticalOffset)
-    {
-        Vector3 topLeft = _cam.transform.TransformPoint(new Vector3(-horizontalOffset, verticalOffset, 0));
-        Vector3 topRight = _cam.transform.TransformPoint(new Vector3(horizontalOffset, verticalOffset, 0));
-        Vector3 bottomRight = _cam.transform.TransformPoint(new Vector3(horizontalOffset, -verticalOffset, 0));
-        Vector3 bottomLeft = _cam.transform.TransformPoint(new Vector3(-horizontalOffset, -verticalOffset, 0));
-
-        topLeft.y = 0.5f;
-        topRight.y = 0.5f;
-        bottomRight.y = 0.5f;
-        bottomLeft.y = 0.5f;
-
-        // Draw the rectangle
-        Debug.DrawLine(topLeft, topRight, Color.red, Time.deltaTime);
-        Debug.DrawLine(topRight, bottomRight, Color.red, Time.deltaTime);
-        Debug.DrawLine(bottomRight, bottomLeft, Color.red, Time.deltaTime);
-        Debug.DrawLine(bottomLeft, topLeft, Color.red, Time.deltaTime);
+        return new Vector2(x, y);
     }
 }
