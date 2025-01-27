@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bf25e17891f87c5479d77e10e4773a48, type: 2}
+  - {fileID: 2100000, guid: fc40bc94dcb0e7c45936449f411b1f06, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -178,7 +178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5870402464111478801, guid: 4f641a7b77b47e34ab88c41919eea4da, type: 3}
       propertyPath: m_Name
-      value: Enemy
+      value: Bat
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -199,9 +199,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5870402464111478801, guid: 4f641a7b77b47e34ab88c41919eea4da, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8976765557040081412}
-    - targetCorrespondingSourceObject: {fileID: 5870402464111478801, guid: 4f641a7b77b47e34ab88c41919eea4da, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3236843792061308812}
   m_SourcePrefab: {fileID: 100100000, guid: 4f641a7b77b47e34ab88c41919eea4da, type: 3}
 --- !u!4 &594635094186402120 stripped
 Transform:
@@ -279,17 +276,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3356d1eb86ea4912846ef0e728775735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveBehavior: {fileID: 0}
---- !u!114 &3236843792061308812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1877273807043639096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61b041aef1664cb28e3f8591559f9143, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackBehavior: {fileID: 0}
+  moveBehavior: {fileID: 11400000, guid: 343e5454f089cd047a7b37d1e3e9aba7, type: 2}

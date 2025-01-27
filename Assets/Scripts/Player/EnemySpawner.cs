@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 /// </summary>
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] List<EnemySO> enemySOs;
+    [SerializeField] List<GameObject> enemyPrefabs;
     [SerializeField] int maxSpawned;
     [SerializeField] int spawnRate;
     [SerializeField] float borderSize = 2f;
@@ -32,7 +32,7 @@ public class EnemySpawner : MonoBehaviour
     void Spawn()
     {
         Vector3 position = GetRandomSpawnPosition();
-        enemySOs[Random.Range(0, enemySOs.Count)].CreateEnemy(position, Quaternion.identity);
+        PoolManager.Spawn(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], position, Quaternion.identity);
     }
 
     Vector3 GetRandomSpawnPosition()
