@@ -70,13 +70,10 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    public void InitializeHealth(int maxHealth) => MaxHealth = CurrentHealth = maxHealth;
-
     public void TakeDamage(int amount)
     {
         if (hasGracePeriod && IsInGracePeriod)
         {
-            Debug.Log("In grace period, no damage taken");
             return;
         }
 

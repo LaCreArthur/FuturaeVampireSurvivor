@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "WhipAttack", menuName = "Attack Behaviors/WhipAttack")]
-public class WhipAttackBehaviorSO : AttackBehaviorSO
+public class WhipWeaponSO : WeaponSO
 {
     [SerializeField] GameObject meleePrefab;
     [SerializeField] Vector3 spawnOffset;

@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ff79a460ba54bf996ffa42435aac444, type: 3}
-  m_Name: RangedAttack
+  m_Script: {fileID: 11500000, guid: a8437a8c508844459b0aafe235c214ea, type: 3}
+  m_Name: Whip
   m_EditorClassIdentifier: 
   damage: 10
   range: 1
   areaRadius: 2
   cooldown: 1
-  speed: 3
-  projectilePrefab: {fileID: 4324995265172342908, guid: bb4d9f1aced9210468d1550dc65170d0, type: 3}
-  spawnOffset: {x: 0, y: 0.125, z: 0.175}
+  speed: 1
+  meleePrefab: {fileID: 4324995265172342908, guid: 23ac2953aa860cc4eb24a40dc96da8fa, type: 3}
+  spawnOffset: {x: 0, y: 0.1, z: 0.5}

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "RangedAttack", menuName = "Attack Behaviors/RangedAttack")]
-public class RangedAttackBehaviorSO : AttackBehaviorSO
+public class RangedWeaponSO : WeaponSO
 {
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] float projectileSpeed;

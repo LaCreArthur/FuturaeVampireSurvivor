@@ -14,7 +14,8 @@ public class MoveTowardPlayerSO : MoveBehaviorSO
         ownerTransform.position = Vector3.MoveTowards(
             ownerTransform.position,
             playerPos,
-            speed * Time.deltaTime
-        );
+            speed * Time.deltaTime);
+
+        ownerTransform.LookAt2D(playerPos);
     }
 }

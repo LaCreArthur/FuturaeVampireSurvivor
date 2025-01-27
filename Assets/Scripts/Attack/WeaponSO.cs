@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class AttackBehaviorSO : ScriptableObject
+public abstract class WeaponSO : ScriptableObject
 {
     public int damage = 10;
     public float cooldown = 1f;

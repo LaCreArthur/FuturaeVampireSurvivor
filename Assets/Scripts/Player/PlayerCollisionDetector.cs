@@ -8,9 +8,9 @@ public class PlayerCollisionDetector : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.TryGetComponent(out DamageOnCollision damageOnCollision))
-        {
-            _healthSystem.TakeDamage(damageOnCollision.Damage);
-        }
+        // if (other.gameObject.TryGetComponent(out DamageOnCollision damageOnCollision))
+        // {
+        // _healthSystem.TakeDamage(damageOnCollision.Damage);
+        // }
     }
 }
