@@ -8,6 +8,6 @@ public class ButtonResume : MonoBehaviour
     void Awake()
     {
         _button = GetComponent<Button>();
-        _button.onClick.AddListener(() => GameStateManager.SetState(GameState.InGame));
+        _button.onClick.AddListener(() => GameStateManager.SetState(GameState.Playing));
     }
 }

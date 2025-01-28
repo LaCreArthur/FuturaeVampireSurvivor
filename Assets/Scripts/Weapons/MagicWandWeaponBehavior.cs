@@ -4,6 +4,7 @@ public class MagicWandWeaponBehavior : WeaponBehavior
 {
     [SerializeField] GameObject magicMissilePrefab;
     [SerializeField] float magicMissileSpeed;
+    [SerializeField] float nearestEnemyRadius;
     [SerializeField] Vector3 spawnOffset;
 
     readonly Collider2D[] _enemiesInRange = new Collider2D[16];
@@ -29,13 +30,11 @@ public class MagicWandWeaponBehavior : WeaponBehavior
             {
                 // Enemy found, set missile direction towards the enemy
                 direction = (nearestEnemy.position - transform.position).normalized;
-                Debug.Log("enemy found, direction: " + direction);
             }
             else
             {
                 // No enemy found, set missile to a random direction
                 direction = Random.insideUnitSphere.normalized;
-                Debug.Log("no enemy found, random direction: " + direction);
             }
             direction.z = 0;
             projController.Initialize(magicMissileSpeed, weaponData.damage, attacker, direction);
@@ -44,7 +43,7 @@ public class MagicWandWeaponBehavior : WeaponBehavior
 
     bool FindNearestUsingOverlapSphere(out Transform nearestEnemy)
     {
-        int size = Physics2D.OverlapCircle(transform.position, 10, _contactFilter, _enemiesInRange);
+        int size = Physics2D.OverlapCircle(transform.position, nearestEnemyRadius, _contactFilter, _enemiesInRange);
         float minDist = float.MaxValue;
         nearestEnemy = null;
 

@@ -15,7 +15,7 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
-        if (GameStateManager.CurrentState != GameState.InGame) return;
+        if (GameStateManager.CurrentState != GameState.Playing) return;
         Move();
     }
 

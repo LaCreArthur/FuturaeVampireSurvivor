@@ -47,4 +47,5 @@ MonoBehaviour:
   weaponData: {fileID: 11400000, guid: 065e285264ca6bb4db5b20aedb48d920, type: 2}
   magicMissilePrefab: {fileID: 4324995265172342908, guid: 50983a2e65af29f4493c6bb2828d4945, type: 3}
   magicMissileSpeed: 10
+  nearestEnemyRadius: 12
   spawnOffset: {x: 0, y: 0.5, z: 0}

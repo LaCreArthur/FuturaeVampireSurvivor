@@ -30,7 +30,7 @@ public class GameStateManager : MonoBehaviour
             case GameState.Home:
                 OnHome?.Invoke();
                 break;
-            case GameState.InGame:
+            case GameState.Playing:
                 OnInGame?.Invoke();
                 break;
             case GameState.GameOver:
@@ -49,7 +49,7 @@ public class GameStateManager : MonoBehaviour
 public enum GameState
 {
     Home,
-    InGame,
+    Playing,
     GameOver,
     Pause,
     Leaderboard,
