@@ -16,10 +16,11 @@ public class EnemySpawner : MonoBehaviour
     float _nextSpawnTime;
 
     void Awake() => _cam = Camera.main;
+    void Start() => GameStateManager.OnStateChange += OnStateChanged;
+
 
     void Update()
     {
-        if (GameStateManager.CurrentState != GameState.Playing) return;
         _nextSpawnTime -= Time.deltaTime;
         if (_nextSpawnTime <= 0)
         {
@@ -27,6 +28,7 @@ public class EnemySpawner : MonoBehaviour
             _nextSpawnTime = spawnRate;
         }
     }
+    void OnDestroy() => GameStateManager.OnStateChange -= OnStateChanged;
 
     void OnDrawGizmos()
     {
@@ -47,6 +49,7 @@ public class EnemySpawner : MonoBehaviour
         Gizmos.DrawLine(bottomRight, bottomLeft);
         Gizmos.DrawLine(bottomLeft, topLeft);
     }
+    void OnStateChanged(GameState state) => enabled = state == GameState.Playing;
 
     void Spawn()
     {

@@ -5,8 +5,10 @@ using UnityEngine;
 public class WeaponSystem : MonoBehaviour
 {
     [SerializeField] List<WeaponBehavior> weaponBehaviors = new List<WeaponBehavior>();
-
     readonly Dictionary<WeaponBehavior, AttackTimer> _attackTimers = new Dictionary<WeaponBehavior, AttackTimer>();
+
+
+    void Start() => GameStateManager.OnStateChange += OnStateChanged;
 
     void Update()
     {
@@ -17,6 +19,8 @@ public class WeaponSystem : MonoBehaviour
             ExecuteAttackOfWeapon(weaponBehavior);
         }
     }
+    void OnDestroy() => GameStateManager.OnStateChange -= OnStateChanged;
+    void OnStateChanged(GameState state) => enabled = state == GameState.Playing;
     void ExecuteAttackOfWeapon(WeaponBehavior weaponBehavior)
     {
         // if the weapon is not in the dictionary, add it

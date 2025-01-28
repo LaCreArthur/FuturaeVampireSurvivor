@@ -1,14 +1,21 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class GameStateManager : MonoBehaviour
 {
-    public static Action OnHome, OnInGame, OnGameOver, OnPause, OnLeaderboard;
+    public static Action OnHome, OnPlaying, OnGameOver, OnPause, OnLeaderboard;
     public static Action<GameState> OnStateChange;
     public static bool IsGamePaused { get; private set; }
     public static GameState CurrentState { get; private set; }
 
-    void Start() => SetState(GameState.Home);
+    void Awake() => CurrentState = GameState.Loading;
+
+    IEnumerator Start()
+    {
+        yield return new WaitForEndOfFrame();
+        SetState(GameState.Home);
+    }
 
     public static void SetState(GameState newState)
     {
@@ -31,7 +38,7 @@ public class GameStateManager : MonoBehaviour
                 OnHome?.Invoke();
                 break;
             case GameState.Playing:
-                OnInGame?.Invoke();
+                OnPlaying?.Invoke();
                 break;
             case GameState.GameOver:
                 OnGameOver?.Invoke();
@@ -48,6 +55,7 @@ public class GameStateManager : MonoBehaviour
 
 public enum GameState
 {
+    Loading,
     Home,
     Playing,
     GameOver,

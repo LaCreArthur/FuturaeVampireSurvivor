@@ -36,13 +36,13 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         Score = 0;
-        GameStateManager.OnInGame += StartIncreasingScore;
+        GameStateManager.OnPlaying += StartIncreasingScore;
         GameStateManager.OnGameOver += StopIncreasingScore;
     }
 
     void OnDestroy()
     {
-        GameStateManager.OnInGame -= StartIncreasingScore;
+        GameStateManager.OnPlaying -= StartIncreasingScore;
         GameStateManager.OnGameOver -= StopIncreasingScore;
     }
 

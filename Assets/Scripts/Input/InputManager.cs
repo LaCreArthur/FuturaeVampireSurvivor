@@ -2,6 +2,7 @@
 
 public class InputManager : MonoBehaviour
 {
+    // static ref to share the sensitivity for both UI and Axis input
     public static float JoystickSensitivity;
 
     [SerializeField] float joystickSensitivity = 1;
@@ -9,24 +10,13 @@ public class InputManager : MonoBehaviour
     [SerializeField] bool freezeZ;
     [SerializeField] Transform rotatingPart;
 
-    float _previousJoystickSensitivity;
 
-    void Start() => OnValidate();
-
-    void Update()
-    {
-        if (GameStateManager.CurrentState != GameState.Playing) return;
-        Move();
-    }
-
-    void OnValidate()
-    {
-        if (!Mathf.Approximately(joystickSensitivity, _previousJoystickSensitivity))
-        {
-            JoystickSensitivity = joystickSensitivity;
-            _previousJoystickSensitivity = joystickSensitivity;
-        }
-    }
+    void Awake() => SetSensitivity();
+    void Start() => GameStateManager.OnStateChange += OnStateChanged;
+    void Update() => Move();
+    void OnDestroy() => GameStateManager.OnStateChange -= OnStateChanged;
+    void SetSensitivity() => JoystickSensitivity = joystickSensitivity;
+    void OnStateChanged(GameState state) => enabled = state == GameState.Playing;
 
     static Vector2 ReadInput()
     {

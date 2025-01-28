@@ -15,7 +15,7 @@ public class ScreenManager : MonoBehaviour
 
     void Start()
     {
-        GameStateManager.OnInGame += ShowGameScreen;
+        GameStateManager.OnPlaying += ShowGameScreen;
         GameStateManager.OnGameOver += ShowEndScreen;
         GameStateManager.OnHome += ShowHomeScreen;
         GameStateManager.OnPause += ShowPauseScreen;
@@ -24,7 +24,7 @@ public class ScreenManager : MonoBehaviour
 
     void OnDestroy()
     {
-        GameStateManager.OnInGame -= ShowGameScreen;
+        GameStateManager.OnPlaying -= ShowGameScreen;
         GameStateManager.OnGameOver -= ShowEndScreen;
         GameStateManager.OnHome -= ShowHomeScreen;
         GameStateManager.OnPause -= ShowPauseScreen;

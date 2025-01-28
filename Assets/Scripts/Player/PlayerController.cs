@@ -13,13 +13,13 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        GameStateManager.OnInGame += OnInGame;
+        GameStateManager.OnPlaying += OnInGame;
         GameStateManager.OnGameOver += OnGameOver;
     }
 
     void OnDestroy()
     {
-        GameStateManager.OnInGame -= OnInGame;
+        GameStateManager.OnPlaying -= OnInGame;
         GameStateManager.OnGameOver -= OnGameOver;
     }
     void OnGameOver()
