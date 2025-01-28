@@ -17,8 +17,6 @@ public class EnemySpawner : MonoBehaviour
 
     void Awake() => _cam = Camera.main;
 
-
-
     void Update()
     {
         _nextSpawnTime -= Time.deltaTime;
@@ -51,12 +49,12 @@ public class EnemySpawner : MonoBehaviour
 
     void Spawn()
     {
-        Vector2 position = GetRandomSpawnPosition();
+        Vector3 position = transform.position + GetRandomSpawnPosition();
         PoolManager.Spawn(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], position, Quaternion.identity);
     }
 
 
-    Vector2 GetRandomSpawnPosition()
+    Vector3 GetRandomSpawnPosition()
     {
         // Get viewport dimensions
         float verticalOffset = _cam.orthographicSize + borderSize;
@@ -86,6 +84,6 @@ public class EnemySpawner : MonoBehaviour
                 break;
         }
 
-        return new Vector2(x, y);
+        return new Vector3(x, y, 0);
     }
 }

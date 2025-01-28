@@ -1,0 +1,63 @@
+﻿using UnityEngine;
+
+public class MagicWandWeaponBehavior : WeaponBehavior
+{
+    [SerializeField] GameObject magicMissilePrefab;
+    [SerializeField] float magicMissileSpeed;
+    [SerializeField] Vector3 spawnOffset;
+
+    readonly Collider2D[] _enemiesInRange = new Collider2D[16];
+    ContactFilter2D _contactFilter;
+
+    void Awake()
+    {
+        _contactFilter = new ContactFilter2D();
+        _contactFilter.SetLayerMask(LayerMask.GetMask("Enemies"));
+        _contactFilter.useLayerMask = true;
+    }
+
+    //todo: this is the same as the KnifeWeaponBehavior, consider refactoring
+    public override void ExecuteAttack(GameObject attacker)
+    {
+        Vector2 worldSpawnPosition = transform.TransformPoint(spawnOffset);
+        GameObject projectile = PoolManager.Spawn(magicMissilePrefab, worldSpawnPosition, transform.rotation);
+        var projController = projectile.GetComponent<MagicMissileController>();
+        if (projController != null)
+        {
+            Vector3 direction;
+            if (FindNearestUsingOverlapSphere(out Transform nearestEnemy))
+            {
+                // Enemy found, set missile direction towards the enemy
+                direction = (nearestEnemy.position - transform.position).normalized;
+                Debug.Log("enemy found, direction: " + direction);
+            }
+            else
+            {
+                // No enemy found, set missile to a random direction
+                direction = Random.insideUnitSphere.normalized;
+                Debug.Log("no enemy found, random direction: " + direction);
+            }
+            direction.z = 0;
+            projController.Initialize(magicMissileSpeed, weaponData.damage, attacker, direction);
+        }
+    }
+
+    bool FindNearestUsingOverlapSphere(out Transform nearestEnemy)
+    {
+        int size = Physics2D.OverlapCircle(transform.position, 10, _contactFilter, _enemiesInRange);
+        float minDist = float.MaxValue;
+        nearestEnemy = null;
+
+        for (int i = 0; i < size; i++)
+        {
+            Collider2D hit = _enemiesInRange[i];
+            float dist = Vector3.Distance(transform.position, hit.transform.position);
+            if (dist < minDist)
+            {
+                minDist = dist;
+                nearestEnemy = hit.transform;
+            }
+        }
+        return nearestEnemy != null;
+    }
+}

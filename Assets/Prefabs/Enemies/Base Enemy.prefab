@@ -50,7 +50,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1653075302469135174, guid: 40b2ff0a24a28d843ad5d5afb5d95c3f, type: 3}
       propertyPath: m_Name
-      value: Base Poolable Enemy
+      value: Base Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1653075302469135174, guid: 40b2ff0a24a28d843ad5d5afb5d95c3f, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1653075302469135174, guid: 40b2ff0a24a28d843ad5d5afb5d95c3f, type: 3}
       propertyPath: m_TagString

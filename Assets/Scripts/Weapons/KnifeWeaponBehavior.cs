@@ -8,8 +8,8 @@ public class KnifeWeaponBehavior : WeaponBehavior
 
     public override void ExecuteAttack(GameObject attacker)
     {
-        Vector2 worldSpawnPosition = attacker.transform.TransformPoint(spawnOffset);
-        GameObject projectile = PoolManager.Spawn(knifePrefab, worldSpawnPosition, attacker.transform.rotation);
+        Vector2 worldSpawnPosition = transform.TransformPoint(spawnOffset);
+        GameObject projectile = PoolManager.Spawn(knifePrefab, worldSpawnPosition, transform.rotation);
         var projController = projectile.GetComponent<KnifeProjectileController>();
         if (projController != null)
         {

@@ -7,6 +7,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] float joystickSensitivity = 1;
     [SerializeField] bool freezeX;
     [SerializeField] bool freezeZ;
+    [SerializeField] Transform rotatingPart;
 
     float _previousJoystickSensitivity;
 
@@ -41,7 +42,7 @@ public class InputManager : MonoBehaviour
         if (freezeX) input.x = 0;
         if (freezeZ) input.y = 0;
         Vector3 targetPos = transform.position + new Vector3(input.x, input.y, 0);
-        transform.LookAt2D(targetPos);
+        rotatingPart.LookAt2D(targetPos);
         transform.position = targetPos;
     }
 }
