@@ -9,7 +9,12 @@ public class KnifeWeaponBehavior : WeaponBehavior
     public override void ExecuteAttack(GameObject attacker)
     {
         Vector2 worldSpawnPosition = transform.TransformPoint(spawnOffset);
-        GameObject projectile = PoolManager.Spawn(knifePrefab, worldSpawnPosition, transform.rotation);
+
+        Vector2 input = InputManager.Input;
+        float angle = Mathf.Atan2(input.y, input.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.Euler(0, 0, angle - 90);
+
+        GameObject projectile = PoolManager.Spawn(knifePrefab, worldSpawnPosition, rotation);
         var projController = projectile.GetComponent<KnifeProjectileController>();
         if (projController != null)
         {
