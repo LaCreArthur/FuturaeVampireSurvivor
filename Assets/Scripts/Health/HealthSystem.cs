@@ -6,7 +6,7 @@ using UnityEngine;
 ///     Generic Health system that can be attached to any GameObject that needs health.
 /// </summary>
 [RequireComponent(typeof(DeathBehavior))]
-public class HealthSystem : MonoBehaviour
+public class HealthSystem : MonoBehaviour, IPoolable
 {
     [SerializeField] int maxHealth;
     [SerializeField] [ReadOnly] int currentHealth;
@@ -69,6 +69,8 @@ public class HealthSystem : MonoBehaviour
             if (_graceTimer <= 0) IsInGracePeriod = false;
         }
     }
+    public void OnSpawn() => CurrentHealth = MaxHealth;
+    public void OnDespawn() {}
 
     public void TakeDamage(int amount)
     {
@@ -81,8 +83,8 @@ public class HealthSystem : MonoBehaviour
         OnDamage?.Invoke();
         if (CurrentHealth <= 0)
         {
-            _deathBehavior.Die();
             OnDeath?.Invoke();
+            _deathBehavior.OnDeath();
         }
         else
         {
