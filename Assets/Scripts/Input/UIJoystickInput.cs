@@ -13,8 +13,6 @@ public class UIJoystickInput : MonoBehaviour, IDragHandler, IPointerUpHandler, I
     float _maxDragDistance;
     Vector2 _startPosition;
 
-    static float JoystickSensitivity => InputManager.JoystickSensitivity;
-
     void OnEnable()
     {
         UpdateInput(Vector2.zero);
@@ -25,9 +23,6 @@ public class UIJoystickInput : MonoBehaviour, IDragHandler, IPointerUpHandler, I
     {
         _startPosition = handleImage.rectTransform.anchoredPosition;
         _maxDragDistance = maxDragDistanceInInches * Screen.dpi;
-#if !UNITY_EDITOR
-        sensitivity *= 2;
-#endif
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -65,7 +60,7 @@ public class UIJoystickInput : MonoBehaviour, IDragHandler, IPointerUpHandler, I
         SetImagesActive(false);
     }
 
-    public static Vector2 ReadInput() => s_input * (JoystickSensitivity * Time.deltaTime);
+    public static Vector2 ReadInput() => s_input;
 
     void UpdateInput(Vector2 value)
     {

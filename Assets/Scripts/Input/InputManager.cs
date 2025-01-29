@@ -2,37 +2,39 @@
 
 public class InputManager : MonoBehaviour
 {
-    // static ref to share the sensitivity for both UI and Axis input
-    public static float JoystickSensitivity;
+    public const float DEAD_ZONE = 0.001f;
+    // static ref to share the Input value with other scripts
+    public static Vector2 Input;
 
-    [SerializeField] float joystickSensitivity = 1;
+    [SerializeField] float moveSpeed = 1;
     [SerializeField] bool freezeX;
     [SerializeField] bool freezeZ;
-    [SerializeField] Transform rotatingPart;
+    [SerializeField] bool normalized;
 
+    Vector2 _direction;
 
-    void Awake() => SetSensitivity();
     void Start() => GameStateManager.OnStateChange += OnStateChanged;
     void Update() => Move();
     void OnDestroy() => GameStateManager.OnStateChange -= OnStateChanged;
-    void SetSensitivity() => JoystickSensitivity = joystickSensitivity;
     void OnStateChanged(GameState state) => enabled = state == GameState.Playing;
 
     static Vector2 ReadInput()
     {
+        // automatically use the UI input if it's not zero
         Vector2 uiInput = UIJoystickInput.ReadInput();
         return uiInput.magnitude > 0 ? uiInput : AxisJoystickInput.ReadInput();
     }
 
     void Move()
     {
-        Vector2 input = ReadInput();
-        // dead zone
-        if (input.sqrMagnitude < 0.0001f) return;
-        if (freezeX) input.x = 0;
-        if (freezeZ) input.y = 0;
-        Vector3 targetPos = transform.position + new Vector3(input.x, input.y, 0);
-        rotatingPart.LookAt2D(targetPos);
-        transform.position = targetPos;
+        Input = ReadInput();
+        // dead zone check
+        if (Input.sqrMagnitude < DEAD_ZONE) return;
+        if (freezeX) Input.x = 0;
+        if (freezeZ) Input.y = 0;
+        if (normalized) Input.Normalize();
+
+        _direction = Input * (moveSpeed * Time.deltaTime);
+        transform.position += new Vector3(_direction.x, _direction.y, 0);
     }
 }

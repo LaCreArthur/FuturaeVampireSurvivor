@@ -106,7 +106,7 @@ MonoBehaviour:
   - {fileID: 1832477075, guid: d6916c6ff1e35c5429df062bd81cac8f, type: 3}
   - {fileID: -1084511043, guid: d6916c6ff1e35c5429df062bd81cac8f, type: 3}
   spriteRenderer: {fileID: 4964108088135447876}
-  timeBetweenSprites: 0.1
+  timeBetweenSprites: 0.05
 --- !u!1 &8041117698044371820
 GameObject:
   m_ObjectHideFlags: 0
