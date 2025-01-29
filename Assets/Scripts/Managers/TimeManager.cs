@@ -4,16 +4,21 @@ public class TimeManager : MonoBehaviour
 {
     void Start()
     {
-        GameStateManager.OnPause += PauseTime;
         GameStateManager.OnPlaying += ResumeTime;
+        ButtonResume.OnResumeButtonClicked += ResumeTime;
+        ButtonPause.OnPauseButtonClicked += PauseTime;
+        PlayerExperienceSystem.OnLevelUp += PauseTime;
     }
 
     void OnDestroy()
     {
-        GameStateManager.OnPause -= PauseTime;
         GameStateManager.OnPlaying -= ResumeTime;
+        ButtonResume.OnResumeButtonClicked -= ResumeTime;
+        ButtonPause.OnPauseButtonClicked -= PauseTime;
+        PlayerExperienceSystem.OnLevelUp -= PauseTime;
     }
 
+    static void PauseTime(int _) => PauseTime();
     static void PauseTime() => Time.timeScale = 0;
     static void ResumeTime() => Time.timeScale = 1;
 }

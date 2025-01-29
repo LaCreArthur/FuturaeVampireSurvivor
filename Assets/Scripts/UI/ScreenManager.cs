@@ -2,13 +2,14 @@
 
 public class ScreenManager : MonoBehaviour
 {
-    public GameObject homeScreen, gameScreen, pauseScreen, endScreen, leaderboardScreen;
+    public GameObject homeScreen, gameScreen, pauseScreen, levelUpScreen, endScreen, leaderboardScreen;
 
     void Awake()
     {
         homeScreen.SetActive(true);
         gameScreen.SetActive(false);
         pauseScreen.SetActive(false);
+        levelUpScreen.SetActive(false);
         endScreen.SetActive(false);
         leaderboardScreen.SetActive(false);
     }
@@ -18,7 +19,9 @@ public class ScreenManager : MonoBehaviour
         GameStateManager.OnPlaying += ShowGameScreen;
         GameStateManager.OnGameOver += ShowEndScreen;
         GameStateManager.OnHome += ShowHomeScreen;
-        GameStateManager.OnPause += ShowPauseScreen;
+        ButtonPause.OnPauseButtonClicked += ShowPauseScreen;
+        ButtonResume.OnResumeButtonClicked += ShowGameScreen;
+        PlayerExperienceSystem.OnLevelUp += ShowLevelUpScreen;
         GameStateManager.OnLeaderboard += ShowLeaderboard;
     }
 
@@ -27,7 +30,9 @@ public class ScreenManager : MonoBehaviour
         GameStateManager.OnPlaying -= ShowGameScreen;
         GameStateManager.OnGameOver -= ShowEndScreen;
         GameStateManager.OnHome -= ShowHomeScreen;
-        GameStateManager.OnPause -= ShowPauseScreen;
+        ButtonPause.OnPauseButtonClicked -= ShowPauseScreen;
+        ButtonResume.OnResumeButtonClicked -= ShowGameScreen;
+        PlayerExperienceSystem.OnLevelUp -= ShowLevelUpScreen;
         GameStateManager.OnLeaderboard -= ShowLeaderboard;
     }
 
@@ -35,6 +40,7 @@ public class ScreenManager : MonoBehaviour
     {
         homeScreen.SetActive(false);
         pauseScreen.SetActive(false);
+        levelUpScreen.SetActive(false);
         gameScreen.SetActive(true);
     }
 
@@ -55,6 +61,12 @@ public class ScreenManager : MonoBehaviour
     {
         gameScreen.SetActive(false);
         pauseScreen.SetActive(true);
+    }
+
+    void ShowLevelUpScreen(int _)
+    {
+        gameScreen.SetActive(false);
+        levelUpScreen.SetActive(true);
     }
 
     void ShowLeaderboard()

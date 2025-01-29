@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class GameStateManager : MonoBehaviour
 {
-    public static Action OnHome, OnPlaying, OnGameOver, OnPause, OnLeaderboard;
+    public static Action OnHome, OnPlaying, OnGameOver, OnLeaderboard;
     public static Action<GameState> OnStateChange;
-    public static bool IsGamePaused { get; private set; }
     public static GameState CurrentState { get; private set; }
 
     void Awake() => CurrentState = GameState.Loading;
@@ -26,7 +25,6 @@ public class GameStateManager : MonoBehaviour
         }
 
         // If we're pausing the game, set IsGamePaused; otherwise reset it
-        IsGamePaused = newState == GameState.Pause;
         CurrentState = newState;
         OnStateChange?.Invoke(CurrentState);
         Debug.Log($"Game State changed to {newState}");
@@ -43,9 +41,6 @@ public class GameStateManager : MonoBehaviour
             case GameState.GameOver:
                 OnGameOver?.Invoke();
                 break;
-            case GameState.Pause:
-                OnPause?.Invoke();
-                break;
             case GameState.Leaderboard:
                 OnLeaderboard?.Invoke();
                 break;
@@ -59,6 +54,5 @@ public enum GameState
     Home,
     Playing,
     GameOver,
-    Pause,
     Leaderboard,
 }

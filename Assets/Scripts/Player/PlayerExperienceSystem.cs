@@ -26,19 +26,17 @@ public class PlayerExperienceSystem : MonoBehaviour
 
     public static void CollectExperience(int exp)
     {
-        Debug.Log($"collected {exp} exp");
+        Debug.Log($"collected {exp} exp, remaining {ExperienceForNextLevel - Exp}, (total exp for next {ExperienceForNextLevel})");
         Exp += exp * MultiplierBonus;
         OnExpChanged?.Invoke(Exp);
         if (Exp >= ExperienceForNextLevel)
-        {
-            Exp -= ExperienceForNextLevel;
             LevelUp();
-        }
     }
 
     static void LevelUp()
     {
         CurrentLevel++;
+        Exp = 0;
         ExperienceForNextLevel = GetExperienceForNextLevel();
         OnLevelUp?.Invoke(CurrentLevel);
         Debug.Log($"Level up to {CurrentLevel} - {ExperienceForNextLevel} XP for next level");
