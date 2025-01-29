@@ -4,13 +4,14 @@ using UnityEngine.UI;
 
 public class UIJoystickInput : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
 {
+    static Vector2 s_input;
     [SerializeField] Image outerCircleImage;
     [SerializeField] Image handleImage;
     [SerializeField] float maxDragDistanceInInches = 100f;
+    [SerializeField] bool showImage;
 
     float _maxDragDistance;
     Vector2 _startPosition;
-    static Vector2 s_input;
 
     static float JoystickSensitivity => InputManager.JoystickSensitivity;
 
@@ -35,8 +36,6 @@ public class UIJoystickInput : MonoBehaviour, IDragHandler, IPointerUpHandler, I
         Vector2 dragPosition = eventData.position - (Vector2)outerCircleImage.rectTransform.position;
         UpdateInput(dragPosition / _maxDragDistance);
     }
-
-    public static Vector2 ReadInput() => s_input * (JoystickSensitivity * Time.deltaTime);
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -66,6 +65,8 @@ public class UIJoystickInput : MonoBehaviour, IDragHandler, IPointerUpHandler, I
         SetImagesActive(false);
     }
 
+    public static Vector2 ReadInput() => s_input * (JoystickSensitivity * Time.deltaTime);
+
     void UpdateInput(Vector2 value)
     {
         // Normalize if magnitude > 1
@@ -81,6 +82,7 @@ public class UIJoystickInput : MonoBehaviour, IDragHandler, IPointerUpHandler, I
 
     void SetImagesActive(bool value)
     {
+        if (!showImage) return;
         outerCircleImage.enabled = value;
         handleImage.enabled = value;
     }
