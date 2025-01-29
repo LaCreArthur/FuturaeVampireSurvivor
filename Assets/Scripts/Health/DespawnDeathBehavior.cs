@@ -1,4 +1,4 @@
 ﻿public class DespawnDeathBehavior : DeathBehavior
 {
-    public override void Die() => PoolManager.Despawn(gameObject);
+    public override void OnDeath() => PoolManager.Despawn(gameObject);
 }

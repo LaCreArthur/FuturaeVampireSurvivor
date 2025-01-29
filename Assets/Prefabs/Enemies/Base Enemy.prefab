@@ -71,6 +71,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1653075302469135174, guid: 40b2ff0a24a28d843ad5d5afb5d95c3f, type: 3}
       insertIndex: -1
       addedObject: {fileID: -4307655828169667754}
+    - targetCorrespondingSourceObject: {fileID: 1653075302469135174, guid: 40b2ff0a24a28d843ad5d5afb5d95c3f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5357794055755770755}
+    - targetCorrespondingSourceObject: {fileID: 1653075302469135174, guid: 40b2ff0a24a28d843ad5d5afb5d95c3f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -428592269783731494}
+    - targetCorrespondingSourceObject: {fileID: 1653075302469135174, guid: 40b2ff0a24a28d843ad5d5afb5d95c3f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4919716830023649551}
   m_SourcePrefab: {fileID: 100100000, guid: 40b2ff0a24a28d843ad5d5afb5d95c3f, type: 3}
 --- !u!1 &5870402464111478801 stripped
 GameObject:
@@ -89,3 +98,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f64402ce76624763908c6da13be21dda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-5357794055755770755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5870402464111478801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba7a508cfe024526987ee3be2736cf0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-428592269783731494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5870402464111478801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ddb2c6dbc3449478fc80120e183b811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0
+  currentHealth: 0
+  hasGracePeriod: 0
+  gracePeriod: 1
+--- !u!114 &-4919716830023649551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5870402464111478801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a6c9e168aea4e1798be5175ffc1e88d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orbPrefab: {fileID: 4066669073714927098, guid: 2143da3208593d54e929ddb34b5d84ae, type: 3}

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Whip
   m_EditorClassIdentifier: 
   sprite: {fileID: 5550164877690090568, guid: b5dc9f7c2919d81459634988a433ca25, type: 3}
-  damage: 10
+  damage: 15
   cooldown: 1.5

@@ -32,7 +32,6 @@ public class MagicMissileController : MonoBehaviour, IPoolable
     {
         _hasHit = false;
         transform.localScale = Vector3.one;
-        Debug.Log("MagicMissileController OnSpawn");
     }
     public void OnDespawn() {}
 

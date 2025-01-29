@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Knife
   m_EditorClassIdentifier: 
   sprite: {fileID: -9005276204913121442, guid: b2f227dc898f4ba4ba769f85d21333af, type: 3}
-  damage: 10
-  cooldown: 1
+  damage: 15
+  cooldown: 0.8
