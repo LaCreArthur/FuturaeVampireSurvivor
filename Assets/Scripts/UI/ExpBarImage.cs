@@ -1,31 +1,21 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-
-[RequireComponent(typeof(Image))]
-public class ExpBarImage : MonoBehaviour
+﻿public class ExpBarImage : BarImage
 {
-    Image _image;
-    float _experienceForNextLevel = 1; // set to non-zero to avoid division by zero
-
-    void Awake() => _image = GetComponent<Image>();
     void Start()
     {
-        PlayerExperienceSystem.OnExpChanged += UpdateLifeBar;
+        PlayerExperienceSystem.OnExpChanged += SetValue;
         PlayerExperienceSystem.OnLevelUp += OnLevelUp;
         OnLevelUp(PlayerExperienceSystem.CurrentLevel);
-        UpdateLifeBar(PlayerExperienceSystem.Exp);
     }
 
     void OnDestroy()
     {
-        PlayerExperienceSystem.OnExpChanged -= UpdateLifeBar;
+        PlayerExperienceSystem.OnExpChanged -= SetValue;
         PlayerExperienceSystem.OnLevelUp -= OnLevelUp;
     }
 
-    void OnLevelUp(int level)
+    void OnLevelUp(int _) // _ is a placeholder for the unused parameter, we don't need the level in this method
     {
-        _experienceForNextLevel = PlayerExperienceSystem.ExperienceForNextLevel;
-        UpdateLifeBar(PlayerExperienceSystem.Exp);
+        SetMaxValue(PlayerExperienceSystem.ExperienceForNextLevel);
+        SetValue(PlayerExperienceSystem.Exp);
     }
-    void UpdateLifeBar(float exp) => _image.fillAmount = exp / _experienceForNextLevel;
 }
