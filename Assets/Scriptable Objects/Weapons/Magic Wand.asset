@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e95f22d92e94bfb87f5f70bf1997de7, type: 3}
   m_Name: Magic Wand
   m_EditorClassIdentifier: 
-  sprite: {fileID: 5378226525086922102, guid: c1f898d379770134b933aec16906d65e, type: 3}
-  damage: 8
+  sprite: {fileID: 21300000, guid: c1f898d379770134b933aec16906d65e, type: 3}
+  damage: 10
   cooldown: 1
