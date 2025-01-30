@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70bd4daf6c7a40f1906f342517aed482, type: 3}
   m_Name: WanderMove
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 3
   nextMoveCooldown: 2
   nextMoveRadius: 5

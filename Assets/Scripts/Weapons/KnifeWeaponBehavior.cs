@@ -2,23 +2,30 @@
 
 public class KnifeWeaponBehavior : WeaponBehavior
 {
-    [SerializeField] GameObject knifePrefab;
-    [SerializeField] float knifeSpeed;
     [SerializeField] Vector3 spawnOffset;
+    Vector2 _lastInput;
 
-    public override void ExecuteAttack(GameObject attacker)
+    void Update()
+    {
+        // Save the last input direction to use as the knife's direction if the player is not moving
+        // Must be done in Update and not Fire because the player can fire the knife while not moving
+        // And we want the knife to be fired in the last direction the player was moving
+        if (InputManager.Input.sqrMagnitude > InputManager.DEAD_ZONE)
+            _lastInput = InputManager.Input;
+    }
+
+    public override void Fire(GameObject attacker)
     {
         Vector2 worldSpawnPosition = transform.TransformPoint(spawnOffset);
 
-        Vector2 input = InputManager.Input;
-        float angle = Mathf.Atan2(input.y, input.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(_lastInput.y, _lastInput.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.Euler(0, 0, angle - 90);
 
-        GameObject projectile = PoolManager.Spawn(knifePrefab, worldSpawnPosition, rotation);
+        GameObject projectile = PoolManager.Spawn(weapon.projectilePrefab, worldSpawnPosition, rotation);
         var projController = projectile.GetComponent<KnifeProjectileController>();
         if (projController != null)
         {
-            projController.Initialize(knifeSpeed, weaponData.damage, attacker);
+            projController.Initialize(Stats.speed, Stats.damage, attacker);
         }
     }
 }

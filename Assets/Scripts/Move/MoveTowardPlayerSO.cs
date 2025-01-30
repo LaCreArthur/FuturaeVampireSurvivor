@@ -15,7 +15,5 @@ public class MoveTowardPlayerSO : MoveBehaviorSO
             ownerTransform.position,
             playerPos,
             speed * Time.deltaTime);
-
-        ownerTransform.LookAt2D(playerPos);
     }
 }

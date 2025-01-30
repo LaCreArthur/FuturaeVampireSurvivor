@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2115194493614230006}
   m_Layer: 0
   m_Name: Whip R PS
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1694772909882555390}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0.2, z: -0.1}
+  m_LocalPosition: {x: 1.5, y: 0.2, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -287,7 +287,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 2.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4906,7 +4906,7 @@ GameObject:
   - component: {fileID: 1651792479295367588}
   m_Layer: 0
   m_Name: Whip L Collider
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4920,8 +4920,8 @@ Transform:
   m_GameObject: {fileID: 5361892560356846244}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: -0.2, z: 0}
-  m_LocalScale: {x: 2, y: 1.2, z: 0}
+  m_LocalPosition: {x: -1.5, y: -0.2, z: 0}
+  m_LocalScale: {x: 2.5, y: 1.2, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1187663738245347953}
@@ -5040,7 +5040,7 @@ GameObject:
   - component: {fileID: 1389538279579536774}
   m_Layer: 0
   m_Name: Whip R Collider
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5054,8 +5054,8 @@ Transform:
   m_GameObject: {fileID: 7405693429836548451}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0.2, z: 0}
-  m_LocalScale: {x: 2, y: 1.2, z: 0}
+  m_LocalPosition: {x: 1.5, y: 0.2, z: 0}
+  m_LocalScale: {x: 2.5, y: 1.2, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1187663738245347953}
@@ -5174,7 +5174,7 @@ GameObject:
   - component: {fileID: 3900057323971166263}
   m_Layer: 0
   m_Name: Whip L PS
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5188,7 +5188,7 @@ Transform:
   m_GameObject: {fileID: 7719514412666805172}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: -0.2, z: -0.1}
+  m_LocalPosition: {x: -1.5, y: -0.2, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5448,7 +5448,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 2.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -10066,7 +10066,7 @@ GameObject:
   - component: {fileID: 6515750286287932179}
   m_Layer: 0
   m_Name: Whip
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10129,7 +10129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76a4496f66dd4a019ae41b0c56b0904c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponData: {fileID: 11400000, guid: fc1f750c2f09d33419bf20b8b65d9dbf, type: 2}
+  weapon: {fileID: 11400000, guid: fc1f750c2f09d33419bf20b8b65d9dbf, type: 2}
   leftWhipParticles: {fileID: 1054959667630988449}
   rightWhipParticles: {fileID: 3977656455591426731}
   leftCollider: {fileID: 5361892560356846244}

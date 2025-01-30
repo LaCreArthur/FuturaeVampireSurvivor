@@ -2,8 +2,6 @@
 
 public class MagicWandWeaponBehavior : WeaponBehavior
 {
-    [SerializeField] GameObject magicMissilePrefab;
-    [SerializeField] float magicMissileSpeed;
     [SerializeField] float nearestEnemyRadius;
     [SerializeField] Vector3 spawnOffset;
 
@@ -17,11 +15,10 @@ public class MagicWandWeaponBehavior : WeaponBehavior
         _contactFilter.useLayerMask = true;
     }
 
-    //todo: this is the same as the KnifeWeaponBehavior, consider refactoring
-    public override void ExecuteAttack(GameObject attacker)
+    public override void Fire(GameObject attacker)
     {
         Vector2 worldSpawnPosition = transform.TransformPoint(spawnOffset);
-        GameObject projectile = PoolManager.Spawn(magicMissilePrefab, worldSpawnPosition, transform.rotation);
+        GameObject projectile = PoolManager.Spawn(weapon.projectilePrefab, worldSpawnPosition, transform.rotation);
         var projController = projectile.GetComponent<MagicMissileController>();
         if (projController != null)
         {
@@ -37,7 +34,7 @@ public class MagicWandWeaponBehavior : WeaponBehavior
                 direction = Random.insideUnitSphere.normalized;
             }
             direction.z = 0;
-            projController.Initialize(magicMissileSpeed, weaponData.damage, attacker, direction);
+            projController.Initialize(Stats.speed, Stats.damage, attacker, direction);
         }
     }
 

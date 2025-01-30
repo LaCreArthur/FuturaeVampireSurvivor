@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d2c10669db3499293e9a1953db63ae1, type: 3}
+  m_Name: Antonio
+  m_EditorClassIdentifier: 
+  characterIcon: {fileID: 1430985503064832334, guid: 68f287b5a736ca94090d3927f42321ff, type: 3}
+  characterPrefab: {fileID: 7612098206927530501, guid: 2bfc1fa856f15b3479c3f043b1149bfb, type: 3}
+  baseWeaponPrefab: {fileID: 7925499478077412331, guid: 23ac2953aa860cc4eb24a40dc96da8fa, type: 3}

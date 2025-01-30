@@ -35,11 +35,11 @@ public class WhipWeaponBehavior : WeaponBehavior
         if (other.CompareTag("Enemy"))
         {
             other.attachedRigidbody.TryGetComponent(out HealthSystem healthSystem);
-            if (healthSystem != null) healthSystem.TakeDamage(weaponData.damage);
+            if (healthSystem != null) healthSystem.TakeDamage(Stats.damage);
         }
     }
 
-    public override void ExecuteAttack(GameObject attacker)
+    public override void Fire(GameObject attacker)
     {
         // play the particles
         leftWhipParticles.Play();

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d2c10669db3499293e9a1953db63ae1, type: 3}
+  m_Name: Gennaro
+  m_EditorClassIdentifier: 
+  characterIcon: {fileID: 700479470407161347, guid: 69ecab43d160ee14bbbd7561335aa968, type: 3}
+  characterPrefab: {fileID: 3521849836229917452, guid: 506375e247c30ce44a8e14bb6fd3801c, type: 3}
+  baseWeaponPrefab: {fileID: 3921613116576328812, guid: 59a4a79e5f8e2dd4a995a7667e2e5be7, type: 3}

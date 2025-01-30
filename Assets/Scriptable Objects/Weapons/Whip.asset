@@ -12,6 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e95f22d92e94bfb87f5f70bf1997de7, type: 3}
   m_Name: Whip
   m_EditorClassIdentifier: 
-  sprite: {fileID: 5550164877690090568, guid: b5dc9f7c2919d81459634988a433ca25, type: 3}
-  damage: 15
-  cooldown: 1.5
+  weaponIcon: {fileID: 21300000, guid: b5dc9f7c2919d81459634988a433ca25, type: 3}
+  levelData:
+  - damage: 10
+    cooldown: 1.35
+    area: 1
+    speed: 1
+    amount: 1
+    duration: 0
+    pierce: 0
+    projectileInterval: 0
+    knockback: 0
+  - damage: 12
+    cooldown: 1.35
+    area: 1.5
+    speed: 1
+    amount: 1
+    duration: 0
+    pierce: 0
+    projectileInterval: 0
+    knockback: 0
+  fireSound: {fileID: 0}
+  projectilePrefab: {fileID: 0}
