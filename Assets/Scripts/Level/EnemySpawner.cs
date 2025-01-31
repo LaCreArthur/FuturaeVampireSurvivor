@@ -7,15 +7,25 @@ using Random = UnityEngine.Random;
 /// </summary>
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] List<GameObject> enemyPrefabs;
+    [SerializeField] List<SpawnWave> spawnWaves;
     [SerializeField] int maxSpawned;
-    [SerializeField] int spawnRate;
+    [SerializeField] float spawnRate;
     [SerializeField] float borderSize = 2f;
 
     Camera _cam;
     float _nextSpawnTime;
+    int _waveIndex;
+    SpawnWave _currentWave;
+    bool _burst;
+    Vector3 _burstSpawnPosition;
 
     void Awake() => _cam = Camera.main;
+
+    void OnEnable()
+    {
+        _waveIndex = 0;
+        SetNextWave();
+    }
     void Start() => GameStateManager.OnStateChange += OnStateChanged;
 
 
@@ -28,6 +38,7 @@ public class EnemySpawner : MonoBehaviour
             _nextSpawnTime = spawnRate;
         }
     }
+
     void OnDestroy() => GameStateManager.OnStateChange -= OnStateChanged;
 
     void OnDrawGizmos()
@@ -49,14 +60,50 @@ public class EnemySpawner : MonoBehaviour
         Gizmos.DrawLine(bottomRight, bottomLeft);
         Gizmos.DrawLine(bottomLeft, topLeft);
     }
+
+    void SetNextWave()
+    {
+        _currentWave = spawnWaves[_waveIndex];
+        _waveIndex = (_waveIndex + 1) % spawnWaves.Count; // Loop back to the first wave if we reach the end
+        maxSpawned = _currentWave.maxSpawned;
+        spawnRate = _currentWave.spawnRate;
+        _burst = _currentWave.burst;
+        if (_currentWave.burst)
+        {
+            // get a random spawn position for the burst
+            _burstSpawnPosition = transform.position + GetRandomSpawnPosition();
+        }
+    }
     void OnStateChanged(GameState state) => enabled = state == GameState.Playing;
 
     void Spawn()
     {
-        Vector3 position = transform.position + GetRandomSpawnPosition();
-        PoolManager.Spawn(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], position, Quaternion.identity);
+        // if burst, spawn all enemies at the same time and position
+        if (_burst)
+        {
+            for (int i = 0; i < maxSpawned; i++)
+            {
+                SpawnEnemy(_burstSpawnPosition + new Vector3(Random.value, Random.value));
+            }
+            // move to the next wave directly
+            SetNextWave();
+        }
+        else
+        {
+            if (maxSpawned > 0)
+            {
+                SpawnEnemy(transform.position + GetRandomSpawnPosition());
+                maxSpawned--;
+            }
+            else
+            {
+                // if no more enemies to spawn, move to the next wave
+                SetNextWave();
+            }
+        }
     }
 
+    void SpawnEnemy(Vector3 position) => PoolManager.Spawn(_currentWave.enemies[Random.Range(0, _currentWave.enemies.Count)], position, Quaternion.identity);
 
     Vector3 GetRandomSpawnPosition()
     {

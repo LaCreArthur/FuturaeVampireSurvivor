@@ -149,9 +149,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cad1f268c91e44a9946e34dc0f443c5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 1877273807043639096, guid: 326262f3ec0524d4e9771d22e8241957, type: 3}
-  - {fileID: 1877273807043639096, guid: 2db8d7e368d05a34d8c6671001c66e3e, type: 3}
+  spawnWaves:
+  - {fileID: 11400000, guid: 57d2b2bfd71ff674fa902886afec2394, type: 2}
+  - {fileID: 11400000, guid: 13f6f130135921846a56967872169ef8, type: 2}
+  - {fileID: 11400000, guid: 79705d6078954f14cae0a1ce04c6dd55, type: 2}
   maxSpawned: 50
   spawnRate: 1
   borderSize: 2

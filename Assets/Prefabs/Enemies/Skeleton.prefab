@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3865192995106395286}
   - component: {fileID: 6710596239388856266}
   - component: {fileID: 3061140871970873688}
+  - component: {fileID: 1864311047478490024}
   m_Layer: 6
   m_Name: Sprite
   m_TagString: Enemy
@@ -101,6 +102,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inverted: 1
+--- !u!114 &1864311047478490024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5210117749664650578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 505cf15184e34e7eadafadfd61b30669, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: dc41cdb1dad22914fb679cb3f18be13e, type: 3}
+  - {fileID: 21300000, guid: 2d5196d397fa63b4d96aaed590eea397, type: 3}
+  - {fileID: 21300000, guid: 35ffcf44b24495543a07549018521d97, type: 3}
+  - {fileID: 21300000, guid: bc847abad21803e46a66c34b8a342885, type: 3}
+  - {fileID: 21300000, guid: 8fecfee7a36c64048900537759e09cf4, type: 3}
+  - {fileID: 21300000, guid: 9f674ab8620e55a4ca4c101c003d645e, type: 3}
 --- !u!1001 &5438854547202801449
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -294,4 +314,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311fb4f0a17f414795cf77962dfd429b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 4
