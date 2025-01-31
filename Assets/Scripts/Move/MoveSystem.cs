@@ -2,17 +2,18 @@
 
 public class MoveSystem : MonoBehaviour
 {
-    [SerializeField] MoveBehavior moveBehavior;
+    MoveBehavior _moveBehavior;
     MoveBehavior MoveBehavior
     {
-        get => moveBehavior;
+        get => _moveBehavior;
         set {
-            moveBehavior = value;
-            moveBehavior.Initialize();
+            _moveBehavior = value;
+            _moveBehavior.Initialize();
         }
     }
 
     // move behavior can be null (no movement), so we need to check for null
+    void Awake() => _moveBehavior = GetComponent<MoveBehavior>();
     void Start() => MoveBehavior?.Initialize();
     void Update() => MoveBehavior?.Move();
 }

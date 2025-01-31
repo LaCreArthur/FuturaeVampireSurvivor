@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3865192995106395286}
   - component: {fileID: 6710596239388856266}
-  - component: {fileID: 227240524425701158}
+  - component: {fileID: 3061140871970873688}
   m_Layer: 6
   m_Name: Sprite
   m_TagString: Enemy
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &227240524425701158
+--- !u!114 &3061140871970873688
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,10 +97,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5210117749664650578}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c6d1c66d11648729025b6dbbaa3c11b, type: 3}
+  m_Script: {fileID: 11500000, guid: ef636b074fa44231993556bd2ce19313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flipDirection: 1
+  inverted: 1
 --- !u!1001 &5438854547202801449
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -193,6 +193,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5870402464111478801, guid: 4f641a7b77b47e34ab88c41919eea4da, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8976765557040081412}
+    - targetCorrespondingSourceObject: {fileID: 5870402464111478801, guid: 4f641a7b77b47e34ab88c41919eea4da, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6330398722392685231}
   m_SourcePrefab: {fileID: 100100000, guid: 4f641a7b77b47e34ab88c41919eea4da, type: 3}
 --- !u!4 &594635094186402120 stripped
 Transform:
@@ -279,4 +282,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3356d1eb86ea4912846ef0e728775735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveBehavior: {fileID: 11400000, guid: f536998d8bec6e044ba2eb1c355fc8c8, type: 2}
+--- !u!114 &6330398722392685231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877273807043639096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 311fb4f0a17f414795cf77962dfd429b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
