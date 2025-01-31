@@ -14,7 +14,7 @@ public class DespawnPoolableByDistance : MonoBehaviour
         // This only checks every few frames to save performance
         if (Time.frameCount % DESPAWN_CHECK_RATE != 0) return;
 
-        if (Vector3.SqrMagnitude(transform.position - PlayerController.PlayerTransform.position) > DESPAWN_DISTANCE_SQUARE)
+        if (Vector3.SqrMagnitude(transform.position - PlayerStaticReferences.PlayerTransform.position) > DESPAWN_DISTANCE_SQUARE)
         {
             Despawn();
         }

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class MagicMissileSprite : MonoBehaviour
+public class MagicMissileSpriteAnimation : MonoBehaviour
 {
     [SerializeField] Sprite[] sprites;
     [SerializeField] SpriteRenderer spriteRenderer;

@@ -4,12 +4,15 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class LifeBarImage : BarImage
 {
+    HealthSystem _playerHealth;
+
     void Start()
     {
-        PlayerHealth.OnPlayerHealthChanged += SetValue;
-        SetMaxValue(PlayerHealth.MaxHealth);
-        SetValue(PlayerHealth.CurrentHealth);
+        _playerHealth = PlayerStaticReferences.PlayerHealthSystem;
+        _playerHealth.OnHealthChanged += SetValue;
+        SetMaxValue(_playerHealth.MaxHealth);
+        SetValue(_playerHealth.CurrentHealth);
     }
 
-    void OnDestroy() => PlayerHealth.OnPlayerHealthChanged -= SetValue;
+    void OnDestroy() => _playerHealth.OnHealthChanged -= SetValue;
 }

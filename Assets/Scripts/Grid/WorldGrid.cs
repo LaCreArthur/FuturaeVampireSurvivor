@@ -43,7 +43,7 @@ public class WorldGrid : MonoBehaviour
         SpawnNewCells();
     }
 
-    Vector2Int GetPlayerGridPos() => Grid.GetXY(Orientation.XY, Vector3.zero, cellSize, PlayerController.PlayerTransform.position);
+    Vector2Int GetPlayerGridPos() => Grid.GetXY(Orientation.XY, Vector3.zero, cellSize, PlayerStaticReferences.PlayerTransform.position);
 
     void SpawnNewCells()
     {

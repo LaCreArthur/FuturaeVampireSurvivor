@@ -2,20 +2,17 @@
 
 public class MoveSystem : MonoBehaviour
 {
-    [SerializeField] MoveBehaviorSO moveBehavior;
-    public MoveBehaviorSO MoveBehavior
+    [SerializeField] MoveBehavior moveBehavior;
+    MoveBehavior MoveBehavior
     {
         get => moveBehavior;
         set {
             moveBehavior = value;
-            moveBehavior.Initialize(gameObject);
+            moveBehavior.Initialize();
         }
     }
 
-    void Start()
-    {
-        if (MoveBehavior != null) MoveBehavior.Initialize(gameObject);
-    }
-
-    void Update() => MoveBehavior.Move(transform);
+    // move behavior can be null (no movement), so we need to check for null
+    void Start() => MoveBehavior?.Initialize();
+    void Update() => MoveBehavior?.Move();
 }
