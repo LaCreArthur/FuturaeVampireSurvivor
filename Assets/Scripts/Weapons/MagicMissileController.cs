@@ -33,7 +33,6 @@ public class MagicMissileController : MonoBehaviour, IPoolable
         _hasHit = false;
         transform.localScale = Vector3.one;
     }
-    public void OnDespawn() {}
 
     public void Initialize(float speed, int damage, GameObject attacker, Vector3 direction)
     {

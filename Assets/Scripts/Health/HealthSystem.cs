@@ -70,7 +70,6 @@ public class HealthSystem : MonoBehaviour, IPoolable
         }
     }
     public void OnSpawn() => CurrentHealth = MaxHealth;
-    public void OnDespawn() {}
 
     public void TakeDamage(int amount)
     {
