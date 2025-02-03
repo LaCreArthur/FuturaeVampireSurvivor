@@ -1,11 +1,13 @@
-﻿using UnityEngine;
+﻿using ScriptableVariables;
+using UnityEngine;
 
 public class MoveTowardPlayer : MoveBehavior
 {
-    // we cache the player's transform to avoid calling PlayerStaticReferences every frame
+    [SerializeField] TransformVar playerTransformVar;
     Transform _playerTransform;
+    Vector3 _direction;
 
-    public override void Initialize() => _playerTransform = PlayerStaticReferences.PlayerTransform;
+    public override void Initialize() => _playerTransform ??= playerTransformVar.Value;
 
     public override void Move()
     {

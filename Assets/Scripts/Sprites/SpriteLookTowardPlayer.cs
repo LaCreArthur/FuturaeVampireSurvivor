@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using ScriptableVariables;
+using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class SpriteLookTowardPlayer : SpriteLookTo
 {
-    Transform _player;
-    void Start() => _player = PlayerStaticReferences.PlayerTransform;
-    protected override void SetLookingLeft() => lookingLeft = transform.position.x > _player.position.x;
+    [SerializeField] TransformVar playerTransformVar;
+    Transform _playerTransform;
+    void Start() => _playerTransform = playerTransformVar.Value;
+    protected override void SetLookingLeft() => lookingLeft = transform.position.x > _playerTransform.position.x;
 }

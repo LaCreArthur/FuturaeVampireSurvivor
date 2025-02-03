@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 /// </summary>
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] List<SpawnWave> spawnWaves;
+    [SerializeField] List<SpawnWaveSO> spawnWaves;
     [SerializeField] int maxSpawned;
     [SerializeField] float spawnRate;
     [SerializeField] float borderSize = 2f;
@@ -15,7 +15,7 @@ public class EnemySpawner : MonoBehaviour
     Camera _cam;
     float _nextSpawnTime;
     int _waveIndex;
-    SpawnWave _currentWave;
+    SpawnWaveSO _currentWave;
     bool _burst;
     Vector3 _burstSpawnPosition;
 

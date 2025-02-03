@@ -1,0 +1,49 @@
+﻿using ScriptableVariables;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+[RequireComponent(typeof(Image))]
+public class ProgressBarImage : MonoBehaviour
+{
+    [SerializeField] TMP_Text text;
+    [SerializeField] FloatVar currentValue;
+    [SerializeField] FloatVar maxValue;
+
+    Image _image;
+    float _maxValue = 1;
+    float _currentValue;
+
+    void Awake() => _image = GetComponent<Image>();
+
+    void Start()
+    {
+        currentValue.OnChanged += SetValue;
+        maxValue.OnChanged += SetMaxValue;
+        SetMaxValue(maxValue.Value);
+    }
+
+    void OnDestroy()
+    {
+        currentValue.OnChanged -= SetValue;
+        maxValue.OnChanged -= SetMaxValue;
+    }
+
+    void UpdateBar()
+    {
+        _image.fillAmount = _currentValue / _maxValue;
+        text.text = $"{_currentValue}/{_maxValue}";
+    }
+
+    void SetMaxValue(float value)
+    {
+        _maxValue = value;
+        UpdateBar();
+    }
+
+    void SetValue(float value)
+    {
+        _currentValue = value;
+        UpdateBar();
+    }
+}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7069859451283761432}
   - component: {fileID: 4726529259249846294}
   - component: {fileID: 2699946449176028003}
-  - component: {fileID: 1595939262195749863}
+  - component: {fileID: 3380717075475414036}
   m_Layer: 5
   m_Name: Fill Image
   m_TagString: Untagged
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 20
---- !u!114 &1595939262195749863
+--- !u!114 &3380717075475414036
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,10 +85,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1093084420175183169}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9619cfe95a684578a05b99b6d5964f42, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fb85ab1533e4d309de96d44b549697c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 2597056546384343261}
+  currentValue: {fileID: 11400000, guid: 565440efa2627634e9850a88172e077d, type: 2}
+  maxValue: {fileID: 11400000, guid: 0968729cb3a297a42b14cbb9af791b33, type: 2}
 --- !u!1 &1152746254356140498
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,7 +465,7 @@ GameObject:
   - component: {fileID: 5300011951313596187}
   - component: {fileID: 829030185678301157}
   - component: {fileID: 2281002454252682429}
-  - component: {fileID: 1761659745051976080}
+  - component: {fileID: 6565096098947637917}
   m_Layer: 5
   m_Name: Fill Image
   m_TagString: Untagged
@@ -528,7 +530,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 20
---- !u!114 &1761659745051976080
+--- !u!114 &6565096098947637917
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -537,10 +539,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3191658140400757099}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cee45879b41428eacf93ab9471491e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fb85ab1533e4d309de96d44b549697c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 2605235115704471000}
+  currentValue: {fileID: 11400000, guid: 35000407527212a439ab58a9b48b1268, type: 2}
+  maxValue: {fileID: 11400000, guid: e5be46d711ecdb34eb02e071c8b20ad8, type: 2}
 --- !u!1 &4088993866466413588
 GameObject:
   m_ObjectHideFlags: 0

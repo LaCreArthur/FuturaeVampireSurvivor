@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Create WeaponSO", fileName = "WeaponSO")]
+[CreateAssetMenu(menuName = "Vampire/Weapon", fileName = "WeaponSO")]
 public class WeaponSO : ScriptableObject
 {
     public Sprite weaponIcon;

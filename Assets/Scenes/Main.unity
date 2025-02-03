@@ -153,6 +153,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 57d2b2bfd71ff674fa902886afec2394, type: 2}
   - {fileID: 11400000, guid: 13f6f130135921846a56967872169ef8, type: 2}
   - {fileID: 11400000, guid: 79705d6078954f14cae0a1ce04c6dd55, type: 2}
+  - {fileID: 11400000, guid: 06d9653a326acbf4eb734e27538d7dc5, type: 2}
   maxSpawned: 50
   spawnRate: 1
   borderSize: 2
@@ -629,6 +630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellSize: 10
   cellPrefab: {fileID: 6638166349142818006, guid: 486f282bdc31c00479c1bceda69cd7c9, type: 3}
+  playerTransformVar: {fileID: 11400000, guid: 5a6482895ae90bb48b30b4c38b1f4eb7, type: 2}
 --- !u!1 &866130315 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5977742571941645430, guid: ef3890e5954d437458be3e5cb34006d0, type: 3}
@@ -1630,8 +1632,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7122123577131783466, guid: ce4e7249652e8a645ae20602c18c7276, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

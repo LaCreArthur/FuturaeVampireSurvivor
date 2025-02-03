@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Create CharacterSO", fileName = "CharacterSO", order = 0)]
+[CreateAssetMenu(menuName = "Vampire/Character", fileName = "CharacterSO", order = 0)]
 public class CharacterSO : ScriptableObject
 {
     public Sprite characterIcon;

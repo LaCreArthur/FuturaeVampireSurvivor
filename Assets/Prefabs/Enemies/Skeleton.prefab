@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inverted: 1
+  playerTransformVar: {fileID: 11400000, guid: 5a6482895ae90bb48b30b4c38b1f4eb7, type: 2}
 --- !u!114 &1864311047478490024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,4 +315,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311fb4f0a17f414795cf77962dfd429b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 3
+  playerTransformVar: {fileID: 11400000, guid: 5a6482895ae90bb48b30b4c38b1f4eb7, type: 2}

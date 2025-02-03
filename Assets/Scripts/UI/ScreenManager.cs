@@ -21,7 +21,7 @@ public class ScreenManager : MonoBehaviour
         GameStateManager.OnHome += ShowHomeScreen;
         ButtonPause.OnPauseButtonClicked += ShowPauseScreen;
         ButtonResume.OnResumeButtonClicked += ShowGameScreen;
-        PlayerExperienceSystem.OnLevelUp += ShowLevelUpScreen;
+        ExperienceSystem.OnLevelUp += ShowLevelUpScreen;
         GameStateManager.OnLeaderboard += ShowLeaderboard;
     }
 
@@ -32,7 +32,7 @@ public class ScreenManager : MonoBehaviour
         GameStateManager.OnHome -= ShowHomeScreen;
         ButtonPause.OnPauseButtonClicked -= ShowPauseScreen;
         ButtonResume.OnResumeButtonClicked -= ShowGameScreen;
-        PlayerExperienceSystem.OnLevelUp -= ShowLevelUpScreen;
+        ExperienceSystem.OnLevelUp -= ShowLevelUpScreen;
         GameStateManager.OnLeaderboard -= ShowLeaderboard;
     }
 

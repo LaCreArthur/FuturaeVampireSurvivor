@@ -7,7 +7,7 @@ public class TimeManager : MonoBehaviour
         GameStateManager.OnPlaying += ResumeTime;
         ButtonResume.OnResumeButtonClicked += ResumeTime;
         ButtonPause.OnPauseButtonClicked += PauseTime;
-        PlayerExperienceSystem.OnLevelUp += PauseTime;
+        ExperienceSystem.OnLevelUp += PauseTime;
     }
 
     void OnDestroy()
@@ -15,7 +15,7 @@ public class TimeManager : MonoBehaviour
         GameStateManager.OnPlaying -= ResumeTime;
         ButtonResume.OnResumeButtonClicked -= ResumeTime;
         ButtonPause.OnPauseButtonClicked -= PauseTime;
-        PlayerExperienceSystem.OnLevelUp -= PauseTime;
+        ExperienceSystem.OnLevelUp -= PauseTime;
     }
 
     static void PauseTime(int _) => PauseTime();

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Create SpawnWave", fileName = "SpawnWave", order = 0)]
-public class SpawnWave : ScriptableObject
+[CreateAssetMenu(menuName = "Vampire/SpawnWave", fileName = "SpawnWaveSO", order = 0)]
+public class SpawnWaveSO : ScriptableObject
 {
     public List<GameObject> enemies;
     public float spawnRate;

@@ -69,6 +69,7 @@ public class HealthSystem : MonoBehaviour, IPoolable
             if (_graceTimer <= 0) IsInGracePeriod = false;
         }
     }
+
     public void OnSpawn() => CurrentHealth = MaxHealth;
 
     public void TakeDamage(int amount)

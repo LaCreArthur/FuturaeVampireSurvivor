@@ -1,10 +1,13 @@
 using System.Collections.Generic;
+using ScriptableVariables;
 using UnityEngine;
 
 public class WorldGrid : MonoBehaviour
 {
     public float cellSize;
     public GameObject cellPrefab;
+
+    [SerializeField] TransformVar playerTransformVar;
 
     readonly Dictionary<Vector2Int, GameObject> _cells = new Dictionary<Vector2Int, GameObject>(32);
     readonly HashSet<Vector2Int> _removalSet = new HashSet<Vector2Int>(32);
@@ -24,9 +27,11 @@ public class WorldGrid : MonoBehaviour
     };
 
     Vector2Int _playerGridPos;
+    Transform _playerTransform;
 
     void Start()
     {
+        _playerTransform = playerTransformVar.Value;
         _playerGridPos = GetPlayerGridPos();
         SpawnNewCells();
     }
@@ -43,7 +48,7 @@ public class WorldGrid : MonoBehaviour
         SpawnNewCells();
     }
 
-    Vector2Int GetPlayerGridPos() => Grid.GetXY(Orientation.XY, Vector3.zero, cellSize, PlayerStaticReferences.PlayerTransform.position);
+    Vector2Int GetPlayerGridPos() => Grid.GetXY(Orientation.XY, Vector3.zero, cellSize, _playerTransform.position);
 
     void SpawnNewCells()
     {
@@ -53,7 +58,7 @@ public class WorldGrid : MonoBehaviour
             if (_cells.ContainsKey(cellPos)) continue;
 
             Vector3 worldPos = Grid.GetWorldPos(Orientation.XY, Vector3.zero, cellSize, cellPos.x, cellPos.y, true);
-            GameObject cell = Instantiate(cellPrefab, worldPos, Quaternion.identity);
+            GameObject cell = PoolManager.Spawn(cellPrefab, worldPos, Quaternion.identity, transform);
             _cells[cellPos] = cell;
         }
     }
@@ -74,7 +79,7 @@ public class WorldGrid : MonoBehaviour
         foreach (Vector2Int pos in _removalSet)
         {
             if (_cells.TryGetValue(pos, out GameObject cell) && cell != null)
-                Destroy(cell);
+                PoolManager.Despawn(cell);
             _cells.Remove(pos);
         }
     }
