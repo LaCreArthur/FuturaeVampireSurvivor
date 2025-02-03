@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class GracePeriodFeedbacks : MonoBehaviour
+public class DamageBlinkFeedbacks : MonoBehaviour
 {
     [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] float blinks;
 
-    bool _isInGracePeriod;
-    Coroutine _gracePeriodBlinkCoroutine;
+    Coroutine _blinkCoroutine;
     HealthSystem _healthSystem;
 
     void Start()
@@ -19,10 +19,9 @@ public class GracePeriodFeedbacks : MonoBehaviour
             enabled = false;
             return;
         }
-        _healthSystem.OnGracePeriodStatusChanged += OnGracePeriodStatusChanged;
+        _healthSystem.OnDamage += OnDamage;
     }
 
-    // player should have only one sprite renderer of the character
     void OnTransformChildrenChanged()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -34,20 +33,15 @@ public class GracePeriodFeedbacks : MonoBehaviour
         }
     }
 
-    void OnGracePeriodStatusChanged(bool isInGracePeriod)
+    void OnDamage()
     {
-        _isInGracePeriod = isInGracePeriod;
-        if (_isInGracePeriod) _gracePeriodBlinkCoroutine = StartCoroutine(GracePeriodBlink());
-        else
-        {
-            StopCoroutine(_gracePeriodBlinkCoroutine);
-            spriteRenderer.enabled = true;
-        }
+        StopCoroutine(_blinkCoroutine);
+        _blinkCoroutine = StartCoroutine(BlinkRoutine());
     }
 
-    IEnumerator GracePeriodBlink()
+    IEnumerator BlinkRoutine()
     {
-        while (_isInGracePeriod)
+        for (int i = 0; i < blinks; i++)
         {
             spriteRenderer.enabled = !spriteRenderer.enabled;
             yield return new WaitForSeconds(0.1f);

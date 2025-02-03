@@ -11,17 +11,16 @@ public class HealthSystem : MonoBehaviour, IPoolable
     [SerializeField] int maxHealth;
     [SerializeField] [ReadOnly] int currentHealth;
 
-    [SerializeField] bool hasGracePeriod;
-    [SerializeField] float gracePeriod = 1f;
+    [SerializeField] bool invulnerability;
+    [SerializeField] float invulnerabilityTime = 1f;
 
-    bool _isInGracePeriod;
-    float _graceTimer;
+    float _invulnerabilityTimer;
 
     DeathBehavior _deathBehavior;
 
     public event Action<int> OnHealthChanged;
     public event Action<int> OnMaxHealthChanged;
-    public event Action<bool> OnGracePeriodStatusChanged;
+    public event Action<bool> OnInvulnerabilityChanged;
     public event Action OnDamage;
     public event Action OnDeath;
 
@@ -46,14 +45,6 @@ public class HealthSystem : MonoBehaviour, IPoolable
             }
         }
     }
-    public bool IsInGracePeriod
-    {
-        get => _isInGracePeriod;
-        set {
-            _isInGracePeriod = value;
-            OnGracePeriodStatusChanged?.Invoke(_isInGracePeriod);
-        }
-    }
 
     void Awake()
     {
@@ -63,10 +54,10 @@ public class HealthSystem : MonoBehaviour, IPoolable
 
     void Update()
     {
-        if (hasGracePeriod && _graceTimer > 0)
+        if (invulnerability && _invulnerabilityTimer > 0)
         {
-            _graceTimer -= Time.deltaTime;
-            if (_graceTimer <= 0) IsInGracePeriod = false;
+            _invulnerabilityTimer -= Time.deltaTime;
+            if (_invulnerabilityTimer <= 0) invulnerability = false;
         }
     }
 
@@ -76,10 +67,8 @@ public class HealthSystem : MonoBehaviour, IPoolable
 
     public void TakeDamage(int amount)
     {
-        if (hasGracePeriod && IsInGracePeriod)
-        {
+        if (invulnerability)
             return;
-        }
 
         CurrentHealth -= amount;
         OnDamage?.Invoke();
@@ -91,11 +80,16 @@ public class HealthSystem : MonoBehaviour, IPoolable
         else
         {
             transform.DOPunchScale(Vector3.one * 0.1f, 0.2f);
-            if (hasGracePeriod)
-            {
-                _graceTimer = gracePeriod;
-                IsInGracePeriod = true;
-            }
+        }
+    }
+
+    public void SetInvulnerability(bool value)
+    {
+        invulnerability = value;
+        OnInvulnerabilityChanged?.Invoke(invulnerability);
+        if (invulnerability)
+        {
+            _invulnerabilityTimer = invulnerabilityTime;
         }
     }
 }
