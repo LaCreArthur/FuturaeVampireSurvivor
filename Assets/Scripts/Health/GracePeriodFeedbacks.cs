@@ -7,11 +7,31 @@ public class GracePeriodFeedbacks : MonoBehaviour
 
     bool _isInGracePeriod;
     Coroutine _gracePeriodBlinkCoroutine;
+    HealthSystem _healthSystem;
 
     void Start()
     {
-        var healthSystem = GetComponent<HealthSystem>();
-        healthSystem.OnGracePeriodStatusChanged += OnGracePeriodStatusChanged;
+        _healthSystem = GetComponent<HealthSystem>();
+        if (_healthSystem == null) _healthSystem = GetComponentInParent<HealthSystem>();
+        if (_healthSystem == null)
+        {
+            Debug.LogWarning("No HealthSystem found in parent or self", this);
+            enabled = false;
+            return;
+        }
+        _healthSystem.OnGracePeriodStatusChanged += OnGracePeriodStatusChanged;
+    }
+
+    // player should have only one sprite renderer of the character
+    void OnTransformChildrenChanged()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer == null) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        if (spriteRenderer == null)
+        {
+            Debug.LogWarning("No SpriteRenderer found in children or self", this);
+            enabled = false;
+        }
     }
 
     void OnGracePeriodStatusChanged(bool isInGracePeriod)

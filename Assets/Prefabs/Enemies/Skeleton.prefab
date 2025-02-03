@@ -130,6 +130,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7822626620388458889, guid: 4f641a7b77b47e34ab88c41919eea4da, type: 3}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7822626620388458889, guid: 4f641a7b77b47e34ab88c41919eea4da, type: 3}
+      propertyPath: attackRate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -428592269783731494, guid: 4f641a7b77b47e34ab88c41919eea4da, type: 3}
       propertyPath: maxHealth
       value: 20

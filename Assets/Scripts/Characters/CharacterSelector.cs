@@ -6,7 +6,6 @@ public class CharacterSelector : MonoBehaviour
     [SerializeField] List<CharacterSO> characters;
     [SerializeField] Transform characterParent;
     [SerializeField] Transform weaponParent;
-
     readonly Vector3 _characterOffset = new Vector3(0, -.5f, 0);
 
     int _currentIndex;

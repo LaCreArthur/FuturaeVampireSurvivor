@@ -55,8 +55,11 @@ public class HealthSystem : MonoBehaviour, IPoolable
         }
     }
 
-    void Awake() => _deathBehavior = GetComponent<DeathBehavior>();
-    void Start() => CurrentHealth = MaxHealth = maxHealth;
+    void Awake()
+    {
+        _deathBehavior = GetComponent<DeathBehavior>();
+        GameStateManager.OnPlaying += OnLevelStart;
+    }
 
     void Update()
     {
@@ -67,7 +70,9 @@ public class HealthSystem : MonoBehaviour, IPoolable
         }
     }
 
+    void OnDestroy() => GameStateManager.OnPlaying -= OnLevelStart;
     public void OnSpawn() => CurrentHealth = MaxHealth;
+    void OnLevelStart() => CurrentHealth = MaxHealth = maxHealth;
 
     public void TakeDamage(int amount)
     {

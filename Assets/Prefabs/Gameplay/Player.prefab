@@ -62,7 +62,6 @@ GameObject:
   - component: {fileID: 3728629294848447511}
   - component: {fileID: 8829904435573759893}
   - component: {fileID: 6577211983441879424}
-  - component: {fileID: 7412315211219819782}
   - component: {fileID: 7202210047454845931}
   - component: {fileID: 1684536308130662957}
   m_Layer: 0
@@ -241,19 +240,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 132075dd88454c35881f68d33751e848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7412315211219819782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6785265474079788035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80412333f37f407a8dbb5d82b894efd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
 --- !u!114 &7202210047454845931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,6 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f4ed56a9e024726bfd9b46db4ef7099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentLevel: 0
 --- !u!114 &1684536308130662957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,6 +280,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1426984748701887928}
+  - component: {fileID: 2727418817517589275}
   m_Layer: 0
   m_Name: Characters
   m_TagString: Untagged
@@ -315,3 +303,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 319907321013100283}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2727418817517589275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7122233215217489003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80412333f37f407a8dbb5d82b894efd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
+  characterParent: {fileID: 1426984748701887928}
