@@ -21,6 +21,7 @@ public class ProgressBarImage : MonoBehaviour
         currentValue.OnChanged += SetValue;
         maxValue.OnChanged += SetMaxValue;
         SetMaxValue(maxValue.Value);
+        SetValue(currentValue.Value);
     }
 
     void OnDestroy()

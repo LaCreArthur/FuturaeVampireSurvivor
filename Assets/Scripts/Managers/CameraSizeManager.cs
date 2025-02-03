@@ -1,4 +1,5 @@
-﻿using Unity.Cinemachine;
+﻿using System.Collections;
+using Unity.Cinemachine;
 using UnityEngine;
 
 [RequireComponent(typeof(CinemachineCamera))]
@@ -9,29 +10,14 @@ public class CameraSizeManager : MonoBehaviour
     [SerializeField] float lerpSpeed = 5;
 
     CinemachineCamera _camera;
-
     float _currentSize;
-    float _targetSize;
-    bool _isLerp;
 
-    void Start()
+    void Awake()
     {
         _camera = GetComponent<CinemachineCamera>();
         _currentSize = _camera.Lens.OrthographicSize;
         GameStateManager.OnHome += SetHomeSize;
         GameStateManager.OnPlaying += SetGameSize;
-    }
-
-    void Update()
-    {
-        if (!_isLerp) return;
-        _currentSize = Mathf.Lerp(_currentSize, _targetSize, lerpSpeed * Time.deltaTime);
-        _camera.Lens.OrthographicSize = _currentSize;
-        if (Mathf.Abs(_currentSize - _targetSize) < 0.01f)
-        {
-            _isLerp = false;
-            _camera.Lens.OrthographicSize = _targetSize;
-        }
     }
 
     void OnDestroy()
@@ -40,15 +26,17 @@ public class CameraSizeManager : MonoBehaviour
         GameStateManager.OnPlaying -= SetGameSize;
     }
 
-    void SetHomeSize()
+    IEnumerator TransitionRoutine(float targetSize)
     {
-        _targetSize = homeSize;
-        _isLerp = true;
+        while (Mathf.Abs(_currentSize - targetSize) > 0.01f)
+        {
+            _currentSize = Mathf.Lerp(_currentSize, targetSize, lerpSpeed * Time.deltaTime);
+            _camera.Lens.OrthographicSize = _currentSize;
+            yield return null;
+        }
+        _camera.Lens.OrthographicSize = targetSize;
     }
 
-    void SetGameSize()
-    {
-        _targetSize = gameSize;
-        _isLerp = true;
-    }
+    void SetHomeSize() => StartCoroutine(TransitionRoutine(homeSize));
+    void SetGameSize() => StartCoroutine(TransitionRoutine(gameSize));
 }

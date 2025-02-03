@@ -55,11 +55,8 @@ public class HealthSystem : MonoBehaviour, IPoolable
         }
     }
 
-    void Awake()
-    {
-        _deathBehavior = GetComponent<DeathBehavior>();
-        CurrentHealth = MaxHealth = maxHealth;
-    }
+    void Awake() => _deathBehavior = GetComponent<DeathBehavior>();
+    void Start() => CurrentHealth = MaxHealth = maxHealth;
 
     void Update()
     {
