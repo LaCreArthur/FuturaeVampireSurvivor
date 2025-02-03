@@ -2,9 +2,6 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-/// <summary>
-///     Should scale to screen size and be used to spawn enemies on the bounds of the screen.
-/// </summary>
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] List<SpawnWaveSO> spawnWaves;
@@ -26,8 +23,8 @@ public class EnemySpawner : MonoBehaviour
         _waveIndex = 0;
         SetNextWave();
     }
-    void Start() => GameStateManager.OnStateChange += OnStateChanged;
 
+    void Start() => GameStateManager.OnStateChange += OnStateChanged;
 
     void Update()
     {
