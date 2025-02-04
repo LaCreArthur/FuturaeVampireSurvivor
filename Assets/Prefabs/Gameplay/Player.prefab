@@ -57,13 +57,12 @@ GameObject:
   - component: {fileID: 507900469192221741}
   - component: {fileID: 5470981821884149909}
   - component: {fileID: 3875698786219212871}
-  - component: {fileID: 2531644454539880079}
   - component: {fileID: 543971837842966113}
   - component: {fileID: 3728629294848447511}
   - component: {fileID: 8829904435573759893}
-  - component: {fileID: 6577211983441879424}
   - component: {fileID: 7202210047454845931}
   - component: {fileID: 1684536308130662957}
+  - component: {fileID: 1719129497899431897}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -167,18 +166,6 @@ MonoBehaviour:
   resetPosition: 1
   resetRotation: 1
   resetScale: 1
---- !u!114 &2531644454539880079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6785265474079788035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a19fe083c986454bb91accf77abfeb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &543971837842966113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +183,7 @@ MonoBehaviour:
   playerExp: {fileID: 11400000, guid: 35000407527212a439ab58a9b48b1268, type: 2}
   playerMaxExp: {fileID: 11400000, guid: e5be46d711ecdb34eb02e071c8b20ad8, type: 2}
   playerTransform: {fileID: 11400000, guid: 5a6482895ae90bb48b30b4c38b1f4eb7, type: 2}
+  playerWeapons: {fileID: 0}
 --- !u!114 &3728629294848447511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,20 +214,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
-  hasGracePeriod: 1
-  gracePeriod: 1
---- !u!114 &6577211983441879424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6785265474079788035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 132075dd88454c35881f68d33751e848, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  invulnerability: 0
+  invulnerabilityTime: 1
 --- !u!114 &7202210047454845931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,7 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f4ed56a9e024726bfd9b46db4ef7099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentLevel: 0
+  currentLevel: 0
 --- !u!114 &1684536308130662957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,6 +249,24 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b6bb2220a62078e4c95fd5e8fe17b67f, type: 2}
   characterParent: {fileID: 1426984748701887928}
   weaponParent: {fileID: 4789118744430362303}
+--- !u!114 &1719129497899431897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6785265474079788035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ddb2c6dbc3449478fc80120e183b811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  maxHealth: 0
+  currentHealth: 0
+  invulnerability: 0
+  invulnerabilityTime: 1
 --- !u!1 &7122233215217489003
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,4 +312,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 0}
-  characterParent: {fileID: 1426984748701887928}
+  blinks: 0

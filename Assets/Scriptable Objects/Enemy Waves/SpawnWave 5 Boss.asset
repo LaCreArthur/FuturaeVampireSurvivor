@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97aa7e83c1b94105a6b3404999134f2d, type: 3}
+  m_Name: SpawnWave 5 Boss
+  m_EditorClassIdentifier: 
+  enemies:
+  - {fileID: 1877273807043639096, guid: 56309e7582f4a1041aa6a94ed76e97d0, type: 3}
+  spawnRate: 5
+  maxSpawned: 1
+  burst: 0

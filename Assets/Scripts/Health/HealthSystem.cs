@@ -2,94 +2,31 @@
 using DG.Tweening;
 using UnityEngine;
 
-/// <summary>
-///     Generic Health system that can be attached to any GameObject that needs health.
-/// </summary>
-[RequireComponent(typeof(DeathBehavior))]
-public class HealthSystem : MonoBehaviour, IPoolable
+public class HealthSystem : MonoBehaviour
 {
-    [SerializeField] int maxHealth;
-    [SerializeField] [ReadOnly] int currentHealth;
+    [SerializeField] protected int maxHealth;
+    [SerializeField] [ReadOnly] protected int currentHealth;
 
-    [SerializeField] bool invulnerability;
-    [SerializeField] float invulnerabilityTime = 1f;
-
-    float _invulnerabilityTimer;
-
-    DeathBehavior _deathBehavior;
-
-    public event Action<int> OnHealthChanged;
-    public event Action<int> OnMaxHealthChanged;
-    public event Action<bool> OnInvulnerabilityChanged;
     public event Action OnDamage;
     public event Action OnDeath;
 
-    public int CurrentHealth
+    public virtual int CurrentHealth
     {
         get => currentHealth;
-        private set {
-            currentHealth = value;
-            OnHealthChanged?.Invoke(currentHealth);
-        }
+        protected set => currentHealth = Mathf.Clamp(value, 0, maxHealth);
     }
 
-    public int MaxHealth
+    public virtual int MaxHealth
     {
         get => maxHealth;
-        set {
-            maxHealth = value;
-            OnMaxHealthChanged?.Invoke(maxHealth);
-            if (CurrentHealth > maxHealth)
-            {
-                CurrentHealth = maxHealth;
-            }
-        }
+        protected set => maxHealth = value;
     }
 
-    void Awake()
+    public virtual void TakeDamage(int amount)
     {
-        _deathBehavior = GetComponent<DeathBehavior>();
-        GameStateManager.OnPlaying += OnLevelStart;
-    }
-
-    void Update()
-    {
-        if (invulnerability && _invulnerabilityTimer > 0)
-        {
-            _invulnerabilityTimer -= Time.deltaTime;
-            if (_invulnerabilityTimer <= 0) invulnerability = false;
-        }
-    }
-
-    void OnDestroy() => GameStateManager.OnPlaying -= OnLevelStart;
-    public void OnSpawn() => CurrentHealth = MaxHealth;
-    void OnLevelStart() => CurrentHealth = MaxHealth = maxHealth;
-
-    public void TakeDamage(int amount)
-    {
-        if (invulnerability)
-            return;
-
         CurrentHealth -= amount;
         OnDamage?.Invoke();
-        if (CurrentHealth <= 0)
-        {
-            OnDeath?.Invoke();
-            _deathBehavior.OnDeath();
-        }
-        else
-        {
-            transform.DOPunchScale(Vector3.one * 0.1f, 0.2f);
-        }
-    }
-
-    public void SetInvulnerability(bool value)
-    {
-        invulnerability = value;
-        OnInvulnerabilityChanged?.Invoke(invulnerability);
-        if (invulnerability)
-        {
-            _invulnerabilityTimer = invulnerabilityTime;
-        }
+        if (CurrentHealth <= 0) OnDeath?.Invoke();
+        transform.DOPunchScale(Vector3.one * 0.1f, 0.2f);
     }
 }

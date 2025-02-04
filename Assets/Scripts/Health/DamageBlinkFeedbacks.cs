@@ -35,7 +35,7 @@ public class DamageBlinkFeedbacks : MonoBehaviour
 
     void OnDamage()
     {
-        StopCoroutine(_blinkCoroutine);
+        if (_blinkCoroutine != null) StopCoroutine(_blinkCoroutine);
         _blinkCoroutine = StartCoroutine(BlinkRoutine());
     }
 
@@ -43,8 +43,10 @@ public class DamageBlinkFeedbacks : MonoBehaviour
     {
         for (int i = 0; i < blinks; i++)
         {
-            spriteRenderer.enabled = !spriteRenderer.enabled;
-            yield return new WaitForSeconds(0.1f);
+            spriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(0.05f);
+            spriteRenderer.color = Color.white;
+            yield return new WaitForSeconds(0.05f);
         }
     }
 }

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e95f22d92e94bfb87f5f70bf1997de7, type: 3}
   m_Name: Knife
   m_EditorClassIdentifier: 
-  weaponIcon: {fileID: 21300000, guid: b2f227dc898f4ba4ba769f85d21333af, type: 3}
+  sprite: {fileID: 21300000, guid: b2f227dc898f4ba4ba769f85d21333af, type: 3}
+  baseDescription: Throw a knife in a forward direction
   levelData:
   - damage: 7
     cooldown: 1
