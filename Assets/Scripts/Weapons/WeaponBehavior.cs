@@ -2,7 +2,7 @@
 
 public abstract class WeaponBehavior : MonoBehaviour
 {
-    [SerializeField] protected WeaponSO weapon;
+    public WeaponSO weapon;
 
     int _currentLevel;
 

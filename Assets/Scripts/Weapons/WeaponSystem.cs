@@ -12,11 +12,14 @@ public class WeaponSystem : MonoBehaviour
     // Tracks all active weapon behaviors on child objects
     readonly List<WeaponBehavior> _weaponBehaviors = new List<WeaponBehavior>();
 
+    public static event Action<WeaponBehavior> OnWeaponAdded;
+    public static event Action<WeaponBehavior> OnWeaponRemoved;
+
     void Start()
     {
         GameStateManager.OnStateChange += OnStateChanged;
         // Ensure the list is populated if children exist at start.
-        OnTransformChildrenChanged();
+        RefreshWeaponBehaviors();
     }
 
     void Update()
@@ -38,32 +41,46 @@ public class WeaponSystem : MonoBehaviour
 
     void OnDestroy() => GameStateManager.OnStateChange -= OnStateChanged;
 
-    void OnTransformChildrenChanged()
+    void OnTransformChildrenChanged() => RefreshWeaponBehaviors();
+
+    void RefreshWeaponBehaviors()
     {
-        // Clear and rebuild the weapon list anytime children change
-        _weaponBehaviors.Clear();
+        // Collect all relevant child WeaponBehaviors
+        var currentChildren = new List<WeaponBehavior>();
         foreach (Transform child in transform)
         {
-            var weaponBehavior = child.GetComponent<WeaponBehavior>();
-            if (weaponBehavior != null)
+            var weapon = child.GetComponent<WeaponBehavior>();
+            if (weapon != null)
             {
-                _weaponBehaviors.Add(weaponBehavior);
+                currentChildren.Add(weapon);
             }
         }
 
-        // Clean up timers that no longer have a corresponding weapon
-        var keysToRemove = new List<WeaponBehavior>();
-        foreach (WeaponBehavior key in _attackTimers.Keys)
+        // Remove any old references that no longer exist in the hierarchy
+        for (int i = _weaponBehaviors.Count - 1; i >= 0; i--)
         {
-            if (!_weaponBehaviors.Contains(key))
+            WeaponBehavior oldWeapon = _weaponBehaviors[i];
+            if (!currentChildren.Contains(oldWeapon))
             {
-                keysToRemove.Add(key);
+                _weaponBehaviors.RemoveAt(i);
+                OnWeaponRemoved?.Invoke(oldWeapon);
+                if (_attackTimers.ContainsKey(oldWeapon))
+                {
+                    Debug.Log($"Removing {oldWeapon.name} from the attack timers");
+                    _attackTimers.Remove(oldWeapon);
+                }
             }
         }
-        foreach (WeaponBehavior key in keysToRemove)
+
+        // Add any new weapons not already in the list
+        for (int i = 0; i < currentChildren.Count; i++)
         {
-            Debug.Log($"Removing {key.name} from the attack timers");
-            _attackTimers.Remove(key);
+            WeaponBehavior newWeapon = currentChildren[i];
+            if (!_weaponBehaviors.Contains(newWeapon))
+            {
+                _weaponBehaviors.Add(newWeapon);
+                OnWeaponAdded?.Invoke(newWeapon);
+            }
         }
     }
 

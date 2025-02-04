@@ -5,20 +5,22 @@ public class ExperienceSystem : MonoBehaviour
 {
     const float BASE_XP = 5;
     const float EXPONENT = 1.5f;
-    [SerializeField] int _currentLevel;
+
+    [SerializeField] int currentLevel;
+
     float _exp;
     float _maxExp;
-    public static event Action<int> OnLevelUp;
 
-    public event Action<float> OnExpChanged;
-    public event Action<float> OnMaxExpChanged;
+    public static event Action<int> OnLevelUp;
+    public static event Action<float> OnExpChanged;
+    public static event Action<float> OnMaxExpChanged;
 
     int CurrentLevel
     {
-        get => _currentLevel;
+        get => currentLevel;
         set {
-            _currentLevel = value;
-            OnLevelUp?.Invoke(_currentLevel);
+            currentLevel = value;
+            if (value > 1) OnLevelUp?.Invoke(currentLevel);
             MaxExp = Mathf.CeilToInt(BASE_XP * Mathf.Pow(CurrentLevel, EXPONENT));
             Debug.Log($"Level up to {CurrentLevel} - {MaxExp} XP for next level");
             Exp = 0;

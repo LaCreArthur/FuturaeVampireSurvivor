@@ -20,11 +20,16 @@ public class EnemyAttackBehavior : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D other) => CheckCollision(other);
+
+    // We also want to check for collisions while the player is still in contact with the enemy
+    void OnCollisionStay2D(Collision2D other) => CheckCollision(other);
+
+    void CheckCollision(Collision2D other)
     {
         if (!_canAttack) return;
 
-        if (other.gameObject.CompareTag(transform.tag)) return; // Ignore collisions with self and other enemies
+        if (other.gameObject.CompareTag(transform.tag)) return;
 
         var otherHealth = other.rigidbody?.GetComponent<HealthSystem>();
         if (otherHealth != null)

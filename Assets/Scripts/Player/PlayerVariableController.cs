@@ -8,36 +8,34 @@ using UnityEngine;
 ///     The enemies need to access the player's transform to follow him.
 ///     They cannot have a reference to the player's GameObject because they are prefabs instantiated at runtime.
 /// </summary>
-public class PlayerVariableInitializer : MonoBehaviour
+public class PlayerVariableController : MonoBehaviour
 {
     [SerializeField] FloatVar playerHp;
     [SerializeField] FloatVar playerMaxHp;
     [SerializeField] FloatVar playerExp;
     [SerializeField] FloatVar playerMaxExp;
     [SerializeField] TransformVar playerTransform;
-
-    HealthSystem _healthSystem;
-    WeaponSystem _playerWeaponSystem;
-    ExperienceSystem _experienceSystem;
+    [SerializeField] PlayerWeapons playerWeapons;
 
     void Awake()
     {
         playerTransform.Value = transform;
-        _healthSystem = GetComponent<HealthSystem>();
-        _playerWeaponSystem = GetComponent<WeaponSystem>();
-        _experienceSystem = GetComponent<ExperienceSystem>();
-        _healthSystem.OnHealthChanged += SetHealth;
-        _healthSystem.OnMaxHealthChanged += SetMaxHealth;
-        _experienceSystem.OnExpChanged += SetExp;
-        _experienceSystem.OnMaxExpChanged += SetMaxExp;
+        PlayerHealthSystem.OnHealthChanged += SetHealth;
+        PlayerHealthSystem.OnMaxHealthChanged += SetMaxHealth;
+        ExperienceSystem.OnExpChanged += SetExp;
+        ExperienceSystem.OnMaxExpChanged += SetMaxExp;
+        WeaponSystem.OnWeaponAdded += playerWeapons.AddWeapon;
+        WeaponSystem.OnWeaponRemoved += playerWeapons.RemoveWeapon;
     }
 
     void OnDestroy()
     {
-        _healthSystem.OnHealthChanged -= SetHealth;
-        _healthSystem.OnMaxHealthChanged -= SetMaxHealth;
-        _experienceSystem.OnExpChanged -= SetExp;
-        _experienceSystem.OnMaxExpChanged -= SetMaxExp;
+        PlayerHealthSystem.OnHealthChanged -= SetHealth;
+        PlayerHealthSystem.OnMaxHealthChanged -= SetMaxHealth;
+        ExperienceSystem.OnExpChanged -= SetExp;
+        ExperienceSystem.OnMaxExpChanged -= SetMaxExp;
+        WeaponSystem.OnWeaponAdded -= playerWeapons.AddWeapon;
+        WeaponSystem.OnWeaponRemoved -= playerWeapons.RemoveWeapon;
     }
 
     void SetHealth(int health) => playerHp.Value = health;
