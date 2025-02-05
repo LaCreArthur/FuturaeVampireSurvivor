@@ -18,7 +18,7 @@ public class WeaponSystem : MonoBehaviour
     void Start()
     {
         GameStateManager.OnStateChange += OnStateChanged;
-        PlayerWeapons.OnNewWeapon += AddWeapon;
+        PlayerUpgradables.OnNewWeapon += AddWeapon;
         // Ensure the list is populated if children exist at start.
         RefreshWeaponBehaviors();
     }

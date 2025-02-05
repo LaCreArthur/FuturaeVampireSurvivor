@@ -1,4 +1,1 @@
-﻿public class MightPowerUp : UpgradableBehavior
-{
-    
-}
+﻿public class MightPowerUp : PowerUpBehavior {}

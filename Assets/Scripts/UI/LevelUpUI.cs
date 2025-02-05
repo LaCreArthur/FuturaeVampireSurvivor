@@ -5,7 +5,7 @@ public class LevelUpUI : MonoBehaviour
 {
     [SerializeField] GameObject choicePrefab;
     [SerializeField] List<UpgradableSO> weapons;
-    [SerializeField] PlayerWeapons playerWeapons;
+    [SerializeField] PlayerUpgradables playerUpgradables;
 
     readonly List<LevelUpChoiceUI> _choices = new List<LevelUpChoiceUI>();
 
@@ -30,7 +30,7 @@ public class LevelUpUI : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             // if the max level is reached, don't show the weapon
-            UpgradableBehavior upgradableBehavior = playerWeapons.GetWeaponBehavior(choiceWeapon[i]);
+            UpgradableBehavior upgradableBehavior = playerUpgradables.GetWeaponBehavior(choiceWeapon[i]);
             int currentLevel = upgradableBehavior != null ? upgradableBehavior.CurrentLevel : -1;
             if (currentLevel == upgradableBehavior?.MaxLevel) continue;
 
@@ -43,5 +43,5 @@ public class LevelUpUI : MonoBehaviour
         }
     }
 
-    public void UpgradeWeapon(UpgradableSO upgradable) => playerWeapons.UpgradeWeapon(upgradable);
+    public void UpgradeWeapon(UpgradableSO upgradable) => playerUpgradables.Upgrade(upgradable);
 }
