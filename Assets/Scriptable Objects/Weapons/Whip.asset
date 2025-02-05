@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Whip
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: b5dc9f7c2919d81459634988a433ca25, type: 3}
-  weaponPrefab: {fileID: 7925499478077412331, guid: 23ac2953aa860cc4eb24a40dc96da8fa, type: 3}
+  prefab: {fileID: 7925499478077412331, guid: 23ac2953aa860cc4eb24a40dc96da8fa, type: 3}
   baseDescription: attack left and right in a close range area
   levelData:
   - damage: 10
@@ -34,5 +34,3 @@ MonoBehaviour:
     pierce: 0
     projectileInterval: 0
     knockback: 0
-  fireSound: {fileID: 0}
-  projectilePrefab: {fileID: 0}

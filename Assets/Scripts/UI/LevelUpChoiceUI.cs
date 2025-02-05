@@ -17,22 +17,22 @@ public class LevelUpChoiceUI : MonoBehaviour
 
     void Awake() => _button = GetComponent<Button>();
 
-    public void SetData(WeaponSO weapon, int level)
+    public void SetData(UpgradableSO upgradable, int level)
     {
-        nameTMP.text = weapon.name;
-        descriptionTMP.text = weapon.GetUpgradeDescription(level);
-        image.sprite = weapon.sprite;
+        nameTMP.text = upgradable.name;
+        descriptionTMP.text = upgradable.GetUpgradeDescription(level);
+        image.sprite = upgradable.sprite;
         newTag.SetActive(level == -1);
         _button.onClick.RemoveAllListeners();
-        _button.onClick.AddListener(() => OnClick(weapon));
+        _button.onClick.AddListener(() => OnClick(upgradable));
     }
 
-    void OnClick(WeaponSO weapon)
+    void OnClick(UpgradableSO upgradable)
     {
-        Debug.Log($"clicked {weapon.name}");
+        Debug.Log($"clicked {upgradable.name}");
         // lazy load
         _levelUpUI ??= GetComponentInParent<LevelUpUI>(true);
-        _levelUpUI.UpgradeWeapon(weapon);
+        _levelUpUI.UpgradeWeapon(upgradable);
         OnUpgrade?.Invoke();
     }
 }

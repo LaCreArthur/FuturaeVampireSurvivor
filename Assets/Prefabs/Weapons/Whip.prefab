@@ -10129,7 +10129,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76a4496f66dd4a019ae41b0c56b0904c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 11400000, guid: fc1f750c2f09d33419bf20b8b65d9dbf, type: 2}
+  upgradable: {fileID: 11400000, guid: fc1f750c2f09d33419bf20b8b65d9dbf, type: 2}
+  stats:
+    damage: 0
+    cooldown: 0
+    area: 0
+    speed: 0
+    amount: 0
+    duration: 0
+    pierce: 0
+    projectileInterval: 0
+    knockback: 0
   leftWhipParticles: {fileID: 1054959667630988449}
   rightWhipParticles: {fileID: 3977656455591426731}
   leftCollider: {fileID: 5361892560356846244}

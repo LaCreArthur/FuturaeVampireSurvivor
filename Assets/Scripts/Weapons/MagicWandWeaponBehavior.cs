@@ -4,6 +4,7 @@ public class MagicWandWeaponBehavior : WeaponBehavior
 {
     [SerializeField] float nearestEnemyRadius;
     [SerializeField] Vector3 spawnOffset;
+    [SerializeField] GameObject projectilePrefab;
 
     readonly Collider2D[] _enemiesInRange = new Collider2D[16];
     ContactFilter2D _contactFilter;
@@ -19,7 +20,7 @@ public class MagicWandWeaponBehavior : WeaponBehavior
     public override void Fire(GameObject attacker)
     {
         Vector2 worldSpawnPosition = transform.TransformPoint(spawnOffset);
-        GameObject projectile = PoolManager.Spawn(weapon.projectilePrefab, worldSpawnPosition, transform.rotation);
+        GameObject projectile = PoolManager.Spawn(projectilePrefab, worldSpawnPosition, transform.rotation);
         var projController = projectile.GetComponent<MagicMissileController>();
         if (projController != null)
         {

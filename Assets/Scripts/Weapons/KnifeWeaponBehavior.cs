@@ -3,6 +3,7 @@
 public class KnifeWeaponBehavior : WeaponBehavior
 {
     [SerializeField] Vector3 spawnOffset;
+    [SerializeField] GameObject projectilePrefab;
     Vector2 _lastInput;
 
     void Update()
@@ -21,7 +22,7 @@ public class KnifeWeaponBehavior : WeaponBehavior
         float angle = Mathf.Atan2(_lastInput.y, _lastInput.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.Euler(0, 0, angle - 90);
 
-        GameObject projectile = PoolManager.Spawn(weapon.projectilePrefab, worldSpawnPosition, rotation);
+        GameObject projectile = PoolManager.Spawn(projectilePrefab, worldSpawnPosition, rotation);
         var projController = projectile.GetComponent<KnifeProjectileController>();
         if (projController != null)
         {

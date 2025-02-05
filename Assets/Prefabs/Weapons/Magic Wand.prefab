@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03d04a6ba61e4249818397ee0396c9a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 11400000, guid: 065e285264ca6bb4db5b20aedb48d920, type: 2}
+  upgradable: {fileID: 11400000, guid: 065e285264ca6bb4db5b20aedb48d920, type: 2}
   stats:
     damage: 0
     cooldown: 0
@@ -55,7 +55,6 @@ MonoBehaviour:
     pierce: 0
     projectileInterval: 0
     knockback: 0
-  magicMissilePrefab: {fileID: 4324995265172342908, guid: 50983a2e65af29f4493c6bb2828d4945, type: 3}
-  magicMissileSpeed: 10
   nearestEnemyRadius: 12
   spawnOffset: {x: 0, y: 0.5, z: 0}
+  projectilePrefab: {fileID: 4324995265172342908, guid: 50983a2e65af29f4493c6bb2828d4945, type: 3}

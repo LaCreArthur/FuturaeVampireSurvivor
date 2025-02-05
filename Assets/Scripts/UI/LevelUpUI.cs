@@ -4,7 +4,7 @@ using UnityEngine;
 public class LevelUpUI : MonoBehaviour
 {
     [SerializeField] GameObject choicePrefab;
-    [SerializeField] List<WeaponSO> weapons;
+    [SerializeField] List<UpgradableSO> weapons;
     [SerializeField] PlayerWeapons playerWeapons;
 
     readonly List<LevelUpChoiceUI> _choices = new List<LevelUpChoiceUI>();
@@ -26,7 +26,7 @@ public class LevelUpUI : MonoBehaviour
 
     void SpawnChoices()
     {
-        List<WeaponSO> choiceWeapon = weapons.GetRandoms(3, true);
+        List<UpgradableSO> choiceWeapon = weapons.GetRandoms(3, true);
         for (int i = 0; i < 3; i++)
         {
             // if the max level is reached, don't show the weapon
@@ -43,5 +43,5 @@ public class LevelUpUI : MonoBehaviour
         }
     }
 
-    public void UpgradeWeapon(WeaponSO weapon) => playerWeapons.UpgradeWeapon(weapon);
+    public void UpgradeWeapon(UpgradableSO upgradable) => playerWeapons.UpgradeWeapon(upgradable);
 }

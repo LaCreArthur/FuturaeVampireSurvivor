@@ -7,19 +7,19 @@ public class PlayerWeapons : ScriptableObject
 {
     public List<WeaponBehavior> weaponLevels = new List<WeaponBehavior>();
 
-    public static event Action<WeaponSO> OnNewWeapon;
+    public static event Action<UpgradableSO> OnNewWeapon;
 
     public void AddWeapon(WeaponBehavior weapon)
     {
         weaponLevels.Add(weapon);
-        Debug.Log($"PlayerWeapon: Added {weapon.weapon.name}");
+        Debug.Log($"PlayerWeapon: Added {weapon.upgradable.name}");
     }
 
-    public void UpgradeWeapon(WeaponSO weapon)
+    public void UpgradeWeapon(UpgradableSO upgradable)
     {
-        WeaponBehavior behavior = weaponLevels.Find(w => w.weapon == weapon);
+        WeaponBehavior behavior = weaponLevels.Find(w => w.upgradable == upgradable);
         if (behavior == null)
-            OnNewWeapon?.Invoke(weapon);
+            OnNewWeapon?.Invoke(upgradable);
         else
             behavior.UpgradeWeapon();
     }
@@ -27,8 +27,8 @@ public class PlayerWeapons : ScriptableObject
     {
         if (!weaponLevels.Remove(weapon))
         {
-            Debug.LogError($"PlayerWeapon.RemoveWeapon: {weapon.weapon.name} not found in weaponLevels");
+            Debug.LogError($"PlayerWeapon.RemoveWeapon: {weapon.upgradable.name} not found in weaponLevels");
         }
     }
-    public WeaponBehavior GetWeaponBehavior(WeaponSO weaponSO) => weaponLevels.Find(w => w.weapon == weaponSO);
+    public WeaponBehavior GetWeaponBehavior(UpgradableSO upgradableSO) => weaponLevels.Find(w => w.upgradable == upgradableSO);
 }

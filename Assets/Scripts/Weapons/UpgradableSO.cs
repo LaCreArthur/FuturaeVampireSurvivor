@@ -1,16 +1,13 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Vampire/Weapon", fileName = "WeaponSO")]
-public class WeaponSO : ScriptableObject
+[CreateAssetMenu(menuName = "Vampire/Upgradable", fileName = "UpgradableSO")]
+public class UpgradableSO : ScriptableObject
 {
     public Sprite sprite;
-    public GameObject weaponPrefab;
+    public GameObject prefab;
     public string baseDescription;
     public UpgradableLevelData[] levelData;
-
-    public AudioClip fireSound;
-    public GameObject projectilePrefab;
     public string GetUpgradeDescription(int weaponLevel)
     {
         if (weaponLevel == -1)

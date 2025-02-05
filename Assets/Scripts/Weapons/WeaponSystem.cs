@@ -85,7 +85,7 @@ public class WeaponSystem : MonoBehaviour
         }
     }
 
-    void AddWeapon(WeaponSO weapon) => Instantiate(weapon.weaponPrefab, transform.position, Quaternion.identity, transform);
+    void AddWeapon(UpgradableSO upgradable) => Instantiate(upgradable.prefab, transform.position, Quaternion.identity, transform);
 
     void OnStateChanged(GameState state) => enabled = state == GameState.Playing;
 
