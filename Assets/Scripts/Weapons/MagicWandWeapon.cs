@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class MagicWandWeapon : UpgradableBehavior
+public class MagicWandWeapon : WeaponBehavior
 {
     [SerializeField] float nearestEnemyRadius;
     [SerializeField] Vector3 spawnOffset;

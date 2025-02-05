@@ -7,13 +7,13 @@ public class WeaponSystem : MonoBehaviour
     [SerializeField] GameObject attacker;
 
     // Tracks how long until each weapon can attack again
-    readonly Dictionary<UpgradableBehavior, AttackTimer> _attackTimers = new Dictionary<UpgradableBehavior, AttackTimer>();
+    readonly Dictionary<WeaponBehavior, AttackTimer> _attackTimers = new Dictionary<WeaponBehavior, AttackTimer>();
 
     // Tracks all active weapon behaviors on child objects
-    readonly List<UpgradableBehavior> _weaponBehaviors = new List<UpgradableBehavior>();
+    readonly List<WeaponBehavior> _weaponBehaviors = new List<WeaponBehavior>();
 
-    public static event Action<UpgradableBehavior> OnWeaponAdded;
-    public static event Action<UpgradableBehavior> OnWeaponRemoved;
+    public static event Action<WeaponBehavior> OnWeaponAdded;
+    public static event Action<WeaponBehavior> OnWeaponRemoved;
 
     void Start()
     {
@@ -31,12 +31,12 @@ public class WeaponSystem : MonoBehaviour
         // Iterate through each weapon and process attacks
         for (int i = 0; i < _weaponBehaviors.Count; i++)
         {
-            UpgradableBehavior upgradableBehavior = _weaponBehaviors[i];
+            WeaponBehavior behavior = _weaponBehaviors[i];
 
             // Skip inactive weapons
-            if (!upgradableBehavior.gameObject.activeSelf) continue;
+            if (!behavior.gameObject.activeSelf) continue;
 
-            ExecuteAttackOfWeapon(upgradableBehavior);
+            ExecuteAttackOfWeapon(behavior);
         }
     }
 
@@ -47,10 +47,10 @@ public class WeaponSystem : MonoBehaviour
     void RefreshWeaponBehaviors()
     {
         // Collect all relevant child WeaponBehaviors
-        var currentChildren = new List<UpgradableBehavior>();
+        var currentChildren = new List<WeaponBehavior>();
         foreach (Transform child in transform)
         {
-            var weapon = child.GetComponent<UpgradableBehavior>();
+            var weapon = child.GetComponent<WeaponBehavior>();
             if (weapon != null)
             {
                 currentChildren.Add(weapon);
@@ -60,7 +60,7 @@ public class WeaponSystem : MonoBehaviour
         // Remove any old references that no longer exist in the hierarchy
         for (int i = _weaponBehaviors.Count - 1; i >= 0; i--)
         {
-            UpgradableBehavior oldUpgradable = _weaponBehaviors[i];
+            WeaponBehavior oldUpgradable = _weaponBehaviors[i];
             if (!currentChildren.Contains(oldUpgradable))
             {
                 _weaponBehaviors.RemoveAt(i);
@@ -76,7 +76,7 @@ public class WeaponSystem : MonoBehaviour
         // Add any new weapons not already in the list
         for (int i = 0; i < currentChildren.Count; i++)
         {
-            UpgradableBehavior newUpgradable = currentChildren[i];
+            WeaponBehavior newUpgradable = currentChildren[i];
             if (!_weaponBehaviors.Contains(newUpgradable))
             {
                 _weaponBehaviors.Add(newUpgradable);
@@ -89,14 +89,14 @@ public class WeaponSystem : MonoBehaviour
 
     void OnStateChanged(GameState state) => enabled = state == GameState.Playing;
 
-    void ExecuteAttackOfWeapon(UpgradableBehavior upgradableBehavior)
+    void ExecuteAttackOfWeapon(WeaponBehavior behavior)
     {
         // If the weapon isn't tracked yet, add a new AttackTimer
-        if (!_attackTimers.TryGetValue(upgradableBehavior, out AttackTimer attackTimer))
+        if (!_attackTimers.TryGetValue(behavior, out AttackTimer attackTimer))
         {
-            attackTimer = new AttackTimer(0f, upgradableBehavior.Stats.cooldown);
-            _attackTimers.Add(upgradableBehavior, attackTimer);
-            Debug.Log($"Added {upgradableBehavior.name} to the attack timers");
+            attackTimer = new AttackTimer(0f, behavior.Stats.cooldown);
+            _attackTimers.Add(behavior, attackTimer);
+            Debug.Log($"Added {behavior.name} to the attack timers");
         }
 
         // Reduce the time until next attack
@@ -105,12 +105,12 @@ public class WeaponSystem : MonoBehaviour
         // If it's ready to attack, fire and reset the cooldown
         if (attackTimer.nextAttackTime <= 0f)
         {
-            upgradableBehavior.Fire(attacker);
+            behavior.Fire(attacker);
             attackTimer.nextAttackTime = attackTimer.cooldown;
         }
 
         // Update the timer reference
-        _attackTimers[upgradableBehavior] = attackTimer;
+        _attackTimers[behavior] = attackTimer;
     }
 }
 

@@ -8,6 +8,8 @@ public class UpgradableSO : ScriptableObject
     public GameObject prefab;
     public string baseDescription;
     public UpgradableLevelData[] levelData;
+    public bool isPowerUp;
+
     public string GetUpgradeDescription(int weaponLevel)
     {
         if (weaponLevel == -1)
@@ -29,19 +31,19 @@ public class UpgradableSO : ScriptableObject
         if (newData.damage > oldData.damage)
         {
             int diff = newData.damage - oldData.damage;
-            changes.Add($"+{diff} Damage");
+            changes.Add($"+{diff}{(isPowerUp ? "%" : "")} Damage");
         }
 
         if (newData.cooldown < oldData.cooldown)
         {
             float diff = oldData.cooldown - newData.cooldown;
-            changes.Add($"-{diff:F1}s Cooldown");
+            changes.Add($"-{diff:F1}{(isPowerUp ? "%" : "s")} Cooldown");
         }
 
         if (newData.area > oldData.area)
         {
             float diff = newData.area - oldData.area;
-            changes.Add($"+{diff:F1} Area");
+            changes.Add($"+{diff:F1}{(isPowerUp ? "%" : "")} Area");
         }
 
         if (newData.amount > oldData.amount)
@@ -53,7 +55,7 @@ public class UpgradableSO : ScriptableObject
         if (newData.duration > oldData.duration)
         {
             float diff = newData.duration - oldData.duration;
-            changes.Add($"+{diff:F1}s Duration");
+            changes.Add($"+{diff:F1}{(isPowerUp ? "%" : "s")} Duration");
         }
 
         if (newData.pierce > oldData.pierce)
@@ -65,20 +67,18 @@ public class UpgradableSO : ScriptableObject
         if (newData.projectileInterval < oldData.projectileInterval)
         {
             float diff = oldData.projectileInterval - newData.projectileInterval;
-            changes.Add($"-{diff:F1}s Between Projectiles");
+            changes.Add($"-{diff:F1}{(isPowerUp ? "%" : "s")} Between Projectiles");
         }
 
         if (newData.knockback > oldData.knockback)
         {
             float diff = newData.knockback - oldData.knockback;
-            changes.Add($"+{diff:F1} Knockback");
+            changes.Add($"+{diff:F1}{(isPowerUp ? "%" : "")} Knockback");
         }
-
 
         // Join all improvements into one line
         return changes.Count > 0
             ? string.Join(", ", changes)
             : "No stat change";
-
     }
 }

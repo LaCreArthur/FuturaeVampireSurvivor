@@ -43,3 +43,4 @@ MonoBehaviour:
     pierce: 0
     projectileInterval: 0
     knockback: 0
+  isPowerUp: 1
