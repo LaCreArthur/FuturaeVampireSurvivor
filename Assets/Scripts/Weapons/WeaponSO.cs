@@ -7,7 +7,7 @@ public class WeaponSO : ScriptableObject
     public Sprite sprite;
     public GameObject weaponPrefab;
     public string baseDescription;
-    public WeaponLevelData[] levelData;
+    public UpgradableLevelData[] levelData;
 
     public AudioClip fireSound;
     public GameObject projectilePrefab;
@@ -23,8 +23,8 @@ public class WeaponSO : ScriptableObject
         }
 
         // Get the data for the previous level and the current one
-        WeaponLevelData oldData = levelData[weaponLevel];
-        WeaponLevelData newData = levelData[weaponLevel + 1];
+        UpgradableLevelData oldData = levelData[weaponLevel];
+        UpgradableLevelData newData = levelData[weaponLevel + 1];
 
         // Keep track of which stats changed
         var changes = new List<string>();

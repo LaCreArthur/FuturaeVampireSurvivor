@@ -3,10 +3,10 @@
 public abstract class WeaponBehavior : MonoBehaviour
 {
     public WeaponSO weapon;
-    [SerializeField] [ReadOnly] WeaponLevelData stats;
+    [SerializeField] [ReadOnly] UpgradableLevelData stats;
     public int CurrentLevel { get; private set; }
     public int MaxLevel { get; private set; }
-    public WeaponLevelData Stats
+    public UpgradableLevelData Stats
     {
         get => stats;
         private set => stats = value;

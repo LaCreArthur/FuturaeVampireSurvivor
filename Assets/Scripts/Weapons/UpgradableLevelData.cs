@@ -1,7 +1,7 @@
 ﻿using System;
 
 [Serializable]
-public struct WeaponLevelData
+public struct UpgradableLevelData
 {
     public int damage;
     public float cooldown; // Seconds
