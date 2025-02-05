@@ -3,21 +3,31 @@
 public abstract class WeaponBehavior : MonoBehaviour
 {
     public WeaponSO weapon;
+    [SerializeField] [ReadOnly] WeaponLevelData stats;
+    public int CurrentLevel { get; private set; }
+    public int MaxLevel { get; private set; }
+    public WeaponLevelData Stats
+    {
+        get => stats;
+        private set => stats = value;
+    }
 
-    int _currentLevel;
+    protected virtual void Awake()
+    {
+        CurrentLevel = 0;
+        MaxLevel = weapon.levelData.Length - 1;
+        Stats = weapon.levelData[CurrentLevel];
+    }
 
-    WeaponLevelData? _stats;
-    public WeaponLevelData Stats => _stats ??= weapon.levelData[_currentLevel];
-
-
-    public virtual void Fire(GameObject o) => Debug.Log($"{weapon.name} (Level {_currentLevel + 1}) fired with damage {Stats.damage}");
+    public virtual void Fire(GameObject o) => Debug.Log($"{weapon.name} (Level {CurrentLevel + 1}) fired with damage {Stats.damage}");
 
     public void UpgradeWeapon()
     {
-        if (_currentLevel < weapon.levelData.Length - 1)
+        if (CurrentLevel < weapon.levelData.Length - 1)
         {
-            _currentLevel++;
-            Debug.Log($"Upgraded {weapon.name} to Level {_currentLevel + 1}");
+            Debug.Log($"WeaponBehavior: Upgraded {weapon.name} to Level {CurrentLevel + 1}");
+            CurrentLevel++;
+            Stats = weapon.levelData[CurrentLevel];
         }
     }
 }

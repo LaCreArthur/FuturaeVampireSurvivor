@@ -22,7 +22,7 @@ public class LevelUpChoiceUI : MonoBehaviour
         nameTMP.text = weapon.name;
         descriptionTMP.text = weapon.GetUpgradeDescription(level);
         image.sprite = weapon.sprite;
-        newTag.SetActive(level == 0);
+        newTag.SetActive(level == -1);
         _button.onClick.RemoveAllListeners();
         _button.onClick.AddListener(() => OnClick(weapon));
     }

@@ -41,7 +41,6 @@ public class ExperienceSystem : MonoBehaviour
         private set {
             _exp = value;
             OnExpChanged?.Invoke(_exp);
-            Debug.Log($"collected {_exp} exp, remaining {MaxExp - Exp}, (total exp for next {MaxExp})");
             if (_exp >= MaxExp)
                 CurrentLevel++;
         }

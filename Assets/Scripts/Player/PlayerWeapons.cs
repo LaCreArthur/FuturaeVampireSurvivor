@@ -1,16 +1,34 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Create PlayerWeapons", fileName = "PlayerWeapons", order = 0)]
 public class PlayerWeapons : ScriptableObject
 {
-    public readonly Dictionary<WeaponSO, int> weaponLevels = new Dictionary<WeaponSO, int>();
-    public void AddWeapon(WeaponBehavior weapon) => weaponLevels.Add(weapon.weapon, 1);
+    public List<WeaponBehavior> weaponLevels = new List<WeaponBehavior>();
+
+    public static event Action<WeaponSO> OnNewWeapon;
+
+    public void AddWeapon(WeaponBehavior weapon)
+    {
+        weaponLevels.Add(weapon);
+        Debug.Log($"PlayerWeapon: Added {weapon.weapon.name}");
+    }
+
     public void UpgradeWeapon(WeaponSO weapon)
     {
-        weaponLevels[weapon]++;
-        Debug.Log($"Upgraded {weapon.name} to level {weaponLevels[weapon]}");
+        WeaponBehavior behavior = weaponLevels.Find(w => w.weapon == weapon);
+        if (behavior == null)
+            OnNewWeapon?.Invoke(weapon);
+        else
+            behavior.UpgradeWeapon();
     }
-    public void RemoveWeapon(WeaponBehavior weapon) => weaponLevels.Remove(weapon.weapon);
-    public int GetWeaponLevel(WeaponSO weaponSO) => weaponLevels.GetValueOrDefault(weaponSO, 0);
+    public void RemoveWeapon(WeaponBehavior weapon)
+    {
+        if (!weaponLevels.Remove(weapon))
+        {
+            Debug.LogError($"PlayerWeapon.RemoveWeapon: {weapon.weapon.name} not found in weaponLevels");
+        }
+    }
+    public WeaponBehavior GetWeaponBehavior(WeaponSO weaponSO) => weaponLevels.Find(w => w.weapon == weaponSO);
 }

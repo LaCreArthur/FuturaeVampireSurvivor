@@ -18,6 +18,7 @@ public class WeaponSystem : MonoBehaviour
     void Start()
     {
         GameStateManager.OnStateChange += OnStateChanged;
+        PlayerWeapons.OnNewWeapon += AddWeapon;
         // Ensure the list is populated if children exist at start.
         RefreshWeaponBehaviors();
     }
@@ -83,6 +84,8 @@ public class WeaponSystem : MonoBehaviour
             }
         }
     }
+
+    void AddWeapon(WeaponSO weapon) => Instantiate(weapon.weaponPrefab, transform.position, Quaternion.identity, transform);
 
     void OnStateChanged(GameState state) => enabled = state == GameState.Playing;
 

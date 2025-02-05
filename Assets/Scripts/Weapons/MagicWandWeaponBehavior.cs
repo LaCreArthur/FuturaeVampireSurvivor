@@ -8,8 +8,9 @@ public class MagicWandWeaponBehavior : WeaponBehavior
     readonly Collider2D[] _enemiesInRange = new Collider2D[16];
     ContactFilter2D _contactFilter;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _contactFilter = new ContactFilter2D();
         _contactFilter.SetLayerMask(LayerMask.GetMask("Enemies"));
         _contactFilter.useLayerMask = true;

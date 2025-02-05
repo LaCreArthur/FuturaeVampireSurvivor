@@ -7,6 +7,8 @@ public class LevelUpUI : MonoBehaviour
     [SerializeField] List<WeaponSO> weapons;
     [SerializeField] PlayerWeapons playerWeapons;
 
+    readonly List<LevelUpChoiceUI> _choices = new List<LevelUpChoiceUI>();
+
     void OnEnable()
     {
         DespawnOldChoices();
@@ -15,10 +17,11 @@ public class LevelUpUI : MonoBehaviour
 
     void DespawnOldChoices()
     {
-        foreach (Transform child in transform)
+        foreach (LevelUpChoiceUI choice in _choices)
         {
-            PoolManager.Despawn(child.gameObject);
+            PoolManager.Despawn(choice.gameObject);
         }
+        _choices.Clear();
     }
 
     void SpawnChoices()
@@ -26,10 +29,17 @@ public class LevelUpUI : MonoBehaviour
         List<WeaponSO> choiceWeapon = weapons.GetRandoms(3, true);
         for (int i = 0; i < 3; i++)
         {
+            // if the max level is reached, don't show the weapon
+            WeaponBehavior weaponBehavior = playerWeapons.GetWeaponBehavior(choiceWeapon[i]);
+            int currentLevel = weaponBehavior != null ? weaponBehavior.CurrentLevel : -1;
+            if (currentLevel == weaponBehavior?.MaxLevel) continue;
+
+            Debug.Log($"SpawnChoices: {choiceWeapon[i].name}, cl: {currentLevel}, ml: {weaponBehavior?.MaxLevel}");
+
             GameObject choiceGO = PoolManager.Spawn(choicePrefab, Vector3.zero, Quaternion.identity, transform);
             var choiceUI = choiceGO.GetComponent<LevelUpChoiceUI>();
-            int weaponLevel = playerWeapons.GetWeaponLevel(choiceWeapon[i]);
-            choiceUI.SetData(choiceWeapon[i], weaponLevel);
+            choiceUI.SetData(choiceWeapon[i], currentLevel);
+            _choices.Add(choiceUI);
         }
     }
 

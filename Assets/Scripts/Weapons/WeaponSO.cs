@@ -5,6 +5,7 @@ using UnityEngine;
 public class WeaponSO : ScriptableObject
 {
     public Sprite sprite;
+    public GameObject weaponPrefab;
     public string baseDescription;
     public WeaponLevelData[] levelData;
 
@@ -12,18 +13,18 @@ public class WeaponSO : ScriptableObject
     public GameObject projectilePrefab;
     public string GetUpgradeDescription(int weaponLevel)
     {
-        if (weaponLevel == 0)
+        if (weaponLevel == -1)
         {
             return baseDescription;
         }
-        if (weaponLevel >= levelData.Length)
+        if (weaponLevel + 1 >= levelData.Length)
         {
             return "Max level reached, you should not see this!";
         }
 
         // Get the data for the previous level and the current one
-        WeaponLevelData oldData = levelData[weaponLevel - 1];
-        WeaponLevelData newData = levelData[weaponLevel];
+        WeaponLevelData oldData = levelData[weaponLevel];
+        WeaponLevelData newData = levelData[weaponLevel + 1];
 
         // Keep track of which stats changed
         var changes = new List<string>();

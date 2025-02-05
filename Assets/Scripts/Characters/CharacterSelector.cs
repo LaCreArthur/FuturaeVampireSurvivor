@@ -12,13 +12,11 @@ public class CharacterSelector : MonoBehaviour
     GameObject _currentCharacter;
     GameObject _currentWeapon;
 
-    void Awake()
-    {
-        _currentIndex = 0;
-        InstantiateCharacter();
-    }
+    void Awake() => _currentIndex = 0;
 
     void OnEnable() => ButtonSwitch.OnSwitch += SwitchCharacter;
+
+    void Start() => InstantiateCharacter();
 
     void OnDisable() => ButtonSwitch.OnSwitch -= SwitchCharacter;
 
