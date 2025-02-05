@@ -7,6 +7,8 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] protected int maxHealth;
     [SerializeField] [ReadOnly] protected int currentHealth;
 
+    Tween _damageTween;
+
     public event Action OnDamage;
     public event Action OnDeath;
 
@@ -27,6 +29,8 @@ public class HealthSystem : MonoBehaviour
         CurrentHealth -= amount;
         OnDamage?.Invoke();
         if (CurrentHealth <= 0) OnDeath?.Invoke();
-        transform.DOPunchScale(Vector3.one * 0.1f, 0.2f).OnComplete(() => transform.localScale = Vector3.one);
+
+        _damageTween?.Kill();
+        _damageTween = transform.DOPunchScale(Vector3.one * 0.1f, 0.2f).OnComplete(() => transform.localScale = Vector3.one);
     }
 }
