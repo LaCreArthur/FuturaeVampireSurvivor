@@ -30,11 +30,11 @@ public class LevelUpUI : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             // if the max level is reached, don't show the weapon
-            WeaponBehavior weaponBehavior = playerWeapons.GetWeaponBehavior(choiceWeapon[i]);
-            int currentLevel = weaponBehavior != null ? weaponBehavior.CurrentLevel : -1;
-            if (currentLevel == weaponBehavior?.MaxLevel) continue;
+            UpgradableBehavior upgradableBehavior = playerWeapons.GetWeaponBehavior(choiceWeapon[i]);
+            int currentLevel = upgradableBehavior != null ? upgradableBehavior.CurrentLevel : -1;
+            if (currentLevel == upgradableBehavior?.MaxLevel) continue;
 
-            Debug.Log($"SpawnChoices: {choiceWeapon[i].name}, cl: {currentLevel}, ml: {weaponBehavior?.MaxLevel}");
+            Debug.Log($"SpawnChoices: {choiceWeapon[i].name}, cl: {currentLevel}, ml: {upgradableBehavior?.MaxLevel}");
 
             GameObject choiceGO = PoolManager.Spawn(choicePrefab, Vector3.zero, Quaternion.identity, transform);
             var choiceUI = choiceGO.GetComponent<LevelUpChoiceUI>();

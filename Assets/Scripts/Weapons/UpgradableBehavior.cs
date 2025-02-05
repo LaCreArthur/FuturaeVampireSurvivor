@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class WeaponBehavior : MonoBehaviour
+public abstract class UpgradableBehavior : MonoBehaviour
 {
     public UpgradableSO upgradable;
     [SerializeField] [ReadOnly] UpgradableLevelData stats;
@@ -21,7 +21,7 @@ public abstract class WeaponBehavior : MonoBehaviour
 
     public virtual void Fire(GameObject o) => Debug.Log($"{upgradable.name} (Level {CurrentLevel + 1}) fired with damage {Stats.damage}");
 
-    public void UpgradeWeapon()
+    public void Upgrade()
     {
         if (CurrentLevel < upgradable.levelData.Length - 1)
         {

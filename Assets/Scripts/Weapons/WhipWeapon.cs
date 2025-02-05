@@ -1,7 +1,7 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 
-public class WhipWeaponBehavior : WeaponBehavior
+public class WhipWeapon : UpgradableBehavior
 {
     [SerializeField] ParticleSystem leftWhipParticles;
     [SerializeField] ParticleSystem rightWhipParticles;

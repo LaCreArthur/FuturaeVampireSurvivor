@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class KnifeWeaponBehavior : WeaponBehavior
+public class KnifeWeapon : UpgradableBehavior
 {
     [SerializeField] Vector3 spawnOffset;
     [SerializeField] GameObject projectilePrefab;
