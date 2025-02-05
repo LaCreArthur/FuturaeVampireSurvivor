@@ -27,6 +27,6 @@ public class HealthSystem : MonoBehaviour
         CurrentHealth -= amount;
         OnDamage?.Invoke();
         if (CurrentHealth <= 0) OnDeath?.Invoke();
-        transform.DOPunchScale(Vector3.one * 0.1f, 0.2f);
+        transform.DOPunchScale(Vector3.one * 0.1f, 0.2f).OnComplete(() => transform.localScale = Vector3.one);
     }
 }
