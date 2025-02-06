@@ -1,11 +1,11 @@
 ﻿public class EnemyHealthSystem : HealthSystem, IPoolable
 {
-    public void OnSpawn() => CurrentHealth = MaxHealth = maxHealth;
+    public void OnSpawn() => CurrentHp = MaxHp;
 
     public override void TakeDamage(int amount)
     {
         base.TakeDamage(amount);
-        if (CurrentHealth <= 0)
+        if (CurrentHp <= 0)
         {
             PoolManager.Despawn(gameObject);
         }

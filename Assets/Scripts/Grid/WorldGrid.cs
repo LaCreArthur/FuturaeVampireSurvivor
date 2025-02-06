@@ -1,13 +1,10 @@
 using System.Collections.Generic;
-using ScriptableVariables;
 using UnityEngine;
 
 public class WorldGrid : MonoBehaviour
 {
     public float cellSize;
     public GameObject cellPrefab;
-
-    [SerializeField] TransformVar playerTransformVar;
 
     readonly Dictionary<Vector2Int, GameObject> _cells = new Dictionary<Vector2Int, GameObject>(32);
     readonly HashSet<Vector2Int> _removalSet = new HashSet<Vector2Int>(32);
@@ -31,7 +28,7 @@ public class WorldGrid : MonoBehaviour
 
     void Start()
     {
-        _playerTransform = playerTransformVar.Value;
+        _playerTransform = PlayerSingleton.Transform;
         _playerGridPos = GetPlayerGridPos();
         SpawnNewCells();
     }

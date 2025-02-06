@@ -10,14 +10,14 @@ public class ExperienceOrbSpawner : MonoBehaviour
     {
         _healthSystem = GetComponent<HealthSystem>();
         if (_healthSystem != null)
-            _healthSystem.OnDeath += OnDeath;
+            _healthSystem.Died += Died;
     }
 
     void OnDestroy()
     {
         if (_healthSystem != null)
-            _healthSystem.OnDeath -= OnDeath;
+            _healthSystem.Died -= Died;
     }
 
-    void OnDeath() => PoolManager.Spawn(orbPrefab, transform.position, quaternion.identity);
+    void Died() => PoolManager.Spawn(orbPrefab, transform.position, quaternion.identity);
 }

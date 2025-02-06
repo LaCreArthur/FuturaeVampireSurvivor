@@ -9,5 +9,3 @@ namespace ScriptableVariables
         protected override void Load() => value = PlayerPrefs.GetFloat(name, value);
     }
 }
-
-namespace ScriptableVariables {}

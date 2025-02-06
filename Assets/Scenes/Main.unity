@@ -631,7 +631,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellSize: 10
   cellPrefab: {fileID: 6638166349142818006, guid: 486f282bdc31c00479c1bceda69cd7c9, type: 3}
-  playerTransformVar: {fileID: 11400000, guid: 5a6482895ae90bb48b30b4c38b1f4eb7, type: 2}
 --- !u!1 &866130315 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5977742571941645430, guid: ef3890e5954d437458be3e5cb34006d0, type: 3}

@@ -19,7 +19,7 @@ public class DamageBlinkFeedbacks : MonoBehaviour
             enabled = false;
             return;
         }
-        _healthSystem.OnDamage += OnDamage;
+        _healthSystem.DamageTaken += DamageTaken;
     }
 
     void OnTransformChildrenChanged()
@@ -33,7 +33,7 @@ public class DamageBlinkFeedbacks : MonoBehaviour
         }
     }
 
-    void OnDamage()
+    void DamageTaken()
     {
         if (_blinkCoroutine != null) StopCoroutine(_blinkCoroutine);
         _blinkCoroutine = StartCoroutine(BlinkRoutine());

@@ -1,4 +1,5 @@
 ﻿using System;
+using ScriptableVariables;
 using UnityEngine;
 
 public class PlayerHealthSystem : HealthSystem
@@ -6,31 +7,19 @@ public class PlayerHealthSystem : HealthSystem
     [SerializeField] bool invulnerability;
     [SerializeField] float invulnerabilityTime = 1f;
 
+    [SerializeField] FloatVar playerHp;
+    [SerializeField] FloatVar playerMaxHp;
+
     float _invulnerabilityTimer;
 
-    public static event Action<int> OnHealthChanged;
-    public static event Action<int> OnMaxHealthChanged;
     public static event Action<bool> OnInvulnerabilityChanged;
 
-    public override int CurrentHealth
+    void Awake()
     {
-        get => currentHealth;
-        protected set {
-            currentHealth = Mathf.Clamp(value, 0, maxHealth);
-            OnHealthChanged?.Invoke(currentHealth);
-        }
+        GameStateManager.OnPlaying += OnLevelStart;
+        HpChanged += OnHpChanged;
+        MaxHpChanged += OnMaxHpChanged;
     }
-
-    public override int MaxHealth
-    {
-        get => maxHealth;
-        protected set {
-            maxHealth = value;
-            OnMaxHealthChanged?.Invoke(maxHealth);
-        }
-    }
-
-    void Awake() => GameStateManager.OnPlaying += OnLevelStart;
 
     void Update()
     {
@@ -41,15 +30,23 @@ public class PlayerHealthSystem : HealthSystem
         }
     }
 
-    void OnDestroy() => GameStateManager.OnPlaying -= OnLevelStart;
-    void OnLevelStart() => CurrentHealth = MaxHealth = maxHealth;
+    void OnDestroy()
+    {
+        GameStateManager.OnPlaying -= OnLevelStart;
+        HpChanged -= OnHpChanged;
+        MaxHpChanged -= OnMaxHpChanged;
+    }
+
+    void OnHpChanged(float hp) => playerHp.Value = hp;
+    void OnMaxHpChanged(float maxHp) => playerMaxHp.Value = maxHp;
+    void OnLevelStart() => CurrentHp = MaxHp;
 
     public override void TakeDamage(int amount)
     {
         if (invulnerability)
             return;
         base.TakeDamage(amount);
-        if (CurrentHealth <= 0)
+        if (CurrentHp <= 0)
         {
             GameStateManager.SetState(GameState.GameOver);
         }

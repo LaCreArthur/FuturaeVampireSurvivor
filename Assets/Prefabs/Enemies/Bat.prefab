@@ -199,6 +199,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5248995090574413018, guid: 4f641a7b77b47e34ab88c41919eea4da, type: 3}
+      propertyPath: maxHp
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5248995090574413018, guid: 4f641a7b77b47e34ab88c41919eea4da, type: 3}
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
@@ -294,4 +298,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  playerTransformVar: {fileID: 11400000, guid: 5a6482895ae90bb48b30b4c38b1f4eb7, type: 2}

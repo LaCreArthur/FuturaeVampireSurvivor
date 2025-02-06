@@ -4,33 +4,42 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-    [SerializeField] protected int maxHealth;
-    [SerializeField] [ReadOnly] protected int currentHealth;
+    [SerializeField] float maxHp;
+    [SerializeField] [ReadOnly] float currentHp;
 
     Tween _damageTween;
 
-    public event Action OnDamage;
-    public event Action OnDeath;
+    public event Action<float> HpChanged;
+    public event Action<float> MaxHpChanged;
+    public event Action DamageTaken;
+    public event Action Died;
 
-    public virtual int CurrentHealth
+    protected float CurrentHp
     {
-        get => currentHealth;
-        protected set => currentHealth = Mathf.Clamp(value, 0, maxHealth);
+        get => currentHp;
+        set {
+            currentHp = Mathf.Clamp(value, 0, maxHp);
+            HpChanged?.Invoke(currentHp);
+        }
     }
 
-    public virtual int MaxHealth
+    protected float MaxHp
     {
-        get => maxHealth;
-        protected set => maxHealth = value;
+        get => maxHp;
+        set {
+            maxHp = value;
+            MaxHpChanged?.Invoke(maxHp);
+        }
     }
 
     public virtual void TakeDamage(int amount)
     {
-        CurrentHealth -= amount;
-        OnDamage?.Invoke();
-        if (CurrentHealth <= 0) OnDeath?.Invoke();
+        CurrentHp -= amount;
+        DamageTaken?.Invoke();
+        if (CurrentHp <= 0) Died?.Invoke();
 
         _damageTween?.Kill();
-        _damageTween = transform.DOPunchScale(Vector3.one * 0.1f, 0.2f).OnComplete(() => transform.localScale = Vector3.one);
+        transform.localScale = Vector3.one;
+        _damageTween = transform.DOPunchScale(Vector3.one * 0.1f, 0.2f);
     }
 }

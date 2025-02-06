@@ -1,5 +1,4 @@
-﻿using ScriptableVariables;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DespawnPoolableByDistance : MonoBehaviour
 {
@@ -8,13 +7,12 @@ public class DespawnPoolableByDistance : MonoBehaviour
     // to avoid calling the more expensive Magnitude, and calling SqrMagnitude instead
     const float DESPAWN_DISTANCE_SQUARE = DESPAWN_DISTANCE * DESPAWN_DISTANCE;
 
-    [SerializeField] TransformVar playerTransformVar;
     Transform _playerTransform;
 
     void Start()
     {
         GameStateManager.OnHome += Despawn;
-        _playerTransform = playerTransformVar.Value;
+        _playerTransform = PlayerSingleton.Transform;
     }
 
     void Update()

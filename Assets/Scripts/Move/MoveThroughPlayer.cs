@@ -1,12 +1,10 @@
-﻿using ScriptableVariables;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 ///     This move behavior moves in the direction of the player but will not stop when it reaches the player.
 /// </summary>
 public class MoveThroughPlayer : MoveBehavior, IPoolable
 {
-    [SerializeField] TransformVar playerTransformVar;
     Transform _playerTransform;
     Vector3 _direction;
 
@@ -16,7 +14,7 @@ public class MoveThroughPlayer : MoveBehavior, IPoolable
     public override void Initialize()
     {
         // Ensure that _playerTransform is set to the player's transform if it isn't already
-        _playerTransform ??= playerTransformVar.Value;
+        _playerTransform ??= PlayerSingleton.Transform;
         _direction = (_playerTransform.position - transform.position).normalized;
     }
 

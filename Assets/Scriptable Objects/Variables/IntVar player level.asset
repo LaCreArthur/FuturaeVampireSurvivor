@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e589ef2d853148d2be6bbbe128cacc34, type: 3}
-  m_Name: TransformVar player
+  m_Script: {fileID: 11500000, guid: 036428f5f87c414ab82e051823cc9e51, type: 3}
+  m_Name: IntVar player level
   m_EditorClassIdentifier: 
-  initialValue: {fileID: 0}
-  previousValue: {fileID: 0}
-  value: {fileID: 0}
+  initialValue: 0
+  previousValue: 0
+  value: 0
   isReadOnly: 0
   isSaved: 0

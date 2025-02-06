@@ -1,13 +1,11 @@
-﻿using ScriptableVariables;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MoveTowardPlayer : MoveBehavior
 {
-    [SerializeField] TransformVar playerTransformVar;
     Transform _playerTransform;
     Vector3 _direction;
 
-    public override void Initialize() => _playerTransform ??= playerTransformVar.Value;
+    public override void Initialize() => _playerTransform ??= PlayerSingleton.Transform;
 
     public override void Move()
     {

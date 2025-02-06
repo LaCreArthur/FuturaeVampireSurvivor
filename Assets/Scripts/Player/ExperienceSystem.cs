@@ -1,4 +1,5 @@
 ﻿using System;
+using ScriptableVariables;
 using UnityEngine;
 
 public class ExperienceSystem : MonoBehaviour
@@ -6,10 +7,9 @@ public class ExperienceSystem : MonoBehaviour
     const float BASE_XP = 5;
     const float EXPONENT = 1.5f;
 
-    [SerializeField] int currentLevel;
-
-    float _exp;
-    float _maxExp;
+    [SerializeField] IntVar currentLevel;
+    [SerializeField] FloatVar playerExp;
+    [SerializeField] FloatVar playerMaxExp;
 
     public static event Action<int> OnLevelUp;
     public static event Action<float> OnExpChanged;
@@ -17,31 +17,31 @@ public class ExperienceSystem : MonoBehaviour
 
     int CurrentLevel
     {
-        get => currentLevel;
+        get => currentLevel.Value;
         set {
-            currentLevel = value;
-            if (value > 1) OnLevelUp?.Invoke(currentLevel);
-            MaxExp = Mathf.CeilToInt(BASE_XP * Mathf.Pow(CurrentLevel, EXPONENT));
-            Debug.Log($"Level up to {CurrentLevel} - {MaxExp} XP for next level");
+            currentLevel.Value = value;
+            if (value > 1) OnLevelUp?.Invoke(value);
+            MaxExp = Mathf.CeilToInt(BASE_XP * Mathf.Pow(value, EXPONENT));
+            Debug.Log($"Level up to {value} - {MaxExp} XP for next level");
             Exp = 0;
         }
     }
-    public float MaxExp
+    float MaxExp
     {
-        get => _maxExp;
-        private set {
-            _maxExp = value;
-            OnMaxExpChanged?.Invoke(_maxExp);
+        get => playerMaxExp.Value;
+        set {
+            playerMaxExp.Value = value;
+            OnMaxExpChanged?.Invoke(value);
         }
     }
     float MultiplierBonus { get; set; }
-    public float Exp
+    float Exp
     {
-        get => _exp;
-        private set {
-            _exp = value;
-            OnExpChanged?.Invoke(_exp);
-            if (_exp >= MaxExp)
+        get => playerExp.Value;
+        set {
+            playerExp.Value = value;
+            OnExpChanged?.Invoke(value);
+            if (value >= MaxExp)
                 CurrentLevel++;
         }
     }
@@ -57,11 +57,12 @@ public class ExperienceSystem : MonoBehaviour
         GameStateManager.OnPlaying -= OnLevelStart;
         ExperienceOrb.OnExpCollected -= CollectExperience;
     }
-    void CollectExperience(int exp) => Exp += exp * MultiplierBonus;
 
     void OnLevelStart()
     {
         MultiplierBonus = 1;
         CurrentLevel = 1;
     }
+
+    void CollectExperience(int exp) => Exp += exp * MultiplierBonus;
 }
