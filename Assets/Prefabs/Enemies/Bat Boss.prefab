@@ -205,6 +205,10 @@ PrefabInstance:
       propertyPath: attackRate
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -4919716830023649551, guid: 4f641a7b77b47e34ab88c41919eea4da, type: 3}
+      propertyPath: orbPrefab
+      value: 
+      objectReference: {fileID: 3201429453588429922, guid: 018ca321475ff7244ad6691962930865, type: 3}
     - target: {fileID: -428592269783731494, guid: 4f641a7b77b47e34ab88c41919eea4da, type: 3}
       propertyPath: maxHealth
       value: 300
