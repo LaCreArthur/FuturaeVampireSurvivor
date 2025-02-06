@@ -2,9 +2,17 @@ using System;
 using UnityEngine;
 
 /// <summary>
-///     A safe singleton pattern for MonoBehaviour classes.
+///     A safe singleton pattern for MonoBehaviour classes. <br></br>
+///     Access the instance through the Instance property.  <br></br>
+///     Instance property is always safe and lazy-loaded.   <br></br>
+///     - The instance will be created if it doesn't exist. <br></br>
+///     - If an instance already exists, the new one will be destroyed. <br></br>
+///     Override OnAwake() to add initialization code.  <br></br>
 /// </summary>
-/// <typeparam name="T"></typeparam>
+/// <typeparam name="T">Use the name of your class</typeparam>
+/// <example>
+///     <c> public class PlayerSingleton : SingletonMono&lt;PlayerSingleton&gt;</c>
+/// </example>
 public abstract class SingletonMono<T> : MonoBehaviour where T : SingletonMono<T>
 {
     static T s_instance;
