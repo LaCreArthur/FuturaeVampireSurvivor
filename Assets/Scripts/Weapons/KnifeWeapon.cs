@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class KnifeWeapon : WeaponBehavior
+public class KnifeWeapon : Weapon
 {
     [SerializeField] Vector3 spawnOffset;
     [SerializeField] GameObject projectilePrefab;
@@ -26,7 +26,7 @@ public class KnifeWeapon : WeaponBehavior
         var projController = projectile.GetComponent<KnifeProjectileController>();
         if (projController != null)
         {
-            projController.Initialize(Stats.speed, Stats.damage, attacker);
+            projController.Initialize(PoweredUpStats.speed, PoweredUpStats.damage, attacker);
         }
     }
 }

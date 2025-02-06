@@ -2,52 +2,52 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Create PlayerWeapons", fileName = "PlayerWeapons", order = 0)]
-public class PlayerUpgradables : ScriptableObject
+public static class PlayerUpgradables
 {
-    readonly List<WeaponBehavior> _weaponLevels = new List<WeaponBehavior>();
-    readonly List<PowerUpBehavior> _powerUpLevels = new List<PowerUpBehavior>();
+    public static readonly List<Weapon> Weapons = new List<Weapon>();
+    public static readonly List<PowerUp> PowerUps = new List<PowerUp>();
+    public static event Action<UpgradableSO> OnUpgradableAdded;
 
-    public static event Action<UpgradableSO> OnNewWeapon;
-    public static event Action<UpgradableSO> OnNewPowerUp;
-
-    public void AddUpgradable(UpgradableBehavior upgradable)
+    public static void AddUpgradable(Upgradable upgradable)
     {
-        if (upgradable is PowerUpBehavior powerUp)
-            _powerUpLevels.Add(powerUp);
-        else if (upgradable is WeaponBehavior weapon)
-            _weaponLevels.Add(weapon);
+        if (upgradable is PowerUp powerUp)
+            PowerUps.Add(powerUp);
+        else if (upgradable is Weapon weapon)
+        {
+            weapon.ApplyPowerUps();
+            Weapons.Add(weapon);
+        }
 
         Debug.Log($"PlayerUpgradable: Added {upgradable.upgradable.name}");
     }
 
-    public void Upgrade(UpgradableSO upgradable)
+    public static void RemoveUpgradable(Upgradable upgradable)
     {
-        if (upgradable.isPowerUp)
-        {
-            PowerUpBehavior powerUpBehavior = _powerUpLevels.Find(p => p.upgradable == upgradable);
-            if (powerUpBehavior == null)
-                OnNewPowerUp?.Invoke(upgradable);
-            else
-                powerUpBehavior.Upgrade();
-        }
+        if (upgradable is PowerUp powerUp)
+            PowerUps.Remove(powerUp);
+        else if (upgradable is Weapon weapon)
+            Weapons.Remove(weapon);
+
+        Debug.Log($"PlayerUpgradable: Removed {upgradable.upgradable.name}");
+    }
+
+    public static void AddOrUpgrade(UpgradableSO upgradableSO)
+    {
+        Upgradable upgradable = upgradableSO.isPowerUp ?
+            PowerUps.Find(p => p.upgradable == upgradableSO) :
+            Weapons.Find(w => w.upgradable == upgradableSO);
+
+        if (upgradable == null)
+            OnUpgradableAdded?.Invoke(upgradableSO);
         else
-        {
-            WeaponBehavior weaponBehavior = _weaponLevels.Find(w => w.upgradable == upgradable);
-            if (weaponBehavior == null)
-                OnNewWeapon?.Invoke(upgradable);
-            else
-                weaponBehavior.Upgrade();
-        }
+            upgradable.Upgrade();
     }
 
-    public void RemoveUpgradable(UpgradableBehavior upgradable)
+    public static Upgradable GetUpgradableBehavior(UpgradableSO upgradableSO)
     {
-        if (upgradable is PowerUpBehavior powerUp && !_powerUpLevels.Remove(powerUp))
-            Debug.LogError($"PlayerWeapon.RemovePowerUp: {upgradable.upgradable.name} not found in powerUpLevels");
-        else if (upgradable is WeaponBehavior weapon && !_weaponLevels.Remove(weapon))
-            Debug.LogError($"PlayerWeapon.RemoveWeapon: {upgradable.upgradable.name} not found in weaponLevels");
+        Weapon weapon = Weapons.Find(w => w.upgradable == upgradableSO);
+        if (weapon != null)
+            return weapon;
+        return PowerUps.Find(p => p.upgradable == upgradableSO);
     }
-
-    public WeaponBehavior GetWeaponBehavior(UpgradableSO upgradableSO) => _weaponLevels.Find(w => w.upgradable == upgradableSO);
 }

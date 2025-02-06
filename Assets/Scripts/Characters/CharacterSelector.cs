@@ -35,9 +35,15 @@ public class CharacterSelector : MonoBehaviour
     void InstantiateCharacter()
     {
         if (_currentCharacter) Destroy(_currentCharacter);
-        if (_currentWeapon) Destroy(_currentWeapon);
+        if (_currentWeapon)
+        {
+            PlayerUpgradables.RemoveUpgradable(_currentWeapon.GetComponent<Upgradable>());
+            Destroy(_currentWeapon);
+        }
 
         _currentCharacter = Instantiate(characters[_currentIndex].characterPrefab, _characterOffset, Quaternion.identity, characterParent);
         _currentWeapon = Instantiate(characters[_currentIndex].baseWeaponPrefab, Vector3.zero, Quaternion.identity, weaponParent);
+        var upgradable = _currentWeapon.GetComponent<Upgradable>();
+        PlayerUpgradables.AddUpgradable(upgradable);
     }
 }

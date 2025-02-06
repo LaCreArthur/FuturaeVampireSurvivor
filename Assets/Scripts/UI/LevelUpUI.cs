@@ -4,8 +4,7 @@ using UnityEngine;
 public class LevelUpUI : MonoBehaviour
 {
     [SerializeField] GameObject choicePrefab;
-    [SerializeField] List<UpgradableSO> weapons;
-    [SerializeField] PlayerUpgradables playerUpgradables;
+    [SerializeField] List<UpgradableSO> upgradables;
 
     readonly List<LevelUpChoiceUI> _choices = new List<LevelUpChoiceUI>();
 
@@ -26,22 +25,20 @@ public class LevelUpUI : MonoBehaviour
 
     void SpawnChoices()
     {
-        List<UpgradableSO> choiceWeapon = weapons.GetRandoms(3, true);
+        List<UpgradableSO> choices = upgradables.GetRandoms(3, true);
         for (int i = 0; i < 3; i++)
         {
             // if the max level is reached, don't show the weapon
-            UpgradableBehavior upgradableBehavior = playerUpgradables.GetWeaponBehavior(choiceWeapon[i]);
-            int currentLevel = upgradableBehavior != null ? upgradableBehavior.CurrentLevel : -1;
-            if (currentLevel == upgradableBehavior?.MaxLevel) continue;
+            Upgradable upgradable = PlayerUpgradables.GetUpgradableBehavior(choices[i]);
+            int currentLevel = upgradable != null ? upgradable.CurrentLevel : -1;
+            if (currentLevel == upgradable?.MaxLevel) continue;
 
-            Debug.Log($"SpawnChoices: {choiceWeapon[i].name}, cl: {currentLevel}, ml: {upgradableBehavior?.MaxLevel}");
+            Debug.Log($"SpawnChoices: {choices[i].name}, cl: {currentLevel}, ml: {upgradable?.MaxLevel}");
 
             GameObject choiceGO = PoolManager.Spawn(choicePrefab, Vector3.zero, Quaternion.identity, transform);
             var choiceUI = choiceGO.GetComponent<LevelUpChoiceUI>();
-            choiceUI.SetData(choiceWeapon[i], currentLevel);
+            choiceUI.SetData(choices[i], currentLevel);
             _choices.Add(choiceUI);
         }
     }
-
-    public void UpgradeWeapon(UpgradableSO upgradable) => playerUpgradables.Upgrade(upgradable);
 }

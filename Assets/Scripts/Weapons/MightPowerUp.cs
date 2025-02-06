@@ -1,1 +1,1 @@
-﻿public class MightPowerUp : PowerUpBehavior {}
+﻿public class MightPowerUp : PowerUp {}

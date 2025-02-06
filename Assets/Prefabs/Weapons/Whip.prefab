@@ -10140,6 +10140,7 @@ MonoBehaviour:
     pierce: 0
     projectileInterval: 0
     knockback: 0
+  playerUpgradables: {fileID: 11400000, guid: 72a375cc84aed5c46b7c92571ef8f2c8, type: 2}
   leftWhipParticles: {fileID: 1054959667630988449}
   rightWhipParticles: {fileID: 3977656455591426731}
   leftCollider: {fileID: 5361892560356846244}

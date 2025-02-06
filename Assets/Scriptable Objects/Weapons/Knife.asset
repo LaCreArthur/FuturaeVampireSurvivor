@@ -16,7 +16,7 @@ MonoBehaviour:
   prefab: {fileID: 3921613116576328812, guid: 59a4a79e5f8e2dd4a995a7667e2e5be7, type: 3}
   baseDescription: Throw a knife in a forward direction
   levelData:
-  - damage: 7
+  - damage: 12
     cooldown: 1
     area: 1
     speed: 10
@@ -25,7 +25,7 @@ MonoBehaviour:
     pierce: 1
     projectileInterval: 0.1
     knockback: 0
-  - damage: 9
+  - damage: 15
     cooldown: 1
     area: 0
     speed: 10
@@ -34,3 +34,4 @@ MonoBehaviour:
     pierce: 1
     projectileInterval: 0.1
     knockback: 0
+  isPowerUp: 0

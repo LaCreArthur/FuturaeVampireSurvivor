@@ -30,9 +30,7 @@ public class LevelUpChoiceUI : MonoBehaviour
     void OnClick(UpgradableSO upgradable)
     {
         Debug.Log($"clicked {upgradable.name}");
-        // lazy load
-        _levelUpUI ??= GetComponentInParent<LevelUpUI>(true);
-        _levelUpUI.UpgradeWeapon(upgradable);
+        PlayerUpgradables.AddOrUpgrade(upgradable);
         OnUpgrade?.Invoke();
     }
 }

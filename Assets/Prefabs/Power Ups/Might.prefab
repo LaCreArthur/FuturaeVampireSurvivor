@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3921613116576328812
+--- !u!1 &3133912357716758111
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3182619585970615381}
-  - component: {fileID: 6931235671178463864}
+  - component: {fileID: 285702307682237610}
+  - component: {fileID: 8391471114367930019}
   m_Layer: 0
-  m_Name: Knife
+  m_Name: Might
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3182619585970615381
+--- !u!4 &285702307682237610
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3921613116576328812}
+  m_GameObject: {fileID: 3133912357716758111}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,19 +32,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6931235671178463864
+--- !u!114 &8391471114367930019
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3921613116576328812}
+  m_GameObject: {fileID: 3133912357716758111}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ff79a460ba54bf996ffa42435aac444, type: 3}
+  m_Script: {fileID: 11500000, guid: 16de1fd550314a14b228f797fdd403f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradable: {fileID: 11400000, guid: d813c6460a6bd814aace916cf8e7c27b, type: 2}
+  upgradable: {fileID: 11400000, guid: 38b3e3900a1ec314bbfb0c431fb07943, type: 2}
   stats:
     damage: 0
     cooldown: 0
@@ -55,6 +55,3 @@ MonoBehaviour:
     pierce: 0
     projectileInterval: 0
     knockback: 0
-  playerUpgradables: {fileID: 11400000, guid: 72a375cc84aed5c46b7c92571ef8f2c8, type: 2}
-  spawnOffset: {x: 0, y: 0.5, z: 0}
-  projectilePrefab: {fileID: 4324995265172342908, guid: bb4d9f1aced9210468d1550dc65170d0, type: 3}

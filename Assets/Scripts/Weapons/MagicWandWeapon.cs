@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class MagicWandWeapon : WeaponBehavior
+public class MagicWandWeapon : Weapon
 {
     [SerializeField] float nearestEnemyRadius;
     [SerializeField] Vector3 spawnOffset;
@@ -36,7 +36,7 @@ public class MagicWandWeapon : WeaponBehavior
                 direction = Random.insideUnitSphere.normalized;
             }
             direction.z = 0;
-            projController.Initialize(Stats.speed, Stats.damage, attacker, direction);
+            projController.Initialize(PoweredUpStats.speed, PoweredUpStats.damage, attacker, direction);
         }
     }
 

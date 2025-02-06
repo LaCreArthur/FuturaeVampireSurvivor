@@ -1,7 +1,7 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 
-public class WhipWeapon : WeaponBehavior
+public class WhipWeapon : Weapon
 {
     [SerializeField] ParticleSystem leftWhipParticles;
     [SerializeField] ParticleSystem rightWhipParticles;
@@ -17,8 +17,9 @@ public class WhipWeapon : WeaponBehavior
     ParticleSystem.MainModule _leftMain;
     ParticleSystem.MainModule _rightMain;
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         _leftMain = leftWhipParticles.main;
         _rightMain = rightWhipParticles.main;
 
@@ -35,7 +36,7 @@ public class WhipWeapon : WeaponBehavior
         if (other.CompareTag("Enemy"))
         {
             other.attachedRigidbody.TryGetComponent(out HealthSystem healthSystem);
-            if (healthSystem != null) healthSystem.TakeDamage(Stats.damage);
+            if (healthSystem != null) healthSystem.TakeDamage(PoweredUpStats.damage);
         }
     }
 

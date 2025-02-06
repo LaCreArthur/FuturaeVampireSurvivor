@@ -15,7 +15,6 @@ public class PlayerVariableController : MonoBehaviour
     [SerializeField] FloatVar playerExp;
     [SerializeField] FloatVar playerMaxExp;
     [SerializeField] TransformVar playerTransform;
-    [SerializeField] PlayerUpgradables playerUpgradables;
 
     void Awake()
     {
@@ -24,8 +23,6 @@ public class PlayerVariableController : MonoBehaviour
         PlayerHealthSystem.OnMaxHealthChanged += SetMaxHealth;
         ExperienceSystem.OnExpChanged += SetExp;
         ExperienceSystem.OnMaxExpChanged += SetMaxExp;
-        WeaponSystem.OnWeaponAdded += playerUpgradables.AddUpgradable;
-        WeaponSystem.OnWeaponRemoved += playerUpgradables.RemoveUpgradable;
     }
 
     void OnDestroy()
@@ -34,8 +31,6 @@ public class PlayerVariableController : MonoBehaviour
         PlayerHealthSystem.OnMaxHealthChanged -= SetMaxHealth;
         ExperienceSystem.OnExpChanged -= SetExp;
         ExperienceSystem.OnMaxExpChanged -= SetMaxExp;
-        WeaponSystem.OnWeaponAdded -= playerUpgradables.AddUpgradable;
-        WeaponSystem.OnWeaponRemoved -= playerUpgradables.RemoveUpgradable;
     }
 
     void SetHealth(int health) => playerHp.Value = health;

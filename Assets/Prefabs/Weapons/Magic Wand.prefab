@@ -55,6 +55,7 @@ MonoBehaviour:
     pierce: 0
     projectileInterval: 0
     knockback: 0
+  playerUpgradables: {fileID: 11400000, guid: 72a375cc84aed5c46b7c92571ef8f2c8, type: 2}
   nearestEnemyRadius: 12
   spawnOffset: {x: 0, y: 0.5, z: 0}
   projectilePrefab: {fileID: 4324995265172342908, guid: 50983a2e65af29f4493c6bb2828d4945, type: 3}
