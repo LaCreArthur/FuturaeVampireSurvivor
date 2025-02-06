@@ -12,4 +12,17 @@ public struct UpgradableLevelData
     public int pierce; // Number of enemies or collisions a projectile can pass through
     public float projectileInterval; // Time between multiple projectiles in a single attack
     public float knockback;
+
+    // Additional stats for power-ups
+    public int maxHealth;
+    public int recovery;
+    public float moveSpeed;
+    public int armor;
+    public float attractionRange;
+    public int growth;
 }
+
+//todo: player script to hold it stats
+//and player logic to apply the stats (maxHealth, recovery, moveSpeed, armor, attractionRange, growth)
+//and refactor poweredUpStats out of weapon, to have every power ups applied to the player stats
+//then when using weapon stats, also look for player stats and apply them

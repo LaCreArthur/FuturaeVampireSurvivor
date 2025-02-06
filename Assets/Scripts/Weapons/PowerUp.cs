@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class PowerUp : Upgradable
+public class PowerUp : Upgradable
 {
     public UpgradableLevelData Apply(UpgradableLevelData data)
     {

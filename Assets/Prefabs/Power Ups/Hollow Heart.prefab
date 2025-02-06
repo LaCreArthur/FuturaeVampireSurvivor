@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 285702307682237610}
   - component: {fileID: 1747291891265320922}
   m_Layer: 0
-  m_Name: Might
+  m_Name: Hollow Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a55c1af4c3640448ea6151d149d6f03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradable: {fileID: 11400000, guid: 38b3e3900a1ec314bbfb0c431fb07943, type: 2}
+  upgradable: {fileID: 11400000, guid: 3565fcf44e69dd4458007b0c80c087dd, type: 2}
   stats:
     damage: 0
     cooldown: 0

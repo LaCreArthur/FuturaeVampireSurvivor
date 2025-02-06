@@ -12,7 +12,7 @@ public class UpgradableSO : ScriptableObject
 
     public string GetUpgradeDescription(int weaponLevel)
     {
-        if (weaponLevel == -1)
+        if (weaponLevel == -1 || isPowerUp)
         {
             return baseDescription;
         }
@@ -28,49 +28,49 @@ public class UpgradableSO : ScriptableObject
         // Keep track of which stats changed
         var changes = new List<string>();
 
-        if (newData.damage > oldData.damage)
+        if (Mathf.Abs(newData.damage - oldData.damage) != 0)
         {
             int diff = newData.damage - oldData.damage;
             changes.Add($"+{diff}{(isPowerUp ? "%" : "")} Damage");
         }
 
-        if (newData.cooldown < oldData.cooldown)
+        if (Mathf.Abs(newData.cooldown - oldData.cooldown) != 0)
         {
             float diff = oldData.cooldown - newData.cooldown;
             changes.Add($"-{diff:F1}{(isPowerUp ? "%" : "s")} Cooldown");
         }
 
-        if (newData.area > oldData.area)
+        if (Mathf.Abs(newData.area - oldData.area) != 0)
         {
             float diff = newData.area - oldData.area;
             changes.Add($"+{diff:F1}{(isPowerUp ? "%" : "")} Area");
         }
 
-        if (newData.amount > oldData.amount)
+        if (Mathf.Abs(newData.amount - oldData.amount) != 0)
         {
             int diff = newData.amount - oldData.amount;
             changes.Add($"+{diff} Projectiles");
         }
 
-        if (newData.duration > oldData.duration)
+        if (Mathf.Abs(newData.duration - oldData.duration) != 0)
         {
             float diff = newData.duration - oldData.duration;
             changes.Add($"+{diff:F1}{(isPowerUp ? "%" : "s")} Duration");
         }
 
-        if (newData.pierce > oldData.pierce)
+        if (Mathf.Abs(newData.pierce - oldData.pierce) != 0)
         {
             int diff = newData.pierce - oldData.pierce;
             changes.Add($"+{diff} Pierce");
         }
 
-        if (newData.projectileInterval < oldData.projectileInterval)
+        if (Mathf.Abs(newData.projectileInterval - oldData.projectileInterval) != 0)
         {
             float diff = oldData.projectileInterval - newData.projectileInterval;
             changes.Add($"-{diff:F1}{(isPowerUp ? "%" : "s")} Between Projectiles");
         }
 
-        if (newData.knockback > oldData.knockback)
+        if (Mathf.Abs(newData.knockback - oldData.knockback) != 0)
         {
             float diff = newData.knockback - oldData.knockback;
             changes.Add($"+{diff:F1}{(isPowerUp ? "%" : "")} Knockback");

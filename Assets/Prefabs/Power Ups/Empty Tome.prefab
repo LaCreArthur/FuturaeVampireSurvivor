@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 285702307682237610}
-  - component: {fileID: 1747291891265320922}
+  - component: {fileID: 6058494292410980495}
   m_Layer: 0
-  m_Name: Might
+  m_Name: Empty Tome
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1747291891265320922
+--- !u!114 &6058494292410980495
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a55c1af4c3640448ea6151d149d6f03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradable: {fileID: 11400000, guid: 38b3e3900a1ec314bbfb0c431fb07943, type: 2}
+  upgradable: {fileID: 11400000, guid: 3224bcc0f4c9dac4b9c166d08848169b, type: 2}
   stats:
     damage: 0
     cooldown: 0

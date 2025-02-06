@@ -392,6 +392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choicePrefab: {fileID: 6885249726032292632, guid: a1013acaeba22db41b6836405678d277, type: 3}
+  upgradables: []
 --- !u!1001 &1483608352106353299
 PrefabInstance:
   m_ObjectHideFlags: 0

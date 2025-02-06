@@ -62,7 +62,6 @@ GameObject:
   - component: {fileID: 8829904435573759893}
   - component: {fileID: 7202210047454845931}
   - component: {fileID: 1684536308130662957}
-  - component: {fileID: 1719129497899431897}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -183,7 +182,6 @@ MonoBehaviour:
   playerExp: {fileID: 11400000, guid: 35000407527212a439ab58a9b48b1268, type: 2}
   playerMaxExp: {fileID: 11400000, guid: e5be46d711ecdb34eb02e071c8b20ad8, type: 2}
   playerTransform: {fileID: 11400000, guid: 5a6482895ae90bb48b30b4c38b1f4eb7, type: 2}
-  playerWeapons: {fileID: 0}
 --- !u!114 &3728629294848447511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,8 +210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddb2c6dbc3449478fc80120e183b811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 0
   maxHealth: 100
   currentHealth: 0
   invulnerability: 0
@@ -249,24 +245,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b6bb2220a62078e4c95fd5e8fe17b67f, type: 2}
   characterParent: {fileID: 1426984748701887928}
   weaponParent: {fileID: 4789118744430362303}
---- !u!114 &1719129497899431897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6785265474079788035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ddb2c6dbc3449478fc80120e183b811, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 0
-  maxHealth: 0
-  currentHealth: 0
-  invulnerability: 0
-  invulnerabilityTime: 1
 --- !u!1 &7122233215217489003
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,4 +290,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 0}
-  blinks: 0
+  blinks: 2

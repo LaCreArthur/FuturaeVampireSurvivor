@@ -6,7 +6,7 @@ public class MagicWandWeapon : Weapon
     [SerializeField] Vector3 spawnOffset;
     [SerializeField] GameObject projectilePrefab;
 
-    readonly Collider2D[] _enemiesInRange = new Collider2D[16];
+    readonly Collider2D[] _enemiesInRange = new Collider2D[4];
     ContactFilter2D _contactFilter;
 
     protected override void Awake()
