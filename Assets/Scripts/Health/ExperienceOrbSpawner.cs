@@ -1,23 +1,20 @@
 ﻿using Unity.Mathematics;
 using UnityEngine;
 
-public class ExperienceOrbSpawner : MonoBehaviour
+public class ExperienceOrbSpawner : MonoBehaviour, IPoolable
 {
     [SerializeField] GameObject orbPrefab;
-    HealthSystem _healthSystem;
 
-    void Awake()
+    bool _isSpawned;
+    bool _isQuitting;
+
+    void OnDisable()
     {
-        _healthSystem = GetComponent<HealthSystem>();
-        if (_healthSystem != null)
-            _healthSystem.Died += Died;
+        if (_isSpawned && !_isQuitting) PoolManager.Spawn(orbPrefab, transform.position, quaternion.identity);
+        _isSpawned = false;
     }
 
-    void OnDestroy()
-    {
-        if (_healthSystem != null)
-            _healthSystem.Died -= Died;
-    }
+    void OnApplicationQuit() => _isQuitting = true;
 
-    void Died() => PoolManager.Spawn(orbPrefab, transform.position, quaternion.identity);
+    public void OnSpawn() => _isSpawned = true;
 }

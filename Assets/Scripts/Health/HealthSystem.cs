@@ -11,13 +11,11 @@ public class HealthSystem : MonoBehaviour
 
     public event Action<float> HpChanged;
     public event Action<float> MaxHpChanged;
-    public event Action DamageTaken;
-    public event Action Died;
 
-    protected float CurrentHp
+    public float CurrentHp
     {
         get => currentHp;
-        set {
+        protected set {
             currentHp = Mathf.Clamp(value, 0, maxHp);
             HpChanged?.Invoke(currentHp);
         }
@@ -35,9 +33,6 @@ public class HealthSystem : MonoBehaviour
     public virtual void TakeDamage(int amount)
     {
         CurrentHp -= amount;
-        DamageTaken?.Invoke();
-        if (CurrentHp <= 0) Died?.Invoke();
-
         _damageTween?.Kill();
         transform.localScale = Vector3.one;
         _damageTween = transform.DOPunchScale(Vector3.one * 0.1f, 0.2f);

@@ -16,15 +16,18 @@ public class EnemySpawner : MonoBehaviour
     bool _burst;
     Vector3 _burstSpawnPosition;
 
-    void Awake() => _cam = Camera.main;
+    void Awake()
+    {
+        GameStateManager.OnStateChange += OnStateChanged;
+        enabled = false;
+        _cam = Camera.main;
+    }
 
     void OnEnable()
     {
         _waveIndex = 0;
         SetNextWave();
     }
-
-    void Start() => GameStateManager.OnStateChange += OnStateChanged;
 
     void Update()
     {

@@ -8,6 +8,7 @@ public class DamageBlinkFeedbacks : MonoBehaviour
 
     Coroutine _blinkCoroutine;
     HealthSystem _healthSystem;
+    float _previousHp;
 
     void Start()
     {
@@ -19,7 +20,8 @@ public class DamageBlinkFeedbacks : MonoBehaviour
             enabled = false;
             return;
         }
-        _healthSystem.DamageTaken += DamageTaken;
+        _healthSystem.HpChanged += OnHpChanged;
+        _previousHp = _healthSystem.CurrentHp;
     }
 
     void OnTransformChildrenChanged()
@@ -33,7 +35,16 @@ public class DamageBlinkFeedbacks : MonoBehaviour
         }
     }
 
-    void DamageTaken()
+    void OnHpChanged(float f)
+    {
+        if (_previousHp > f)
+        {
+            Blink();
+        }
+        _previousHp = f;
+    }
+
+    void Blink()
     {
         if (_blinkCoroutine != null) StopCoroutine(_blinkCoroutine);
         _blinkCoroutine = StartCoroutine(BlinkRoutine());
