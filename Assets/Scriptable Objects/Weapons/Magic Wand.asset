@@ -23,7 +23,7 @@ MonoBehaviour:
     duration: 0
     knockback: 0
     projectileInterval: 0.15
-    amount: 2
+    amount: 1
     pierce: 0
   - damage: 12
     cooldown: 1

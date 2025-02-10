@@ -39,7 +39,7 @@ public class PlayerHealthSystem : HealthSystem
 
     void OnHpChanged(float hp) => playerHp.Value = hp;
     void OnMaxHpChanged(float maxHp) => playerMaxHp.Value = maxHp;
-    void OnLevelStart() => CurrentHp = MaxHp;
+    void OnLevelStart() => CurrentHp = MaxHp = maxHp;
 
     public override void TakeDamage(int amount)
     {
