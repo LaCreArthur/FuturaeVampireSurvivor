@@ -11,7 +11,7 @@ public class WorldGrid : MonoBehaviour
 
     readonly Vector2Int[] _spawnPattern =
     {
-        // Inner ring (adjacent cells)
+        // Adjacent cells
         new Vector2Int(0, 0), // center
         new Vector2Int(0, 1), // right
         new Vector2Int(1, 1), // top right
@@ -45,7 +45,7 @@ public class WorldGrid : MonoBehaviour
         SpawnNewCells();
     }
 
-    Vector2Int GetPlayerGridPos() => Grid.GetXY(Orientation.XY, Vector3.zero, cellSize, _playerTransform.position);
+    Vector2Int GetPlayerGridPos() => Grid.GetGridPos(Vector3.zero, cellSize, _playerTransform.position);
 
     void SpawnNewCells()
     {
@@ -54,7 +54,7 @@ public class WorldGrid : MonoBehaviour
             var cellPos = new Vector2Int(_playerGridPos.x + pos.x, _playerGridPos.y + pos.y);
             if (_cells.ContainsKey(cellPos)) continue;
 
-            Vector3 worldPos = Grid.GetWorldPos(Orientation.XY, Vector3.zero, cellSize, cellPos.x, cellPos.y, true);
+            Vector3 worldPos = Grid.GetWorldPos(Vector3.zero, cellSize, cellPos.x, cellPos.y, true);
             GameObject cell = PoolManager.Spawn(cellPrefab, worldPos, Quaternion.identity, transform);
             _cells[cellPos] = cell;
         }
