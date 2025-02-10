@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e95f22d92e94bfb87f5f70bf1997de7, type: 3}
+  m_Script: {fileID: 11500000, guid: 34385ee4f1bf46d79c6ef4a86840dc53, type: 3}
   m_Name: Empty Tome
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: e577c0991a83d5f4a875ee3a6705b2f1, type: 3}
   prefab: {fileID: 3133912357716758111, guid: 5c91da7b28ba7a74d9453685cfe48c72, type: 3}
   baseDescription: Reduce cooldown by 8%
+  isPowerUp: 1
   levelData:
   - damage: 0
     cooldown: 8
@@ -61,4 +62,3 @@ MonoBehaviour:
     projectileInterval: 0
     amount: 0
     pierce: 0
-  isPowerUp: 1

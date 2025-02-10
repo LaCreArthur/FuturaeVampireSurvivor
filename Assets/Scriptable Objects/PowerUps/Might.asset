@@ -9,56 +9,56 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e95f22d92e94bfb87f5f70bf1997de7, type: 3}
+  m_Script: {fileID: 11500000, guid: 34385ee4f1bf46d79c6ef4a86840dc53, type: 3}
   m_Name: Might
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 08dbdcd813e0dfa40b44f5f589fe1a09, type: 3}
   prefab: {fileID: 3133912357716758111, guid: 75f045de94251cc46afd1f2109d55850, type: 3}
   baseDescription: Increase damage by 10%
+  isPowerUp: 1
   levelData:
   - damage: 10
     cooldown: 0
     area: 0
     speed: 0
-    amount: 0
     duration: 0
-    pierce: 0
-    projectileInterval: 0
     knockback: 0
+    projectileInterval: 0
+    amount: 0
+    pierce: 0
   - damage: 20
     cooldown: 0
     area: 0
     speed: 0
-    amount: 0
     duration: 0
-    pierce: 0
-    projectileInterval: 0
     knockback: 0
+    projectileInterval: 0
+    amount: 0
+    pierce: 0
   - damage: 30
     cooldown: 0
     area: 0
     speed: 0
-    amount: 0
     duration: 0
-    pierce: 0
-    projectileInterval: 0
     knockback: 0
+    projectileInterval: 0
+    amount: 0
+    pierce: 0
   - damage: 40
     cooldown: 0
     area: 0
     speed: 0
-    amount: 0
     duration: 0
-    pierce: 0
-    projectileInterval: 0
     knockback: 0
+    projectileInterval: 0
+    amount: 0
+    pierce: 0
   - damage: 50
     cooldown: 0
     area: 0
     speed: 0
-    amount: 0
     duration: 0
-    pierce: 0
-    projectileInterval: 0
     knockback: 0
-  isPowerUp: 1
+    projectileInterval: 0
+    amount: 0
+    pierce: 0

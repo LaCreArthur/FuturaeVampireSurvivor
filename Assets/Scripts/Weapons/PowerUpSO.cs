@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Vampire/Upgradable", fileName = "UpgradableSO")]
-public class UpgradableSO : UpgradableSOBase
+public class PowerUpSO : UpgradableSOBase
 {
     public bool isPowerUp;
     public WeaponStats[] levelData;
