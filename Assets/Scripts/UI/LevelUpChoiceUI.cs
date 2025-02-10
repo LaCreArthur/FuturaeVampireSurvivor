@@ -13,7 +13,7 @@ public class LevelUpChoiceUI : MonoBehaviour
     Button _button;
     LevelUpUI _levelUpUI;
 
-    public static event Action OnUpgrade;
+    public static event Action UpgradeChosen;
 
     void Awake() => _button = GetComponent<Button>();
 
@@ -24,13 +24,17 @@ public class LevelUpChoiceUI : MonoBehaviour
         image.sprite = upgradable.sprite;
         newTag.SetActive(level == -1);
         _button.onClick.RemoveAllListeners();
-        _button.onClick.AddListener(() => OnClick(upgradable));
+        _button.onClick.AddListener(() => OnClick(upgradable, level));
     }
 
-    void OnClick(UpgradableSO upgradable)
+    void OnClick(UpgradableSO upgradable, int level)
     {
-        Debug.Log($"clicked {upgradable.name}");
-        PlayerUpgradables.AddOrUpgrade(upgradable);
-        OnUpgrade?.Invoke();
+        Debug.Log($"clicked {upgradable.name} at level {level}");
+        if (level == -1)
+            PlayerEquipment.Add(upgradable);
+        else
+            PlayerEquipment.Upgrade(upgradable);
+
+        UpgradeChosen?.Invoke();
     }
 }

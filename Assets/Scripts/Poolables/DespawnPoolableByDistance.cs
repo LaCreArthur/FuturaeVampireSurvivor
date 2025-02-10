@@ -12,7 +12,7 @@ public class DespawnPoolableByDistance : MonoBehaviour
     void Start()
     {
         GameStateManager.OnHome += Despawn;
-        _playerTransform = PlayerSingleton.Transform;
+        _playerTransform = PlayerTransform.Value;
     }
 
     void Update()

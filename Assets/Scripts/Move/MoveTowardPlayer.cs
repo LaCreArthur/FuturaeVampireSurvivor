@@ -5,7 +5,7 @@ public class MoveTowardPlayer : MoveBehavior
     Transform _playerTransform;
     Vector3 _direction;
 
-    public override void Initialize() => _playerTransform ??= PlayerSingleton.Transform;
+    public override void Initialize() => _playerTransform ??= PlayerTransform.Value;
 
     public override void Move()
     {

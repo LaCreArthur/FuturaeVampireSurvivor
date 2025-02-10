@@ -29,7 +29,7 @@ public class LevelUpUI : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             // if the max level is reached, don't show the weapon
-            Upgradable upgradable = PlayerUpgradables.GetUpgradableBehavior(choices[i]);
+            Upgradable upgradable = PlayerEquipment.GetInstance(choices[i]);
             int currentLevel = upgradable != null ? upgradable.CurrentLevel : -1;
             if (currentLevel == upgradable?.MaxLevel) continue;
 

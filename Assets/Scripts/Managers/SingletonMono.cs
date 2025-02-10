@@ -11,7 +11,7 @@ using UnityEngine;
 /// </summary>
 /// <typeparam name="T">Use the name of your class</typeparam>
 /// <example>
-///     <c> public class PlayerSingleton : SingletonMono&lt;PlayerSingleton&gt;</c>
+///     <c> public class PlayerTransform : SingletonMono&lt;PlayerTransform&gt;</c>
 /// </example>
 public abstract class SingletonMono<T> : MonoBehaviour where T : SingletonMono<T>
 {

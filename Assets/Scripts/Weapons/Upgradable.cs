@@ -1,20 +1,17 @@
-﻿using System;
-using DG.Tweening;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class Upgradable : MonoBehaviour
 {
     public UpgradableSO upgradable;
-    [SerializeField] protected UpgradableLevelData stats;
+    [SerializeField] protected WeaponStats stats;
 
-    public static event Action OnUpgrade;
     public int CurrentLevel { get; private set; }
     public int MaxLevel { get; private set; }
 
-    protected UpgradableLevelData Stats
+    public WeaponStats Stats
     {
         get => stats;
-        set => stats = value;
+        private set => stats = value;
     }
 
     protected virtual void Awake()
@@ -32,7 +29,6 @@ public abstract class Upgradable : MonoBehaviour
             Debug.Log($"Upgradable: Upgraded {upgradable.name} to Level {CurrentLevel + 1}");
             CurrentLevel++;
             Stats = upgradable.levelData[CurrentLevel];
-            OnUpgrade?.Invoke();
         }
     }
 }

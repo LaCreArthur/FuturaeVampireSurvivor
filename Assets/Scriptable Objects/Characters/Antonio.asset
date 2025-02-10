@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterIcon: {fileID: 1430985503064832334, guid: 68f287b5a736ca94090d3927f42321ff, type: 3}
   characterPrefab: {fileID: 7612098206927530501, guid: 2bfc1fa856f15b3479c3f043b1149bfb, type: 3}
-  baseWeaponPrefab: {fileID: 7925499478077412331, guid: 23ac2953aa860cc4eb24a40dc96da8fa, type: 3}
+  baseWeaponSO: {fileID: 11400000, guid: fc1f750c2f09d33419bf20b8b65d9dbf, type: 2}

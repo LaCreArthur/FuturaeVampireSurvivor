@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class MagicWandWeapon : Weapon
 {
@@ -17,7 +18,18 @@ public class MagicWandWeapon : Weapon
         _contactFilter.useLayerMask = true;
     }
 
-    public override void Fire(GameObject attacker)
+    public override void Fire(GameObject attacker) => StartCoroutine(SpawnMagicMissilesRoutine(attacker));
+
+    IEnumerator SpawnMagicMissilesRoutine(GameObject attacker)
+    {
+        for (int i = 0; i < poweredUpStats.amount; i++)
+        {
+            SpawnMagicMissile(attacker);
+            yield return new WaitForSeconds(poweredUpStats.projectileInterval);
+        }
+    }
+    
+    void SpawnMagicMissile(GameObject attacker)
     {
         Vector2 worldSpawnPosition = transform.TransformPoint(spawnOffset);
         GameObject projectile = PoolManager.Spawn(projectilePrefab, worldSpawnPosition, transform.rotation);
@@ -36,26 +48,14 @@ public class MagicWandWeapon : Weapon
                 direction = Random.insideUnitSphere.normalized;
             }
             direction.z = 0;
-            projController.Initialize(PoweredUpStats.speed, PoweredUpStats.damage, attacker, direction);
+            projController.Initialize(poweredUpStats.speed, poweredUpStats.damage, attacker, direction);
         }
     }
 
     bool FindNearestUsingOverlapSphere(out Transform nearestEnemy)
     {
-        int size = Physics2D.OverlapCircle(transform.position, nearestEnemyRadius, _contactFilter, _enemiesInRange);
-        float minDist = float.MaxValue;
-        nearestEnemy = null;
-
-        for (int i = 0; i < size; i++)
-        {
-            Collider2D hit = _enemiesInRange[i];
-            float dist = Vector3.Distance(transform.position, hit.transform.position);
-            if (dist < minDist)
-            {
-                minDist = dist;
-                nearestEnemy = hit.transform;
-            }
-        }
+        Physics2D.OverlapCircle(transform.position, nearestEnemyRadius, _contactFilter, _enemiesInRange);
+        nearestEnemy = _enemiesInRange.GetRandom()?.transform;
         return nearestEnemy != null;
     }
 }

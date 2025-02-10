@@ -17,9 +17,8 @@ public class WhipWeapon : Weapon
     ParticleSystem.MainModule _leftMain;
     ParticleSystem.MainModule _rightMain;
 
-    protected override void Start()
+    void Start()
     {
-        base.Start();
         _leftMain = leftWhipParticles.main;
         _rightMain = rightWhipParticles.main;
 
@@ -36,7 +35,7 @@ public class WhipWeapon : Weapon
         if (other.CompareTag("Enemy"))
         {
             other.attachedRigidbody.TryGetComponent(out HealthSystem healthSystem);
-            if (healthSystem != null) healthSystem.TakeDamage(PoweredUpStats.damage);
+            if (healthSystem != null) healthSystem.TakeDamage(poweredUpStats.damage);
         }
     }
 

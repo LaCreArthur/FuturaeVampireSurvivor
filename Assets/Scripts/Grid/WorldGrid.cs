@@ -28,7 +28,7 @@ public class WorldGrid : MonoBehaviour
 
     void Start()
     {
-        _playerTransform = PlayerSingleton.Transform;
+        _playerTransform = PlayerTransform.Value;
         _playerGridPos = GetPlayerGridPos();
         SpawnNewCells();
     }

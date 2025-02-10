@@ -20,17 +20,27 @@ MonoBehaviour:
     cooldown: 1.2
     area: 1
     speed: 10
-    amount: 1
     duration: 0
-    pierce: 0
-    projectileInterval: 0.1
     knockback: 0
+    projectileInterval: 0.15
+    amount: 2
+    pierce: 0
   - damage: 12
     cooldown: 1
     area: 1
     speed: 10
-    amount: 1
     duration: 0
-    pierce: 0
-    projectileInterval: 0.1
     knockback: 0
+    projectileInterval: 0.15
+    amount: 2
+    pierce: 0
+  - damage: 12
+    cooldown: 1
+    area: 1
+    speed: 10
+    duration: 0
+    knockback: 0
+    projectileInterval: 0.1
+    amount: 3
+    pierce: 0
+  isPowerUp: 0

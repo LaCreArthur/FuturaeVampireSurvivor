@@ -8,14 +8,13 @@ public class WeaponSystem : MonoBehaviour
 
     // Tracks how long until each weapon can attack again
     readonly Dictionary<Weapon, AttackTimer> _attackTimers = new Dictionary<Weapon, AttackTimer>();
-    static List<Weapon> Weapons => PlayerUpgradables.Weapons;
+    static List<Weapon> Weapons => PlayerEquipment.Weapons;
 
     void Start()
     {
+        ModifierSystem.OnModifiersUpdated += ResetTimers;
         GameStateManager.OnStateChange += OnStateChanged;
         OnStateChanged(GameStateManager.CurrentState);
-        PlayerUpgradables.OnUpgradableAdded += OnUpgradableAdded;
-        Upgradable.OnUpgrade += ResetTimers;
     }
 
     void Update()
@@ -27,7 +26,7 @@ public class WeaponSystem : MonoBehaviour
         // Iterate through each weapon and process attacks
         foreach (Weapon weapon in Weapons)
         {
-            if (!PlayerUpgradables.Weapons.Contains(weapon))
+            if (!PlayerEquipment.Weapons.Contains(weapon))
                 _attackTimers.Remove(weapon);
             ExecuteAttackOfWeapon(weapon);
         }
@@ -36,9 +35,9 @@ public class WeaponSystem : MonoBehaviour
     void OnDestroy()
     {
         GameStateManager.OnStateChange -= OnStateChanged;
-        PlayerUpgradables.OnUpgradableAdded -= OnUpgradableAdded;
-        Upgradable.OnUpgrade -= ResetTimers;
+        ModifierSystem.OnModifiersUpdated -= ResetTimers;
     }
+
     void ResetTimers()
     {
         foreach (Weapon weapon in Weapons)
@@ -46,18 +45,11 @@ public class WeaponSystem : MonoBehaviour
             if (_attackTimers.TryGetValue(weapon, out AttackTimer attackTimer))
             {
                 attackTimer.nextAttackTime = 0f;
-                attackTimer.cooldown = weapon.PoweredUpStats.cooldown;
+                attackTimer.cooldown = weapon.poweredUpStats.cooldown;
                 Debug.Log($"updated {weapon.name} attack timers with a cooldown of {attackTimer.cooldown}");
                 _attackTimers[weapon] = attackTimer;
             }
         }
-    }
-
-    void OnUpgradableAdded(UpgradableSO upgradableSO)
-    {
-        GameObject go = Instantiate(upgradableSO.prefab, transform.position, Quaternion.identity, transform);
-        var upgradable = go.GetComponent<Upgradable>();
-        PlayerUpgradables.AddUpgradable(upgradable);
     }
 
     void OnStateChanged(GameState state) => enabled = state == GameState.Playing;
@@ -67,7 +59,7 @@ public class WeaponSystem : MonoBehaviour
         // If the weapon isn't tracked yet, add a new AttackTimer
         if (!_attackTimers.TryGetValue(weapon, out AttackTimer attackTimer))
         {
-            attackTimer = new AttackTimer(0f, weapon.PoweredUpStats.cooldown);
+            attackTimer = new AttackTimer(0f, weapon.poweredUpStats.cooldown);
             _attackTimers.Add(weapon, attackTimer);
             Debug.Log($"Added {weapon.name} to the attack timers with a cooldown of {attackTimer.cooldown}");
         }

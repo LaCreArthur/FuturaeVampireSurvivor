@@ -10,7 +10,7 @@ public class CharacterSelector : MonoBehaviour
 
     int _currentIndex;
     GameObject _currentCharacter;
-    GameObject _currentWeapon;
+    Upgradable _currentWeapon;
 
     void Awake() => _currentIndex = 0;
 
@@ -35,15 +35,9 @@ public class CharacterSelector : MonoBehaviour
     void InstantiateCharacter()
     {
         if (_currentCharacter) Destroy(_currentCharacter);
-        if (_currentWeapon)
-        {
-            PlayerUpgradables.RemoveUpgradable(_currentWeapon.GetComponent<Upgradable>());
-            Destroy(_currentWeapon);
-        }
+        if (_currentWeapon) PlayerEquipment.Remove(_currentWeapon);
 
         _currentCharacter = Instantiate(characters[_currentIndex].characterPrefab, _characterOffset, Quaternion.identity, characterParent);
-        _currentWeapon = Instantiate(characters[_currentIndex].baseWeaponPrefab, Vector3.zero, Quaternion.identity, weaponParent);
-        var upgradable = _currentWeapon.GetComponent<Upgradable>();
-        PlayerUpgradables.AddUpgradable(upgradable);
+        _currentWeapon = PlayerEquipment.Add(characters[_currentIndex].baseWeaponSO);
     }
 }

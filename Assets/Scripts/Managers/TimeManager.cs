@@ -8,7 +8,7 @@ public class TimeManager : MonoBehaviour
         ButtonResume.OnResumeButtonClicked += ResumeTime;
         ButtonPause.OnPauseButtonClicked += PauseTime;
         ExperienceSystem.OnLevelUp += PauseTime;
-        LevelUpChoiceUI.OnUpgrade += ResumeTime;
+        LevelUpChoiceUI.UpgradeChosen += ResumeTime;
     }
 
     void OnDestroy()
@@ -17,7 +17,7 @@ public class TimeManager : MonoBehaviour
         ButtonResume.OnResumeButtonClicked -= ResumeTime;
         ButtonPause.OnPauseButtonClicked -= PauseTime;
         ExperienceSystem.OnLevelUp -= PauseTime;
-        LevelUpChoiceUI.OnUpgrade -= ResumeTime;
+        LevelUpChoiceUI.UpgradeChosen -= ResumeTime;
     }
 
     static void PauseTime() => Time.timeScale = 0;

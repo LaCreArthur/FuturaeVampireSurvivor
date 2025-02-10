@@ -20,45 +20,45 @@ MonoBehaviour:
     cooldown: 8
     area: 0
     speed: 0
-    amount: 0
     duration: 0
-    pierce: 0
-    projectileInterval: 0
     knockback: 0
+    projectileInterval: 0
+    amount: 0
+    pierce: 0
   - damage: 0
     cooldown: 16
     area: 0
     speed: 0
-    amount: 0
     duration: 0
-    pierce: 0
-    projectileInterval: 0
     knockback: 0
+    projectileInterval: 0
+    amount: 0
+    pierce: 0
   - damage: 0
     cooldown: 24
     area: 0
     speed: 0
-    amount: 0
     duration: 0
-    pierce: 0
-    projectileInterval: 0
     knockback: 0
+    projectileInterval: 0
+    amount: 0
+    pierce: 0
   - damage: 0
     cooldown: 32
     area: 0
     speed: 0
-    amount: 0
     duration: 0
-    pierce: 0
-    projectileInterval: 0
     knockback: 0
+    projectileInterval: 0
+    amount: 0
+    pierce: 0
   - damage: 0
-    cooldown: 32
+    cooldown: 40
     area: 0
     speed: 0
-    amount: 0
     duration: 0
-    pierce: 0
-    projectileInterval: 0
     knockback: 0
+    projectileInterval: 0
+    amount: 0
+    pierce: 0
   isPowerUp: 1

@@ -3,17 +3,15 @@ using UnityEngine.UI;
 
 public class UpgradableSpotsUI : MonoBehaviour
 {
-
     [SerializeField] Image[] weaponImages = new Image[4];
     [SerializeField] Image[] powerUpImages = new Image[4];
-
 
     int _weaponIndex;
     int _powerUpIndex;
 
     void Awake()
     {
-        PlayerUpgradables.OnUpgradableAdded += UpdateWeapons;
+        PlayerEquipment.OnUpgradableAdded += UpdateSpot;
         GameStateManager.OnPlaying += ResetUI;
         ResetUI();
     }
@@ -27,10 +25,10 @@ public class UpgradableSpotsUI : MonoBehaviour
         foreach (Image p in powerUpImages)
             p.enabled = false;
 
-        PlayerUpgradables.Weapons.ForEach(w => UpdateWeapons(w.upgradable));
+        PlayerEquipment.Weapons.ForEach(w => UpdateSpot(w.upgradable));
     }
 
-    void UpdateWeapons(UpgradableSO obj)
+    void UpdateSpot(UpgradableSO obj)
     {
         if (obj.isPowerUp)
         {

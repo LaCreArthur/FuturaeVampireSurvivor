@@ -14,7 +14,7 @@ public class MoveThroughPlayer : MoveBehavior, IPoolable
     public override void Initialize()
     {
         // Ensure that _playerTransform is set to the player's transform if it isn't already
-        _playerTransform ??= PlayerSingleton.Transform;
+        _playerTransform ??= PlayerTransform.Value;
         _direction = (_playerTransform.position - transform.position).normalized;
     }
 
