@@ -18,11 +18,16 @@ public class PlayerEquipment : SingletonMono<PlayerEquipment>
     public static void Remove(Upgradable upgradable)
     {
         if (upgradable is PowerUp powerUp)
+        {
             PowerUps.Remove(powerUp);
+            Debug.Log($"PlayerEquipment: Removed {powerUp.upgradable.name}");
+        }
         else if (upgradable is Weapon weapon)
+        {
             Weapons.Remove(weapon);
+            Debug.Log($"PlayerEquipment: Removed {weapon.upgradable.name}");
+        }
 
-        Debug.Log($"PlayerEquipment: Removed {upgradable.upgradable.name}");
         Destroy(upgradable.gameObject);
     }
 
@@ -54,7 +59,7 @@ public class PlayerEquipment : SingletonMono<PlayerEquipment>
     }
     public static void Upgrade(UpgradableSO upgradableSO)
     {
-        Upgradable upgradable = upgradableSO.isPowerUp ?
+        Upgradable upgradable = upgradableSO is PowerUpSO ?
             PowerUps.Find(p => p.upgradable == upgradableSO) :
             Weapons.Find(w => w.upgradable == upgradableSO);
         upgradable.Upgrade();

@@ -175,7 +175,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3949453046366132083
 RectTransform:
   m_ObjectHideFlags: 0
@@ -299,7 +299,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &87348882698307947
 CanvasRenderer:
@@ -392,7 +392,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choicePrefab: {fileID: 6885249726032292632, guid: a1013acaeba22db41b6836405678d277, type: 3}
-  upgradables: []
+  upgradables:
+  - {fileID: 11400000, guid: d813c6460a6bd814aace916cf8e7c27b, type: 2}
+  - {fileID: 11400000, guid: 065e285264ca6bb4db5b20aedb48d920, type: 2}
+  - {fileID: 11400000, guid: fc1f750c2f09d33419bf20b8b65d9dbf, type: 2}
+  - {fileID: 11400000, guid: 3224bcc0f4c9dac4b9c166d08848169b, type: 2}
+  - {fileID: 11400000, guid: 3565fcf44e69dd4458007b0c80c087dd, type: 2}
+  - {fileID: 11400000, guid: 38b3e3900a1ec314bbfb0c431fb07943, type: 2}
 --- !u!1001 &1483608352106353299
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -5,5 +5,5 @@ public class CharacterSO : ScriptableObject
 {
     public Sprite characterIcon;
     public GameObject characterPrefab;
-    public UpgradableSO baseWeaponSO;
+    public WeaponSO baseWeaponSO;
 }

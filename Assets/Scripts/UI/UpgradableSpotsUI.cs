@@ -28,18 +28,18 @@ public class UpgradableSpotsUI : MonoBehaviour
         PlayerEquipment.Weapons.ForEach(w => UpdateSpot(w.upgradable));
     }
 
-    void UpdateSpot(UpgradableSO obj)
+    void UpdateSpot(UpgradableSO so)
     {
-        if (obj.isPowerUp)
+        if (so is PowerUpSO)
         {
             powerUpImages[_powerUpIndex].enabled = true;
-            powerUpImages[_powerUpIndex].sprite = obj.sprite;
+            powerUpImages[_powerUpIndex].sprite = so.sprite;
             _powerUpIndex++;
         }
         else
         {
             weaponImages[_weaponIndex].enabled = true;
-            weaponImages[_weaponIndex].sprite = obj.sprite;
+            weaponImages[_weaponIndex].sprite = so.sprite;
             _weaponIndex++;
         }
     }

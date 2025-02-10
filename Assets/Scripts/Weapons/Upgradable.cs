@@ -1,14 +1,11 @@
 ﻿using UnityEngine;
 
-public abstract class Upgradable : MonoBehaviour
+public abstract class Upgradable<T> : Upgradable
 {
-    public UpgradableSO upgradable;
-    [SerializeField] protected WeaponStats stats;
+    public UpgradableSO<T> upgradable;
+    [SerializeField] protected T stats;
 
-    public int CurrentLevel { get; private set; }
-    public int MaxLevel { get; private set; }
-
-    public WeaponStats Stats
+    public T Stats
     {
         get => stats;
         private set => stats = value;
@@ -21,8 +18,7 @@ public abstract class Upgradable : MonoBehaviour
         Stats = upgradable.levelData[CurrentLevel];
     }
 
-
-    public void Upgrade()
+    public override void Upgrade()
     {
         if (CurrentLevel < upgradable.levelData.Length - 1)
         {
@@ -31,4 +27,11 @@ public abstract class Upgradable : MonoBehaviour
             Stats = upgradable.levelData[CurrentLevel];
         }
     }
+}
+
+public abstract class Upgradable : MonoBehaviour
+{
+    public int CurrentLevel { get; protected set; }
+    public int MaxLevel { get; protected set; }
+    public abstract void Upgrade();
 }

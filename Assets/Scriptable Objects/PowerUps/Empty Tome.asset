@@ -15,50 +15,89 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: e577c0991a83d5f4a875ee3a6705b2f1, type: 3}
   prefab: {fileID: 3133912357716758111, guid: 5c91da7b28ba7a74d9453685cfe48c72, type: 3}
   baseDescription: Reduce cooldown by 8%
-  isPowerUp: 1
   levelData:
-  - damage: 0
-    cooldown: 8
-    area: 0
-    speed: 0
-    duration: 0
-    knockback: 0
-    projectileInterval: 0
-    amount: 0
-    pierce: 0
-  - damage: 0
-    cooldown: 16
-    area: 0
-    speed: 0
-    duration: 0
-    knockback: 0
-    projectileInterval: 0
-    amount: 0
-    pierce: 0
-  - damage: 0
-    cooldown: 24
-    area: 0
-    speed: 0
-    duration: 0
-    knockback: 0
-    projectileInterval: 0
-    amount: 0
-    pierce: 0
-  - damage: 0
-    cooldown: 32
-    area: 0
-    speed: 0
-    duration: 0
-    knockback: 0
-    projectileInterval: 0
-    amount: 0
-    pierce: 0
-  - damage: 0
-    cooldown: 40
-    area: 0
-    speed: 0
-    duration: 0
-    knockback: 0
-    projectileInterval: 0
-    amount: 0
-    pierce: 0
+  - weaponStats:
+      damage: 0
+      cooldown: 8
+      area: 0
+      speed: 0
+      duration: 0
+      knockback: 0
+      projectileInterval: 0
+      amount: 0
+      pierce: 0
+    playerStats:
+      maxHealth: 0
+      recovery: 0
+      moveSpeed: 0
+      attractionRange: 0
+      armor: 0
+      growth: 0
+  - weaponStats:
+      damage: 0
+      cooldown: 16
+      area: 0
+      speed: 0
+      duration: 0
+      knockback: 0
+      projectileInterval: 0
+      amount: 0
+      pierce: 0
+    playerStats:
+      maxHealth: 0
+      recovery: 0
+      moveSpeed: 0
+      attractionRange: 0
+      armor: 0
+      growth: 0
+  - weaponStats:
+      damage: 0
+      cooldown: 24
+      area: 0
+      speed: 0
+      duration: 0
+      knockback: 0
+      projectileInterval: 0
+      amount: 0
+      pierce: 0
+    playerStats:
+      maxHealth: 0
+      recovery: 0
+      moveSpeed: 0
+      attractionRange: 0
+      armor: 0
+      growth: 0
+  - weaponStats:
+      damage: 0
+      cooldown: 32
+      area: 0
+      speed: 0
+      duration: 0
+      knockback: 0
+      projectileInterval: 0
+      amount: 0
+      pierce: 0
+    playerStats:
+      maxHealth: 0
+      recovery: 0
+      moveSpeed: 0
+      attractionRange: 0
+      armor: 0
+      growth: 0
+  - weaponStats:
+      damage: 0
+      cooldown: 40
+      area: 0
+      speed: 0
+      duration: 0
+      knockback: 0
+      projectileInterval: 0
+      amount: 0
+      pierce: 0
+    playerStats:
+      maxHealth: 0
+      recovery: 0
+      moveSpeed: 0
+      attractionRange: 0
+      armor: 0
+      growth: 0

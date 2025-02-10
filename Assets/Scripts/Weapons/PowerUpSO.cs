@@ -1,76 +1,110 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Vampire/Upgradable", fileName = "UpgradableSO")]
-public class PowerUpSO : UpgradableSOBase
+[CreateAssetMenu(menuName = "Vampire/PowerUp", fileName = "PowerUpSO")]
+public class PowerUpSO : UpgradableSO<PowerUpStats>
 {
-    public bool isPowerUp;
-    public WeaponStats[] levelData;
-
-    public string GetUpgradeDescription(int weaponLevel)
+    public override string GetUpgradeDescription(int level)
     {
-        if (weaponLevel == -1 || isPowerUp)
+        if (level == -1)
         {
             return baseDescription;
         }
-        if (weaponLevel + 1 >= levelData.Length)
+        if (level + 1 >= levelData.Length)
         {
             return "Max level reached, you should not see this!";
         }
 
         // Get the stats for the previous level and the current one
-        WeaponStats oldStats = levelData[weaponLevel];
-        WeaponStats newStats = levelData[weaponLevel + 1];
+        PowerUpStats oldStats = levelData[level];
+        PowerUpStats newStats = levelData[level + 1];
 
         // Keep track of which stats changed
         var changes = new List<string>();
 
-        if (Mathf.Abs(newStats.damage - oldStats.damage) != 0)
+        if (Mathf.Abs(newStats.weaponStats.damage - oldStats.weaponStats.damage) != 0)
         {
-            int diff = newStats.damage - oldStats.damage;
-            changes.Add($"+{diff}{(isPowerUp ? "%" : "")} Damage");
+            int diff = newStats.weaponStats.damage - oldStats.weaponStats.damage;
+            changes.Add($"+{diff}% Damage");
         }
 
-        if (Mathf.Abs(newStats.cooldown - oldStats.cooldown) != 0)
+        if (Mathf.Abs(newStats.weaponStats.cooldown - oldStats.weaponStats.cooldown) != 0)
         {
-            float diff = oldStats.cooldown - newStats.cooldown;
-            changes.Add($"-{diff:F1}{(isPowerUp ? "%" : "s")} Cooldown");
+            float diff = oldStats.weaponStats.cooldown - newStats.weaponStats.cooldown;
+            changes.Add($"-{diff:F1}% Cooldown");
         }
 
-        if (Mathf.Abs(newStats.area - oldStats.area) != 0)
+        if (Mathf.Abs(newStats.weaponStats.area - oldStats.weaponStats.area) != 0)
         {
-            float diff = newStats.area - oldStats.area;
-            changes.Add($"+{diff:F1}{(isPowerUp ? "%" : "")} Area");
+            float diff = newStats.weaponStats.area - oldStats.weaponStats.area;
+            changes.Add($"+{diff:F1}% Area");
         }
 
-        if (Mathf.Abs(newStats.amount - oldStats.amount) != 0)
+        if (Mathf.Abs(newStats.weaponStats.amount - oldStats.weaponStats.amount) != 0)
         {
-            int diff = newStats.amount - oldStats.amount;
+            int diff = newStats.weaponStats.amount - oldStats.weaponStats.amount;
             changes.Add($"+{diff} Projectiles");
         }
 
-        if (Mathf.Abs(newStats.duration - oldStats.duration) != 0)
+        if (Mathf.Abs(newStats.weaponStats.duration - oldStats.weaponStats.duration) != 0)
         {
-            float diff = newStats.duration - oldStats.duration;
-            changes.Add($"+{diff:F1}{(isPowerUp ? "%" : "s")} Duration");
+            float diff = newStats.weaponStats.duration - oldStats.weaponStats.duration;
+            changes.Add($"+{diff:F1}% Duration");
         }
 
-        if (Mathf.Abs(newStats.pierce - oldStats.pierce) != 0)
+        if (Mathf.Abs(newStats.weaponStats.pierce - oldStats.weaponStats.pierce) != 0)
         {
-            int diff = newStats.pierce - oldStats.pierce;
+            int diff = newStats.weaponStats.pierce - oldStats.weaponStats.pierce;
             changes.Add($"+{diff} Pierce");
         }
 
-        if (Mathf.Abs(newStats.projectileInterval - oldStats.projectileInterval) != 0)
+        if (Mathf.Abs(newStats.weaponStats.projectileInterval - oldStats.weaponStats.projectileInterval) != 0)
         {
-            float diff = oldStats.projectileInterval - newStats.projectileInterval;
-            changes.Add($"-{diff:F1}{(isPowerUp ? "%" : "s")} Between Projectiles");
+            float diff = oldStats.weaponStats.projectileInterval - newStats.weaponStats.projectileInterval;
+            changes.Add($"-{diff:F1}% Between Projectiles");
         }
 
-        if (Mathf.Abs(newStats.knockback - oldStats.knockback) != 0)
+        if (Mathf.Abs(newStats.weaponStats.knockback - oldStats.weaponStats.knockback) != 0)
         {
-            float diff = newStats.knockback - oldStats.knockback;
-            changes.Add($"+{diff:F1}{(isPowerUp ? "%" : "")} Knockback");
+            float diff = newStats.weaponStats.knockback - oldStats.weaponStats.knockback;
+            changes.Add($"+{diff:F1}% Knockback");
+        }
+
+        if (Mathf.Abs(newStats.playerStats.maxHealth - oldStats.playerStats.maxHealth) != 0)
+        {
+            int diff = newStats.playerStats.maxHealth - oldStats.playerStats.maxHealth;
+            changes.Add($"+{diff:F1}% Max HP");
+        }
+
+        if (Mathf.Abs(newStats.playerStats.recovery - oldStats.playerStats.recovery) != 0)
+        {
+            float diff = newStats.playerStats.recovery - oldStats.playerStats.recovery;
+            changes.Add($"+{diff} Recovery");
+        }
+
+        if (Mathf.Abs(newStats.playerStats.moveSpeed - oldStats.playerStats.moveSpeed) != 0)
+        {
+            float diff = newStats.playerStats.moveSpeed - oldStats.playerStats.moveSpeed;
+            changes.Add($"+{diff:F1}% Move Speed");
+        }
+
+        if (Mathf.Abs(newStats.playerStats.attractionRange - oldStats.playerStats.attractionRange) != 0)
+        {
+            float diff = newStats.playerStats.attractionRange - oldStats.playerStats.attractionRange;
+            changes.Add($"+{diff:F1}% Attraction Range");
+        }
+
+        if (Mathf.Abs(newStats.playerStats.armor - oldStats.playerStats.armor) != 0)
+        {
+            int diff = newStats.playerStats.armor - oldStats.playerStats.armor;
+            changes.Add($"+{diff} Armor");
+        }
+
+        if (Mathf.Abs(newStats.playerStats.growth - oldStats.playerStats.growth) != 0)
+        {
+            int diff = newStats.playerStats.growth - oldStats.playerStats.growth;
+            changes.Add($"+{diff:F1}% Exp Gain");
         }
 
         // Join all improvements into one line
@@ -78,4 +112,11 @@ public class PowerUpSO : UpgradableSOBase
             ? string.Join(", ", changes)
             : "No stat change";
     }
+}
+
+[Serializable]
+public struct PowerUpStats
+{
+    public WeaponStats weaponStats;
+    public PlayerStats playerStats;
 }

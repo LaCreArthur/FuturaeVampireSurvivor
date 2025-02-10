@@ -1,31 +1,27 @@
-﻿using UnityEngine;
-
-public class PowerUp : Upgradable
+﻿public class PowerUp : Upgradable<PowerUpStats>
 {
-    [SerializeField] PlayerStats playerModifier;
-
     public WeaponStats ApplyWeaponPowerUp(WeaponStats wStats)
     {
-        wStats.damage += stats.damage;
-        wStats.cooldown -= stats.cooldown;
-        wStats.area += stats.area;
-        wStats.speed += stats.speed;
-        wStats.amount += stats.amount;
-        wStats.duration += stats.duration;
-        wStats.pierce += stats.pierce;
-        wStats.projectileInterval -= stats.projectileInterval;
-        wStats.knockback += stats.knockback;
+        wStats.damage += stats.weaponStats.damage;
+        wStats.cooldown -= stats.weaponStats.cooldown;
+        wStats.area += stats.weaponStats.area;
+        wStats.speed += stats.weaponStats.speed;
+        wStats.amount += stats.weaponStats.amount;
+        wStats.duration += stats.weaponStats.duration;
+        wStats.pierce += stats.weaponStats.pierce;
+        wStats.projectileInterval -= stats.weaponStats.projectileInterval;
+        wStats.knockback += stats.weaponStats.knockback;
         return wStats;
     }
 
     public PlayerStats ApplyPlayerPowerUp(PlayerStats pStats)
     {
-        pStats.maxHealth += playerModifier.maxHealth;
-        pStats.recovery += playerModifier.recovery;
-        pStats.moveSpeed += playerModifier.moveSpeed;
-        pStats.armor += playerModifier.armor;
-        pStats.attractionRange += playerModifier.attractionRange;
-        pStats.growth += playerModifier.growth;
+        pStats.maxHealth += stats.playerStats.maxHealth;
+        pStats.recovery += stats.playerStats.recovery;
+        pStats.moveSpeed += stats.playerStats.moveSpeed;
+        pStats.armor += stats.playerStats.armor;
+        pStats.attractionRange += stats.playerStats.attractionRange;
+        pStats.growth += stats.playerStats.growth;
         return pStats;
     }
 }
