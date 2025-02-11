@@ -6,5 +6,5 @@ public class CharacterSO : ScriptableObject
     public Sprite characterIcon;
     public GameObject characterPrefab;
     public WeaponSO baseWeaponSO;
-    public PlayerStats baseStats;
+    public Modifiers baseStats;
 }

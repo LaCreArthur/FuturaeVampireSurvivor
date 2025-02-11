@@ -35,7 +35,7 @@ public class WhipWeapon : Weapon
         if (other.CompareTag("Enemy"))
         {
             other.attachedRigidbody.TryGetComponent(out HealthSystem healthSystem);
-            if (healthSystem != null) healthSystem.TakeDamage(poweredUpStats.damage);
+            if (healthSystem != null) healthSystem.TakeDamage(modifiedStats.damage);
         }
     }
 

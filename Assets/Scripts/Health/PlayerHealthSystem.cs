@@ -6,12 +6,12 @@ public class PlayerHealthSystem : HealthSystem
     [SerializeField] FloatVar playerHp;
     [SerializeField] FloatVar playerMaxHp;
 
-
     void Awake()
     {
         GameStateManager.OnPlaying += OnLevelStart;
         HpChanged += OnHpChanged;
         MaxHpChanged += OnMaxHpChanged;
+        CharacterSelector.CharacterChanged += OnCharacterChanged;
     }
 
     void OnDestroy()
@@ -19,6 +19,13 @@ public class PlayerHealthSystem : HealthSystem
         GameStateManager.OnPlaying -= OnLevelStart;
         HpChanged -= OnHpChanged;
         MaxHpChanged -= OnMaxHpChanged;
+        CharacterSelector.CharacterChanged -= OnCharacterChanged;
+    }
+
+    void OnCharacterChanged(CharacterSO characterSO)
+    {
+        maxHp = characterSO.baseStats.maxHealth;
+        CurrentHp = MaxHp = maxHp;
     }
 
     void OnHpChanged(float hp) => playerHp.Value = hp;

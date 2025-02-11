@@ -45,7 +45,7 @@ public class WeaponSystem : MonoBehaviour
             if (_attackTimers.TryGetValue(weapon, out AttackTimer attackTimer))
             {
                 attackTimer.nextAttackTime = 0f;
-                attackTimer.cooldown = weapon.poweredUpStats.cooldown;
+                attackTimer.cooldown = weapon.modifiedStats.cooldown;
                 Debug.Log($"updated {weapon.name} attack timers with a cooldown of {attackTimer.cooldown}");
                 _attackTimers[weapon] = attackTimer;
             }
@@ -59,7 +59,7 @@ public class WeaponSystem : MonoBehaviour
         // If the weapon isn't tracked yet, add a new AttackTimer
         if (!_attackTimers.TryGetValue(weapon, out AttackTimer attackTimer))
         {
-            attackTimer = new AttackTimer(0f, weapon.poweredUpStats.cooldown);
+            attackTimer = new AttackTimer(0f, weapon.modifiedStats.cooldown);
             _attackTimers.Add(weapon, attackTimer);
             Debug.Log($"Added {weapon.name} to the attack timers with a cooldown of {attackTimer.cooldown}");
         }

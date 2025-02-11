@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterSelector : MonoBehaviour
@@ -11,6 +12,8 @@ public class CharacterSelector : MonoBehaviour
     int _currentIndex;
     GameObject _currentCharacter;
     Upgradable _currentWeapon;
+
+    public static event Action<CharacterSO> CharacterChanged;
 
     void Awake() => _currentIndex = 0;
 
@@ -35,9 +38,8 @@ public class CharacterSelector : MonoBehaviour
     void InstantiateCharacter()
     {
         if (_currentCharacter) Destroy(_currentCharacter);
-        if (_currentWeapon) PlayerEquipment.Remove(_currentWeapon);
-
-        _currentCharacter = Instantiate(characters[_currentIndex].characterPrefab, _characterOffset, Quaternion.identity, characterParent);
-        _currentWeapon = PlayerEquipment.Add(characters[_currentIndex].baseWeaponSO);
+        _currentCharacter = Instantiate(characters[_currentIndex].characterPrefab, Vector3.zero, Quaternion.identity, characterParent);
+        _currentCharacter.transform.localPosition = _characterOffset;
+        CharacterChanged?.Invoke(characters[_currentIndex]);
     }
 }

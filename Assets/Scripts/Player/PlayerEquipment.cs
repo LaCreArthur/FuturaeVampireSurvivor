@@ -13,19 +13,38 @@ public class PlayerEquipment : SingletonMono<PlayerEquipment>
     public static event Action<UpgradableSO> OnUpgradableAdded;
     public static event Action<UpgradableSO> OnUpgradableUpgraded;
 
-    protected override void OnAwake() => s_weaponParent = weaponParent;
+    protected override void OnAwake()
+    {
+        s_weaponParent = weaponParent;
+        CharacterSelector.CharacterChanged += OnCharacterChanged;
+    }
+
+    void OnDestroy() => CharacterSelector.CharacterChanged -= OnCharacterChanged;
+    void OnCharacterChanged(CharacterSO characterSO)
+    {
+        RemoveAllEquipment();
+        Add(characterSO.baseWeaponSO);
+    }
+
+    static void RemoveAllEquipment()
+    {
+        foreach (Weapon weapon in Weapons)
+            Remove(weapon);
+        foreach (PowerUp powerUp in PowerUps)
+            Remove(powerUp);
+    }
 
     public static void Remove(Upgradable upgradable)
     {
         if (upgradable is PowerUp powerUp)
         {
             PowerUps.Remove(powerUp);
-            Debug.Log($"PlayerEquipment: Removed {powerUp.upgradable.name}");
+            Debug.Log($"PlayerEquipment: Removed power up {powerUp.upgradable.name}");
         }
         else if (upgradable is Weapon weapon)
         {
             Weapons.Remove(weapon);
-            Debug.Log($"PlayerEquipment: Removed {weapon.upgradable.name}");
+            Debug.Log($"PlayerEquipment: Removed weapon {weapon.upgradable.name}");
         }
 
         Destroy(upgradable.gameObject);
@@ -49,8 +68,8 @@ public class PlayerEquipment : SingletonMono<PlayerEquipment>
         else if (upgradable is Weapon weapon)
         {
             Weapons.Add(weapon);
-            // we need to initialize the poweredUpStats to the base stats
-            weapon.poweredUpStats = weapon.Stats;
+            // we need to initialize the modifiedStats to the base stats
+            weapon.modifiedStats = weapon.Stats;
         }
 
         Debug.Log($"PlayerEquipment: Added {upgradableSO.name}");

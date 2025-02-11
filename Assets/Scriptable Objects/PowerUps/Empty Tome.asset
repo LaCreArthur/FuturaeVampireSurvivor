@@ -16,88 +16,58 @@ MonoBehaviour:
   prefab: {fileID: 3133912357716758111, guid: 5c91da7b28ba7a74d9453685cfe48c72, type: 3}
   baseDescription: Reduce cooldown by 8%
   levelData:
-  - weaponStats:
-      damage: 0
-      cooldown: 8
-      area: 0
-      speed: 0
-      duration: 0
-      knockback: 0
-      projectileInterval: 0
-      amount: 0
-      pierce: 0
-    playerStats:
-      maxHealth: 0
-      recovery: 0
-      moveSpeed: 0
-      attractionRange: 0
-      armor: 0
-      growth: 0
-  - weaponStats:
-      damage: 0
-      cooldown: 16
-      area: 0
-      speed: 0
-      duration: 0
-      knockback: 0
-      projectileInterval: 0
-      amount: 0
-      pierce: 0
-    playerStats:
-      maxHealth: 0
-      recovery: 0
-      moveSpeed: 0
-      attractionRange: 0
-      armor: 0
-      growth: 0
-  - weaponStats:
-      damage: 0
-      cooldown: 24
-      area: 0
-      speed: 0
-      duration: 0
-      knockback: 0
-      projectileInterval: 0
-      amount: 0
-      pierce: 0
-    playerStats:
-      maxHealth: 0
-      recovery: 0
-      moveSpeed: 0
-      attractionRange: 0
-      armor: 0
-      growth: 0
-  - weaponStats:
-      damage: 0
-      cooldown: 32
-      area: 0
-      speed: 0
-      duration: 0
-      knockback: 0
-      projectileInterval: 0
-      amount: 0
-      pierce: 0
-    playerStats:
-      maxHealth: 0
-      recovery: 0
-      moveSpeed: 0
-      attractionRange: 0
-      armor: 0
-      growth: 0
-  - weaponStats:
-      damage: 0
-      cooldown: 40
-      area: 0
-      speed: 0
-      duration: 0
-      knockback: 0
-      projectileInterval: 0
-      amount: 0
-      pierce: 0
-    playerStats:
-      maxHealth: 0
-      recovery: 0
-      moveSpeed: 0
-      attractionRange: 0
-      armor: 0
-      growth: 0
+  - maxHealth: 0
+    recovery: 0
+    armor: 0
+    moveSpeed: 0
+    growth: 0
+    attractionRange: 0
+    might: 0
+    area: 0
+    speed: 0
+    amount: 0
+    cooldown: 10
+  - maxHealth: 0
+    recovery: 0
+    armor: 0
+    moveSpeed: 0
+    growth: 0
+    attractionRange: 0
+    might: 0
+    area: 0
+    speed: 0
+    amount: 0
+    cooldown: 20
+  - maxHealth: 0
+    recovery: 0
+    armor: 0
+    moveSpeed: 0
+    growth: 0
+    attractionRange: 0
+    might: 0
+    area: 0
+    speed: 0
+    amount: 0
+    cooldown: 30
+  - maxHealth: 0
+    recovery: 0
+    armor: 0
+    moveSpeed: 0
+    growth: 0
+    attractionRange: 0
+    might: 0
+    area: 0
+    speed: 0
+    amount: 0
+    cooldown: 40
+  - maxHealth: 0
+    recovery: 0
+    armor: 0
+    moveSpeed: 0
+    growth: 0
+    attractionRange: 0
+    might: 0
+    area: 0
+    speed: 0
+    amount: 0
+    cooldown: 50

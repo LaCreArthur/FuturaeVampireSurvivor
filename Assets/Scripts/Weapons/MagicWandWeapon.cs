@@ -22,13 +22,13 @@ public class MagicWandWeapon : Weapon
 
     IEnumerator SpawnMagicMissilesRoutine(GameObject attacker)
     {
-        for (int i = 0; i < poweredUpStats.amount; i++)
+        for (int i = 0; i < modifiedStats.amount; i++)
         {
             SpawnMagicMissile(attacker);
-            yield return new WaitForSeconds(poweredUpStats.projectileInterval);
+            yield return new WaitForSeconds(modifiedStats.projectileInterval);
         }
     }
-    
+
     void SpawnMagicMissile(GameObject attacker)
     {
         Vector2 worldSpawnPosition = transform.TransformPoint(spawnOffset);
@@ -48,7 +48,7 @@ public class MagicWandWeapon : Weapon
                 direction = Random.insideUnitSphere.normalized;
             }
             direction.z = 0;
-            projController.Initialize(poweredUpStats.speed, poweredUpStats.damage, attacker, direction);
+            projController.Initialize(modifiedStats.speed, modifiedStats.damage, attacker, direction);
         }
     }
 

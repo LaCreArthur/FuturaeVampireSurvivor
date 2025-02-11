@@ -50,13 +50,17 @@ public class ExperienceSystem : MonoBehaviour
     {
         GameStateManager.OnPlaying += OnLevelStart;
         ExperienceOrb.OnExpCollected += CollectExperience;
+        CharacterSelector.CharacterChanged += OnCharacterChanged;
     }
 
     void OnDestroy()
     {
         GameStateManager.OnPlaying -= OnLevelStart;
         ExperienceOrb.OnExpCollected -= CollectExperience;
+        CharacterSelector.CharacterChanged -= OnCharacterChanged;
     }
+
+    void OnCharacterChanged(CharacterSO characterSO) => MultiplierBonus = 1 + characterSO.baseStats.growth / 100f;
 
     void OnLevelStart()
     {
