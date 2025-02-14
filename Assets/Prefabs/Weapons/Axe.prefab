@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3133912357716758111
+--- !u!1 &3921613116576328812
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 285702307682237610}
-  - component: {fileID: 1747291891265320922}
+  - component: {fileID: 3182619585970615381}
+  - component: {fileID: 6931235671178463864}
   m_Layer: 0
-  m_Name: Might
+  m_Name: Axe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &285702307682237610
+--- !u!4 &3182619585970615381
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3133912357716758111}
+  m_GameObject: {fileID: 3921613116576328812}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,26 +32,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1747291891265320922
+--- !u!114 &6931235671178463864
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3133912357716758111}
+  m_GameObject: {fileID: 3921613116576328812}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a55c1af4c3640448ea6151d149d6f03, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ff79a460ba54bf996ffa42435aac444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradable: {fileID: 11400000, guid: 38b3e3900a1ec314bbfb0c431fb07943, type: 2}
+  upgradable: {fileID: 11400000, guid: 166aba0356355864a9efe03621e0ac0c, type: 2}
   stats:
     damage: 0
     cooldown: 0
     area: 0
     speed: 0
-    amount: 0
     duration: 0
-    pierce: 0
-    projectileInterval: 0
     knockback: 0
+    projectileInterval: 0
+    amount: 0
+    pierce: 0
+  modifiedStats:
+    damage: 0
+    cooldown: 0
+    area: 0
+    speed: 0
+    duration: 0
+    knockback: 0
+    projectileInterval: 0
+    amount: 0
+    pierce: 0
+  spawnOffset: {x: 0, y: 0.5, z: 0}
+  projectilePrefab: {fileID: 4324995265172342908, guid: bb4d9f1aced9210468d1550dc65170d0, type: 3}

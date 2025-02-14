@@ -7,6 +7,7 @@ public class PlayerHealthSystem : HealthSystem
     [SerializeField] FloatVar playerMaxHp;
 
     int _armor;
+    float _recovery;
 
     void Awake()
     {
@@ -15,6 +16,14 @@ public class PlayerHealthSystem : HealthSystem
         MaxHpChanged += OnMaxHpChanged;
         CharacterSelector.CharacterChanged += OnCharacterChanged;
         ModifierSystem.CharacterModifiersUpdated += OnModifiersUpdated;
+    }
+
+    void Update()
+    {
+        if (CurrentHp < MaxHp && _recovery > 0)
+        {
+            CurrentHp += _recovery * Time.deltaTime;
+        }
     }
 
     void OnDestroy()
@@ -31,6 +40,7 @@ public class PlayerHealthSystem : HealthSystem
         MaxHp = stats.maxHealth;
         CurrentHp = Mathf.Min(CurrentHp, MaxHp);
         _armor = stats.armor;
+        _recovery = stats.recovery;
     }
 
     void OnCharacterChanged(CharacterSO characterSO)

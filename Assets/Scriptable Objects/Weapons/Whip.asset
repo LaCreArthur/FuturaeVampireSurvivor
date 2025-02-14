@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: b5dc9f7c2919d81459634988a433ca25, type: 3}
   prefab: {fileID: 7925499478077412331, guid: 23ac2953aa860cc4eb24a40dc96da8fa, type: 3}
-  baseDescription: attack left and right in a close range area
+  baseDescription: Attacks horizontally, passes through enemies
   levelData:
   - damage: 10
     cooldown: 1.35
@@ -43,4 +43,3 @@ MonoBehaviour:
     projectileInterval: 0
     amount: 1
     pierce: 0
-  isPowerUp: 0

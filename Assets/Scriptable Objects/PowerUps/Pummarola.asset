@@ -10,63 +10,63 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34385ee4f1bf46d79c6ef4a86840dc53, type: 3}
-  m_Name: Might
+  m_Name: Pummarola
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 08dbdcd813e0dfa40b44f5f589fe1a09, type: 3}
-  prefab: {fileID: 3133912357716758111, guid: 75f045de94251cc46afd1f2109d55850, type: 3}
-  baseDescription: Increase damage by 10%
+  sprite: {fileID: 21300000, guid: 714e17cb6fff90b448a169b13bbafccc, type: 3}
+  prefab: {fileID: 3133912357716758111, guid: 539f672b2aff9e94b82ae902a975b412, type: 3}
+  baseDescription: Character recovers 0.2 HP per second
   levelData:
   - maxHealth: 0
-    recovery: 0
+    recovery: 0.2
     armor: 0
     moveSpeed: 0
     growth: 0
     attractionRange: 0
-    might: 10
+    might: 0
     area: 0
     speed: 0
     amount: 0
     cooldown: 0
   - maxHealth: 0
-    recovery: 0
+    recovery: 0.4
     armor: 0
     moveSpeed: 0
     growth: 0
     attractionRange: 0
-    might: 20
+    might: 0
     area: 0
     speed: 0
     amount: 0
     cooldown: 0
   - maxHealth: 0
-    recovery: 0
+    recovery: 0.6
     armor: 0
     moveSpeed: 0
     growth: 0
     attractionRange: 0
-    might: 30
+    might: 0
     area: 0
     speed: 0
     amount: 0
     cooldown: 0
   - maxHealth: 0
-    recovery: 0
+    recovery: 0.8
     armor: 0
     moveSpeed: 0
     growth: 0
     attractionRange: 0
-    might: 40
+    might: 0
     area: 0
     speed: 0
     amount: 0
     cooldown: 0
   - maxHealth: 0
-    recovery: 0
+    recovery: 1
     armor: 0
     moveSpeed: 0
     growth: 0
     attractionRange: 0
-    might: 50
+    might: 0
     area: 0
     speed: 0
     amount: 0

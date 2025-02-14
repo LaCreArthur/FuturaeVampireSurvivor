@@ -27,3 +27,47 @@ MonoBehaviour:
     speed: 0
     amount: 0
     cooldown: 0
+  - maxHealth: 0
+    recovery: 0
+    armor: 0
+    moveSpeed: 0
+    growth: 20
+    attractionRange: 0
+    might: 0
+    area: 0
+    speed: 0
+    amount: 0
+    cooldown: 0
+  - maxHealth: 0
+    recovery: 0
+    armor: 0
+    moveSpeed: 0
+    growth: 30
+    attractionRange: 0
+    might: 0
+    area: 0
+    speed: 0
+    amount: 0
+    cooldown: 0
+  - maxHealth: 0
+    recovery: 0
+    armor: 0
+    moveSpeed: 0
+    growth: 40
+    attractionRange: 0
+    might: 0
+    area: 0
+    speed: 0
+    amount: 0
+    cooldown: 0
+  - maxHealth: 0
+    recovery: 0
+    armor: 0
+    moveSpeed: 0
+    growth: 50
+    attractionRange: 0
+    might: 0
+    area: 0
+    speed: 0
+    amount: 0
+    cooldown: 0

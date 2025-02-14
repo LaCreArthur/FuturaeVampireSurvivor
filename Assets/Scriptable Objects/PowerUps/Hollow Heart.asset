@@ -14,31 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: f6ae50c0d2a343144a86057f5db39de9, type: 3}
   prefab: {fileID: 3133912357716758111, guid: 8e0274be9ef017140be078744009dd9c, type: 3}
-  baseDescription: Increase max life by 20%
+  baseDescription: Augments max health by 20%
   levelData:
-  - maxHealth: 10
-    recovery: 0
-    armor: 0
-    moveSpeed: 0
-    growth: 0
-    attractionRange: 0
-    might: 0
-    area: 0
-    speed: 0
-    amount: 0
-    cooldown: 0
   - maxHealth: 20
-    recovery: 0
-    armor: 0
-    moveSpeed: 0
-    growth: 0
-    attractionRange: 0
-    might: 0
-    area: 0
-    speed: 0
-    amount: 0
-    cooldown: 0
-  - maxHealth: 30
     recovery: 0
     armor: 0
     moveSpeed: 0
@@ -60,7 +38,29 @@ MonoBehaviour:
     speed: 0
     amount: 0
     cooldown: 0
-  - maxHealth: 50
+  - maxHealth: 60
+    recovery: 0
+    armor: 0
+    moveSpeed: 0
+    growth: 0
+    attractionRange: 0
+    might: 0
+    area: 0
+    speed: 0
+    amount: 0
+    cooldown: 0
+  - maxHealth: 80
+    recovery: 0
+    armor: 0
+    moveSpeed: 0
+    growth: 0
+    attractionRange: 0
+    might: 0
+    area: 0
+    speed: 0
+    amount: 0
+    cooldown: 0
+  - maxHealth: 100
     recovery: 0
     armor: 0
     moveSpeed: 0

@@ -17,7 +17,7 @@ MonoBehaviour:
   weaponSO: {fileID: 11400000, guid: d813c6460a6bd814aace916cf8e7c27b, type: 2}
   baseStats:
     maxHealth: 100
-    recovery: 0.6
+    recovery: 0
     armor: 0
     moveSpeed: 110
     growth: 0

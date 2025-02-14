@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e95f22d92e94bfb87f5f70bf1997de7, type: 3}
-  m_Name: Knife
+  m_Name: Axe
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: b2f227dc898f4ba4ba769f85d21333af, type: 3}
-  prefab: {fileID: 3921613116576328812, guid: 59a4a79e5f8e2dd4a995a7667e2e5be7, type: 3}
-  baseDescription: Fires quickly in the faced direction
+  sprite: {fileID: 21300000, guid: 17f5746b471048a489abe722a9c2256e, type: 3}
+  prefab: {fileID: 3921613116576328812, guid: e1ae5798e2d103d49a83597e033fd5c3, type: 3}
+  baseDescription: High damage, high area scaling
   levelData:
-  - damage: 12
+  - damage: 20
     cooldown: 1
     area: 1
     speed: 10
@@ -25,18 +25,18 @@ MonoBehaviour:
     projectileInterval: 0.1
     amount: 1
     pierce: 1
-  - damage: 15
+  - damage: 22
     cooldown: 1
-    area: 0
+    area: 1.1
     speed: 10
     duration: 0
     knockback: 0
     projectileInterval: 0.1
-    amount: 2
+    amount: 1
     pierce: 1
-  - damage: 16
-    cooldown: 0.9
-    area: 0
+  - damage: 22
+    cooldown: 1
+    area: 1.2
     speed: 10
     duration: 0
     knockback: 0
