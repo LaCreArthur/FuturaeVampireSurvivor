@@ -38,7 +38,7 @@ public class CharacterSelector : MonoBehaviour
     void InstantiateCharacter()
     {
         if (_currentCharacter) Destroy(_currentCharacter);
-        _currentCharacter = Instantiate(characters[_currentIndex].characterPrefab, Vector3.zero, Quaternion.identity, characterParent);
+        _currentCharacter = Instantiate(characters[_currentIndex].prefab, Vector3.zero, Quaternion.identity, characterParent);
         _currentCharacter.transform.localPosition = _characterOffset;
         CharacterChanged?.Invoke(characters[_currentIndex]);
     }

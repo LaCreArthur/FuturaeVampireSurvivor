@@ -12,13 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d2c10669db3499293e9a1953db63ae1, type: 3}
   m_Name: Gennaro
   m_EditorClassIdentifier: 
-  characterIcon: {fileID: 700479470407161347, guid: 69ecab43d160ee14bbbd7561335aa968, type: 3}
-  characterPrefab: {fileID: 3521849836229917452, guid: 506375e247c30ce44a8e14bb6fd3801c, type: 3}
-  baseWeaponSO: {fileID: 11400000, guid: d813c6460a6bd814aace916cf8e7c27b, type: 2}
+  sprite: {fileID: 700479470407161347, guid: 69ecab43d160ee14bbbd7561335aa968, type: 3}
+  prefab: {fileID: 3521849836229917452, guid: 506375e247c30ce44a8e14bb6fd3801c, type: 3}
+  weaponSO: {fileID: 11400000, guid: d813c6460a6bd814aace916cf8e7c27b, type: 2}
   baseStats:
     maxHealth: 100
     recovery: 0.6
-    moveSpeed: 110
-    attractionRange: 10
     armor: 0
+    moveSpeed: 110
     growth: 0
+    attractionRange: 10
+    might: 0
+    area: 0
+    speed: 0
+    amount: 0
+    cooldown: 0

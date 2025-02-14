@@ -12,13 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d2c10669db3499293e9a1953db63ae1, type: 3}
   m_Name: Antonio
   m_EditorClassIdentifier: 
-  characterIcon: {fileID: 1430985503064832334, guid: 68f287b5a736ca94090d3927f42321ff, type: 3}
-  characterPrefab: {fileID: 7612098206927530501, guid: 2bfc1fa856f15b3479c3f043b1149bfb, type: 3}
-  baseWeaponSO: {fileID: 11400000, guid: fc1f750c2f09d33419bf20b8b65d9dbf, type: 2}
+  sprite: {fileID: 1430985503064832334, guid: 68f287b5a736ca94090d3927f42321ff, type: 3}
+  prefab: {fileID: 7612098206927530501, guid: 2bfc1fa856f15b3479c3f043b1149bfb, type: 3}
+  weaponSO: {fileID: 11400000, guid: fc1f750c2f09d33419bf20b8b65d9dbf, type: 2}
   baseStats:
     maxHealth: 120
     recovery: 0.2
-    moveSpeed: 90
-    attractionRange: 5
     armor: 0
+    moveSpeed: 90
     growth: 0
+    attractionRange: 5
+    might: 0
+    area: 0
+    speed: 0
+    amount: 0
+    cooldown: 0

@@ -23,7 +23,7 @@ public class PlayerEquipment : SingletonMono<PlayerEquipment>
     void OnCharacterChanged(CharacterSO characterSO)
     {
         RemoveAllEquipment();
-        Add(characterSO.baseWeaponSO);
+        Add(characterSO.weaponSO);
     }
 
     static void RemoveAllEquipment()
