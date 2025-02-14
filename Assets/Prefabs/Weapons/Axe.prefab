@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3921613116576328812}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ff79a460ba54bf996ffa42435aac444, type: 3}
+  m_Script: {fileID: 11500000, guid: 4cc5dfdb6ca3455baccb306d098792dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   upgradable: {fileID: 11400000, guid: 166aba0356355864a9efe03621e0ac0c, type: 2}
@@ -66,4 +66,4 @@ MonoBehaviour:
     amount: 0
     pierce: 0
   spawnOffset: {x: 0, y: 0.5, z: 0}
-  projectilePrefab: {fileID: 4324995265172342908, guid: bb4d9f1aced9210468d1550dc65170d0, type: 3}
+  projectilePrefab: {fileID: 4324995265172342908, guid: c4ae1926196e0284e97de69d92fbac6d, type: 3}

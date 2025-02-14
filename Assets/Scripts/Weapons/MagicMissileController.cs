@@ -25,9 +25,9 @@ public class MagicMissileController : MonoBehaviour, IPoolable
             otherHealth.TakeDamage(_damage); // Deal damage to the target
             _hasHit = true;
             transform.DOScale(Vector3.zero, 0.5f).OnComplete(() => PoolManager.Despawn(gameObject)); // Despawn the projectile
-
         }
     }
+
     public void OnSpawn()
     {
         _hasHit = false;
