@@ -6,16 +6,27 @@ public class InputManager : MonoBehaviour
     // static ref to share the Input value with other scripts
     public static Vector2 Input;
 
-    [SerializeField] float moveSpeed = 1;
+    [SerializeField] float moveSpeedFactor = 0.12f;
     [SerializeField] bool freezeX;
     [SerializeField] bool freezeZ;
     [SerializeField] bool normalized;
 
     Vector2 _direction;
+    float _moveSpeed;
 
-    void Start() => GameStateManager.OnStateChange += OnStateChanged;
+    void Awake()
+    {
+        GameStateManager.OnStateChange += OnStateChanged;
+        ModifierSystem.CharacterModifiersUpdated += OnModifiersUpdated;
+    }
+
     void Update() => Move();
-    void OnDestroy() => GameStateManager.OnStateChange -= OnStateChanged;
+    void OnDestroy()
+    {
+        GameStateManager.OnStateChange -= OnStateChanged;
+        ModifierSystem.CharacterModifiersUpdated -= OnModifiersUpdated;
+    }
+    void OnModifiersUpdated(Modifiers stats) => _moveSpeed = stats.moveSpeed * moveSpeedFactor;
     void OnStateChanged(GameState state) => enabled = state == GameState.Playing;
 
     static Vector2 ReadInput()
@@ -34,7 +45,7 @@ public class InputManager : MonoBehaviour
         if (freezeZ) Input.y = 0;
         if (normalized) Input.Normalize();
 
-        _direction = Input * (moveSpeed * Time.deltaTime);
+        _direction = Input * (_moveSpeed * Time.deltaTime);
         transform.position += new Vector3(_direction.x, _direction.y, 0);
     }
 }

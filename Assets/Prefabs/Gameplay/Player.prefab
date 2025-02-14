@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d60beea73ceb417fb35b4628c7bfa9f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8
+  moveSpeedFactor: 0.12
   freezeX: 0
   freezeZ: 0
   normalized: 1
@@ -208,8 +208,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 100
   currentHp: 0
-  invulnerability: 0
-  invulnerabilityTime: 1
   playerHp: {fileID: 11400000, guid: 565440efa2627634e9850a88172e077d, type: 2}
   playerMaxHp: {fileID: 11400000, guid: 0968729cb3a297a42b14cbb9af791b33, type: 2}
 --- !u!114 &7202210047454845931

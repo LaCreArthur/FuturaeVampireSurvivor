@@ -3,45 +3,70 @@ using UnityEngine;
 
 public class ModifierSystem : MonoBehaviour
 {
-    static Modifiers s_modifiers;
-    public static event Action OnModifiersUpdated;
 
-    void Start()
+    Modifiers _modifiers;
+    Modifiers _characterBaseStats;
+    public static event Action WeaponModifiersUpdated;
+    public static event Action<Modifiers> CharacterModifiersUpdated;
+
+    void Awake()
     {
         PlayerEquipment.OnUpgradableAdded += UpdateModifiers;
         PlayerEquipment.OnUpgradableUpgraded += UpdateModifiers;
+        CharacterSelector.CharacterChanged += OnCharacterChanged;
     }
 
     void OnDestroy()
     {
         PlayerEquipment.OnUpgradableAdded -= UpdateModifiers;
         PlayerEquipment.OnUpgradableUpgraded -= UpdateModifiers;
+        CharacterSelector.CharacterChanged -= OnCharacterChanged;
+    }
+    void OnCharacterChanged(CharacterSO characterSO)
+    {
+        _characterBaseStats = characterSO.baseStats;
+        UpdateModifiers(null);
     }
 
-
-    static void UpdateModifiers(UpgradableSO _)
+    void UpdateModifiers(UpgradableSO _)
     {
-        // reset the modifiers and apply the power ups
-        s_modifiers = new Modifiers();
+        // Add all modifiers from power ups
+        _modifiers = new Modifiers();
         foreach (PowerUp powerUp in PlayerEquipment.PowerUps)
         {
-            s_modifiers = powerUp.AddModifier(s_modifiers);
+            _modifiers = powerUp.AddModifier(_modifiers);
         }
+        // Apply modifiers to all weapons
         foreach (Weapon weapon in PlayerEquipment.Weapons)
         {
-            weapon.modifiedStats = ApplyModifiers(weapon.Stats);
+            weapon.modifiedStats = ApplyWeaponModifiers(weapon.Stats);
         }
+        WeaponModifiersUpdated?.Invoke();
+
+        Modifiers characterModifiedStats = ApplyCharacterModifiers(_characterBaseStats);
+        CharacterModifiersUpdated?.Invoke(characterModifiedStats);
+
         Debug.Log("ModifierSystem: Modifiers updated");
-        OnModifiersUpdated?.Invoke();
     }
 
-    public static WeaponStats ApplyModifiers(WeaponStats stats)
+    WeaponStats ApplyWeaponModifiers(WeaponStats stats)
     {
-        stats.damage += Mathf.RoundToInt(stats.damage * s_modifiers.might / 100f);
-        stats.area += stats.area * s_modifiers.area / 100f;
-        stats.speed += stats.speed * s_modifiers.speed / 100f;
-        stats.amount += s_modifiers.amount;
-        stats.cooldown += stats.cooldown * s_modifiers.cooldown / 100f;
+        stats.damage += Mathf.RoundToInt(stats.damage * _modifiers.might / 100f);
+        stats.area += stats.area * _modifiers.area / 100f;
+        stats.speed += stats.speed * _modifiers.speed / 100f;
+        stats.amount += _modifiers.amount;
+        stats.cooldown += stats.cooldown * _modifiers.cooldown / 100f;
+        return stats;
+    }
+
+    Modifiers ApplyCharacterModifiers(Modifiers stats)
+    {
+        stats.maxHealth += Mathf.RoundToInt(stats.maxHealth * _modifiers.maxHealth / 100f);
+        stats.recovery += stats.recovery * _modifiers.recovery / 100f;
+        stats.armor += _modifiers.armor;
+        stats.moveSpeed += stats.moveSpeed * _modifiers.moveSpeed / 100f;
+        stats.growth += Mathf.RoundToInt(stats.growth * _modifiers.growth / 100f);
+        stats.attractionRange += stats.attractionRange * _modifiers.attractionRange / 100f;
         return stats;
     }
 }

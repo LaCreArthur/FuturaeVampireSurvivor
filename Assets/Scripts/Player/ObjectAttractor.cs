@@ -6,6 +6,13 @@ public class ObjectAttractor : MonoBehaviour
     [SerializeField] float attractionForce = 10f;
 
     readonly List<Transform> _attractedObjects = new List<Transform>();
+    CircleCollider2D _collider;
+
+    void Awake()
+    {
+        _collider = GetComponent<CircleCollider2D>();
+        ModifierSystem.CharacterModifiersUpdated += OnModifiersUpdated;
+    }
 
     void Update()
     {
@@ -27,6 +34,8 @@ public class ObjectAttractor : MonoBehaviour
         }
     }
 
+    void OnDestroy() => ModifierSystem.CharacterModifiersUpdated -= OnModifiersUpdated;
+
     void OnTriggerEnter2D(Collider2D other)
     {
         // Match with layer "Attractables"
@@ -39,4 +48,6 @@ public class ObjectAttractor : MonoBehaviour
             }
         }
     }
+
+    void OnModifiersUpdated(Modifiers stats) => _collider.radius = stats.attractionRange / 10f;
 }

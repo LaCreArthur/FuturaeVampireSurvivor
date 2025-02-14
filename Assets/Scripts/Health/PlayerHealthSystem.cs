@@ -6,12 +6,15 @@ public class PlayerHealthSystem : HealthSystem
     [SerializeField] FloatVar playerHp;
     [SerializeField] FloatVar playerMaxHp;
 
+    int _armor;
+
     void Awake()
     {
         GameStateManager.OnPlaying += OnLevelStart;
         HpChanged += OnHpChanged;
         MaxHpChanged += OnMaxHpChanged;
         CharacterSelector.CharacterChanged += OnCharacterChanged;
+        ModifierSystem.CharacterModifiersUpdated += OnModifiersUpdated;
     }
 
     void OnDestroy()
@@ -20,6 +23,14 @@ public class PlayerHealthSystem : HealthSystem
         HpChanged -= OnHpChanged;
         MaxHpChanged -= OnMaxHpChanged;
         CharacterSelector.CharacterChanged -= OnCharacterChanged;
+        ModifierSystem.CharacterModifiersUpdated -= OnModifiersUpdated;
+    }
+
+    void OnModifiersUpdated(Modifiers stats)
+    {
+        MaxHp = stats.maxHealth;
+        CurrentHp = Mathf.Min(CurrentHp, MaxHp);
+        _armor = stats.armor;
     }
 
     void OnCharacterChanged(CharacterSO characterSO)
@@ -34,6 +45,7 @@ public class PlayerHealthSystem : HealthSystem
 
     public override void TakeDamage(int amount)
     {
+        int realDamage = amount - _armor;
         base.TakeDamage(amount);
         if (CurrentHp <= 0)
         {

@@ -28,10 +28,16 @@ public class PlayerEquipment : SingletonMono<PlayerEquipment>
 
     static void RemoveAllEquipment()
     {
-        foreach (Weapon weapon in Weapons)
+        for (int i = Weapons.Count - 1; i >= 0; i--)
+        {
+            Weapon weapon = Weapons[i];
             Remove(weapon);
-        foreach (PowerUp powerUp in PowerUps)
+        }
+        for (int i = PowerUps.Count - 1; i >= 0; i--)
+        {
+            PowerUp powerUp = PowerUps[i];
             Remove(powerUp);
+        }
     }
 
     public static void Remove(Upgradable upgradable)

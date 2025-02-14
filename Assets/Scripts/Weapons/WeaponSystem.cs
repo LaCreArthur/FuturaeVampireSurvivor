@@ -10,12 +10,13 @@ public class WeaponSystem : MonoBehaviour
     readonly Dictionary<Weapon, AttackTimer> _attackTimers = new Dictionary<Weapon, AttackTimer>();
     static List<Weapon> Weapons => PlayerEquipment.Weapons;
 
-    void Start()
+    void Awake()
     {
-        ModifierSystem.OnModifiersUpdated += ResetTimers;
+        ModifierSystem.WeaponModifiersUpdated += ResetTimers;
         GameStateManager.OnStateChange += OnStateChanged;
-        OnStateChanged(GameStateManager.CurrentState);
     }
+
+    void Start() => OnStateChanged(GameStateManager.CurrentState);
 
     void Update()
     {
@@ -35,7 +36,7 @@ public class WeaponSystem : MonoBehaviour
     void OnDestroy()
     {
         GameStateManager.OnStateChange -= OnStateChanged;
-        ModifierSystem.OnModifiersUpdated -= ResetTimers;
+        ModifierSystem.WeaponModifiersUpdated -= ResetTimers;
     }
 
     void ResetTimers()

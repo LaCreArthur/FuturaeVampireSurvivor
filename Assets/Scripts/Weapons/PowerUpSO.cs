@@ -55,7 +55,7 @@ public class PowerUpSO : UpgradableSO<Modifiers>
         if (Mathf.Abs(newStats.speed - oldStats.speed) != 0)
         {
             float diff = newStats.speed - oldStats.speed;
-            changes.Add($"-{diff:F1}% Speed");
+            changes.Add($"+{diff:F1}% Speed");
         }
         if (Mathf.Abs(newStats.amount - oldStats.amount) != 0)
         {
@@ -65,7 +65,7 @@ public class PowerUpSO : UpgradableSO<Modifiers>
         if (Mathf.Abs(newStats.cooldown - oldStats.cooldown) != 0)
         {
             float diff = oldStats.cooldown - newStats.cooldown;
-            changes.Add($"-{diff:F1}% Cooldown");
+            changes.Add($"{diff:F1}% Cooldown");
         }
         if (Mathf.Abs(newStats.growth - oldStats.growth) != 0)
         {
