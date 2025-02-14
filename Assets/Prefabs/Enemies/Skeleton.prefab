@@ -141,6 +141,10 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 2798228909609701974, guid: 4f641a7b77b47e34ab88c41919eea4da, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 6710596239388856266}
     - target: {fileID: 4071886381815191797, guid: 4f641a7b77b47e34ab88c41919eea4da, type: 3}
       propertyPath: prefab
       value: 

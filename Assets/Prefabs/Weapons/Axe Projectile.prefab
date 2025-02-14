@@ -203,8 +203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78cf9174f11643d4b4f85d7313348aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGravity: 4
-  maxHorizontalDeviation: 0.5
+  baseGravity: 8
+  maxHorizontalAmplitude: 0.5
   rotationSpeed: 360
 --- !u!61 &5257945491218889746
 BoxCollider2D:
