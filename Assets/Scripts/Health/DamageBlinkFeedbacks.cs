@@ -12,26 +12,26 @@ public class DamageBlinkFeedbacks : MonoBehaviour
 
     void Start()
     {
-        _healthSystem = GetComponent<HealthSystem>();
-        if (_healthSystem == null) _healthSystem = GetComponentInParent<HealthSystem>();
-        if (_healthSystem == null)
+        if (!TryGetComponent(out _healthSystem))
         {
-            Debug.LogWarning("No HealthSystem found in parent or self", this);
-            enabled = false;
-            return;
+            _healthSystem = GetComponentInParent<HealthSystem>();
+            if (_healthSystem == null)
+            {
+                Debug.LogWarning("No HealthSystem found in parent or self", this);
+                Destroy(this);
+                return;
+            }
         }
+
         _healthSystem.HpChanged += OnHpChanged;
         _previousHp = _healthSystem.CurrentHp;
     }
 
-    void OnTransformChildrenChanged()
+    void OnDestroy()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer == null) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        if (spriteRenderer == null)
+        if (_healthSystem != null)
         {
-            Debug.LogWarning("No SpriteRenderer found in children or self", this);
-            enabled = false;
+            _healthSystem.HpChanged -= OnHpChanged;
         }
     }
 
