@@ -9,6 +9,7 @@ public class ProgressBarImage : MonoBehaviour
     [SerializeField] TMP_Text text;
     [SerializeField] FloatVar currentValue;
     [SerializeField] FloatVar maxValue;
+    [SerializeField] int decimals;
 
     Image _image;
     float _maxValue = 1;
@@ -33,7 +34,7 @@ public class ProgressBarImage : MonoBehaviour
     void UpdateBar()
     {
         _image.fillAmount = _currentValue / _maxValue;
-        text.text = $"{_currentValue}/{_maxValue}";
+        text.text = $"{_currentValue.ToString($"N{decimals}")}/{_maxValue.ToString($"N{decimals}")}";
     }
 
     void SetMaxValue(float value)

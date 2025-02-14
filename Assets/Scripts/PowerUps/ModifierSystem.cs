@@ -62,7 +62,7 @@ public class ModifierSystem : MonoBehaviour
     Modifiers ApplyCharacterModifiers(Modifiers stats)
     {
         stats.maxHealth += Mathf.RoundToInt(stats.maxHealth * _modifiers.maxHealth / 100f);
-        stats.recovery += stats.recovery * _modifiers.recovery / 100f;
+        stats.recovery += _modifiers.recovery;
         stats.armor += _modifiers.armor;
         stats.moveSpeed += stats.moveSpeed * _modifiers.moveSpeed / 100f;
         stats.growth += Mathf.RoundToInt(stats.growth * _modifiers.growth / 100f);
