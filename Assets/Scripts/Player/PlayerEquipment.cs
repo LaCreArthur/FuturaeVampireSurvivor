@@ -22,9 +22,14 @@ public class PlayerEquipment : SingletonMono<PlayerEquipment>
     {
         s_weaponParent = weaponParent;
         CharacterSelector.CharacterChanged += OnCharacterChanged;
+        GameStateManager.OnGameOver += RemoveAllEquipment;
     }
 
-    void OnDestroy() => CharacterSelector.CharacterChanged -= OnCharacterChanged;
+    void OnDestroy()
+    {
+        CharacterSelector.CharacterChanged -= OnCharacterChanged;
+        GameStateManager.OnGameOver -= RemoveAllEquipment;
+    }
 
     void OnCharacterChanged(CharacterSO characterSO)
     {
