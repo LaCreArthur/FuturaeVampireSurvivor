@@ -15,13 +15,20 @@ public class CharacterSelector : MonoBehaviour
 
     public static event Action<CharacterSO> CharacterChanged;
 
-    void Awake() => _currentIndex = 0;
+    void Awake()
+    {
+        _currentIndex = 0;
+        GameStateManager.OnHome += InstantiateCharacter;
+        ButtonSwitch.OnSwitch += SwitchCharacter;
+    }
 
-    void OnEnable() => ButtonSwitch.OnSwitch += SwitchCharacter;
+    void OnDestroy()
+    {
+        GameStateManager.OnHome -= InstantiateCharacter;
+        ButtonSwitch.OnSwitch -= SwitchCharacter;
+    }
 
-    void Start() => InstantiateCharacter();
-
-    void OnDisable() => ButtonSwitch.OnSwitch -= SwitchCharacter;
+    // void Start() => InstantiateCharacter();
 
     void SwitchCharacter(bool previous)
     {
