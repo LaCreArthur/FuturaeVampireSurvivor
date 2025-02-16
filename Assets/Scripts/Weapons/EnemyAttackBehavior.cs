@@ -5,8 +5,15 @@ public class EnemyAttackBehavior : MonoBehaviour
     [SerializeField] int damage;
     [SerializeField] float attackRate;
 
+    int _baseDamage;
     float _attackTimer;
     bool _canAttack;
+
+    void Awake()
+    {
+        _baseDamage = damage;
+        _attackTimer = attackRate;
+    }
 
     void Update()
     {
@@ -38,4 +45,6 @@ public class EnemyAttackBehavior : MonoBehaviour
             _canAttack = false;
         }
     }
+
+    public void IncreaseDamage(float percentage) => damage = (int)(_baseDamage + _baseDamage * percentage);
 }

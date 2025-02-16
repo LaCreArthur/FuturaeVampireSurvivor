@@ -15,5 +15,5 @@ MonoBehaviour:
   enemies:
   - {fileID: 1877273807043639096, guid: 2db8d7e368d05a34d8c6671001c66e3e, type: 3}
   spawnRate: 0.5
-  maxSpawned: 10
+  maxSpawned: 25
   burst: 0

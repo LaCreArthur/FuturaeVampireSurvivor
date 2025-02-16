@@ -4,12 +4,15 @@ public class EnemyHealthSystem : HealthSystem, IPoolable
 {
     [SerializeField] float knockbackFactor;
 
-    PickableSpawner pickableSpawner;
+    PickableSpawner _pickableSpawner;
+
+    float _baseMaxHp;
 
     void Awake()
     {
-        pickableSpawner = GetComponent<PickableSpawner>();
+        _pickableSpawner = GetComponent<PickableSpawner>();
         GameStateManager.OnGameOver += Despawn;
+        _baseMaxHp = MaxHp;
     }
 
     void OnDestroy() => GameStateManager.OnGameOver -= Despawn;
@@ -25,7 +28,7 @@ public class EnemyHealthSystem : HealthSystem, IPoolable
         }
         if (CurrentHp <= 0)
         {
-            pickableSpawner.SpawnPickable();
+            _pickableSpawner.SpawnPickable();
             Despawn();
         }
     }
@@ -37,5 +40,11 @@ public class EnemyHealthSystem : HealthSystem, IPoolable
         Vector2 knockbackDirection = (transform.position - PlayerTransform.Value.position).normalized;
         // apply force in the opposite direction of the attacker
         transform.position += (Vector3)knockbackDirection * knockback * knockbackFactor;
+    }
+
+    public void IncreaseHp(float percentage)
+    {
+        maxHp = _baseMaxHp + _baseMaxHp * percentage;
+        CurrentHp = MaxHp;
     }
 }

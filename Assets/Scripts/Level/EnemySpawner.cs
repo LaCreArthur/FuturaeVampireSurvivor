@@ -8,10 +8,12 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] int maxSpawned;
     [SerializeField] float spawnRate;
     [SerializeField] float borderSize = 2f;
+    [SerializeField] float cursePercentPerLoop = 50f;
 
     Camera _cam;
     float _nextSpawnTime;
     int _waveIndex;
+    int _loopIndex;
     SpawnWaveSO _currentWave;
     bool _burst;
     Vector3 _burstSpawnPosition;
@@ -27,6 +29,8 @@ public class EnemySpawner : MonoBehaviour
     {
         _waveIndex = 0;
         SetNextWave();
+        // reset loop index after setting the first wave so that the first wave is not affected by the curse
+        _loopIndex = 0;
     }
 
     void Update()
@@ -65,6 +69,10 @@ public class EnemySpawner : MonoBehaviour
     {
         _currentWave = spawnWaves[_waveIndex];
         _waveIndex = (_waveIndex + 1) % spawnWaves.Count; // Loop back to the first wave if we reach the end
+        if (_waveIndex == 0)
+        {
+            _loopIndex++;
+        }
         maxSpawned = _currentWave.maxSpawned;
         spawnRate = _currentWave.spawnRate;
         _burst = _currentWave.burst;
@@ -103,7 +111,18 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    void SpawnEnemy(Vector3 position) => PoolManager.Spawn(_currentWave.enemies[Random.Range(0, _currentWave.enemies.Count)], position, Quaternion.identity);
+    void SpawnEnemy(Vector3 position)
+    {
+        GameObject go = PoolManager.Spawn(_currentWave.enemies[Random.Range(0, _currentWave.enemies.Count)], position, Quaternion.identity);
+        if (go.TryGetComponent(out EnemyHealthSystem healthSystem))
+        {
+            healthSystem.IncreaseHp(_loopIndex * cursePercentPerLoop / 100f);
+        }
+        if (go.TryGetComponent(out EnemyAttackBehavior attackBehavior))
+        {
+            attackBehavior.IncreaseDamage(_loopIndex * cursePercentPerLoop / 100f);
+        }
+    }
 
     Vector3 GetRandomSpawnPosition()
     {
