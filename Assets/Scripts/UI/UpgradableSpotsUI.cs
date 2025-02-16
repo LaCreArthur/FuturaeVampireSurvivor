@@ -13,7 +13,15 @@ public class UpgradableSpotsUI : MonoBehaviour
     {
         PlayerEquipment.OnUpgradableAdded += UpdateSpot;
         GameStateManager.OnPlaying += ResetUI;
+        GameStateManager.OnGameOver += ResetUI;
         ResetUI();
+    }
+
+    void OnDestroy()
+    {
+        PlayerEquipment.OnUpgradableAdded -= UpdateSpot;
+        GameStateManager.OnPlaying -= ResetUI;
+        GameStateManager.OnGameOver -= ResetUI;
     }
 
     void ResetUI()
