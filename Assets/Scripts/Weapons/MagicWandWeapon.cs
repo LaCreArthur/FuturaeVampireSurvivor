@@ -48,7 +48,7 @@ public class MagicWandWeapon : Weapon
                 direction = Random.insideUnitSphere.normalized;
             }
             direction.z = 0;
-            projController.Initialize(modifiedStats.speed, modifiedStats.damage, attacker, direction);
+            projController.Initialize(modifiedStats.speed, modifiedStats.damage, modifiedStats.knockback, attacker, direction);
         }
     }
 

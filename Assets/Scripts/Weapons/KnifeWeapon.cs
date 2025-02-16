@@ -26,7 +26,7 @@ public class KnifeWeapon : Weapon
         var projController = projectile.GetComponent<KnifeProjectileController>();
         if (projController != null)
         {
-            projController.Initialize(modifiedStats.speed, modifiedStats.damage, attacker);
+            projController.Initialize(modifiedStats.speed, modifiedStats.damage, modifiedStats.knockback, attacker);
         }
     }
 }

@@ -15,6 +15,7 @@ public class AxeProjectileController : MonoBehaviour, IPoolable
     float _verticalSpeed;
     float _gravity;
     float _currentAirTime;
+    float _knockback;
     Vector2 _initialDirection;
     GameObject _attacker;
 
@@ -43,10 +44,10 @@ public class AxeProjectileController : MonoBehaviour, IPoolable
     {
         if (other.CompareTag(_attacker.tag)) return; // Ignore collisions with the attacker
         // using .attachedRigidbody because the collider can be on a child object of the target
-        var otherHealth = other.attachedRigidbody?.GetComponent<HealthSystem>();
+        var otherHealth = other.attachedRigidbody?.GetComponent<EnemyHealthSystem>();
         if (otherHealth != null)
         {
-            otherHealth.TakeDamage(_damage); // Deal damage to the target
+            otherHealth.TakeDamage(_damage, _knockback); // Deal damage to the target
             _hitCount++;
             if (_hitCount >= _pierce)
             {
@@ -57,11 +58,12 @@ public class AxeProjectileController : MonoBehaviour, IPoolable
 
     public void OnSpawn() => _hitCount = 0;
 
-    public void Initialize(float speed, int damage, int pierce, GameObject attacker)
+    public void Initialize(float speed, int damage, int pierce, float knockback, GameObject attacker)
     {
         _verticalSpeed = speed;
         _damage = damage;
         _pierce = pierce;
+        _knockback = knockback;
         _gravity = baseGravity * Random.Range(0.8f, 1.2f);
         _initialDirection = transform.up + transform.right * Random.Range(-0.2f, 0.2f);
         _attacker = attacker;

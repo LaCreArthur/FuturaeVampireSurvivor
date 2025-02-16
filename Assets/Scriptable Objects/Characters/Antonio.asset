@@ -21,7 +21,7 @@ MonoBehaviour:
     armor: 0
     moveSpeed: 90
     growth: 0
-    attractionRange: 50
+    attractionRange: 5
     might: 0
     area: 0
     speed: 0

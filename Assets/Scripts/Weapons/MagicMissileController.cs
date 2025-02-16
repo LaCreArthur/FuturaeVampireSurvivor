@@ -5,6 +5,7 @@ public class MagicMissileController : MonoBehaviour, IPoolable
 {
     float _moveSpeed;
     int _damage;
+    float _knockback;
     GameObject _attacker;
     Vector3 _direction;
     bool _hasHit;
@@ -19,10 +20,10 @@ public class MagicMissileController : MonoBehaviour, IPoolable
     {
         if (_hasHit || other.CompareTag(_attacker.tag)) return; // Ignore collisions with the attacker
         // using .attachedRigidbody because the collider can be on a child object of the target
-        var otherHealth = other.attachedRigidbody?.GetComponent<HealthSystem>();
+        var otherHealth = other.attachedRigidbody?.GetComponent<EnemyHealthSystem>();
         if (otherHealth != null)
         {
-            otherHealth.TakeDamage(_damage); // Deal damage to the target
+            otherHealth.TakeDamage(_damage, _knockback); // Deal damage to the target
             _hasHit = true;
             transform.DOScale(Vector3.zero, 0.5f).OnComplete(() => PoolManager.Despawn(gameObject)); // Despawn the projectile
         }
@@ -34,11 +35,12 @@ public class MagicMissileController : MonoBehaviour, IPoolable
         transform.localScale = Vector3.one;
     }
 
-    public void Initialize(float speed, int damage, GameObject attacker, Vector3 direction)
+    public void Initialize(float speed, int damage, float knockback, GameObject attacker, Vector3 direction)
     {
         _moveSpeed = speed;
         _damage = damage;
         _attacker = attacker;
+        _knockback = knockback;
         _direction = direction;
     }
 }

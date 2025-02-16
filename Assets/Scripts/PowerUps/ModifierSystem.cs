@@ -67,6 +67,12 @@ public class ModifierSystem : MonoBehaviour
         stats.moveSpeed += stats.moveSpeed * _modifiers.moveSpeed / 100f;
         stats.growth += Mathf.RoundToInt(stats.growth * _modifiers.growth / 100f);
         stats.attractionRange += stats.attractionRange * _modifiers.attractionRange / 100f;
+
+        stats.might = _modifiers.might;
+        stats.area = _modifiers.area;
+        stats.speed = _modifiers.speed;
+        stats.amount = _modifiers.amount;
+        stats.cooldown = _modifiers.cooldown;
         return stats;
     }
 }

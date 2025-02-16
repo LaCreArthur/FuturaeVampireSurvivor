@@ -16,7 +16,7 @@ public class AxeWeapon : Weapon
         var projController = projectile.GetComponent<AxeProjectileController>();
         if (projController != null)
         {
-            projController.Initialize(modifiedStats.speed, modifiedStats.damage, modifiedStats.pierce, attacker);
+            projController.Initialize(modifiedStats.speed, modifiedStats.damage, modifiedStats.pierce, modifiedStats.knockback, attacker);
         }
     }
 }

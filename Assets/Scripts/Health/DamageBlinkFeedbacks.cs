@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class DamageBlinkFeedbacks : MonoBehaviour
+public class DamageBlinkFeedbacks : MonoBehaviour, IPoolable
 {
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] float blinks;
@@ -33,6 +33,12 @@ public class DamageBlinkFeedbacks : MonoBehaviour
         {
             _healthSystem.HpChanged -= OnHpChanged;
         }
+    }
+
+    public void OnSpawn()
+    {
+        _previousHp = _healthSystem?.CurrentHp ?? 0;
+        spriteRenderer.color = Color.white;
     }
 
     void OnHpChanged(float f)

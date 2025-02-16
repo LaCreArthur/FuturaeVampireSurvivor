@@ -21,7 +21,7 @@ MonoBehaviour:
     area: 1
     speed: 10
     duration: 0
-    knockback: 0
+    knockback: 1
     projectileInterval: 0.15
     amount: 1
     pierce: 0
@@ -30,7 +30,7 @@ MonoBehaviour:
     area: 1
     speed: 10
     duration: 0
-    knockback: 0
+    knockback: 1
     projectileInterval: 0.15
     amount: 2
     pierce: 0
@@ -39,7 +39,7 @@ MonoBehaviour:
     area: 1
     speed: 10
     duration: 0
-    knockback: 0
+    knockback: 1
     projectileInterval: 0.1
     amount: 3
     pierce: 0
