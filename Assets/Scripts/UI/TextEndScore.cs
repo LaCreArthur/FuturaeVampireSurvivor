@@ -9,5 +9,5 @@ public class TextEndScore : MonoBehaviour
     void OnEnable() => UpdateScoreText();
     void UpdateScoreText() => _text.text =
         ScoreManager.Score == ScoreManager.HighScore ? $"New high score: {ScoreManager.HighScore}!" :
-            $"score: {ScoreManager.Score}\nHigh score: {ScoreManager.HighScore}";
+            $"Score: {ScoreManager.Score}\nHigh score: {ScoreManager.HighScore}";
 }
