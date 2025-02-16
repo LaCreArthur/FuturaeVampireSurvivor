@@ -17,6 +17,13 @@ public class WhipWeapon : Weapon
     ParticleSystem.MainModule _leftMain;
     ParticleSystem.MainModule _rightMain;
 
+
+    protected override void Awake()
+    {
+        base.Awake();
+        GameStateManager.OnGameOver += OnGameOver;
+    }
+
     void Start()
     {
         _leftMain = leftWhipParticles.main;
@@ -30,6 +37,8 @@ public class WhipWeapon : Weapon
         rightCollider.SetActive(false);
     }
 
+    void OnDestroy() => GameStateManager.OnGameOver -= OnGameOver;
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
@@ -37,6 +46,12 @@ public class WhipWeapon : Weapon
             other.attachedRigidbody.TryGetComponent(out EnemyHealthSystem healthSystem);
             if (healthSystem != null) healthSystem.TakeDamage(modifiedStats.damage, modifiedStats.knockback);
         }
+    }
+    void OnGameOver()
+    {
+        DOTween.KillAll();
+        leftCollider.SetActive(false);
+        rightCollider.SetActive(false);
     }
 
     public override void Fire(GameObject attacker)
