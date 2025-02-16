@@ -7,12 +7,18 @@ public class ExperienceOrb : MonoBehaviour
 
     public static event Action<int> OnExpCollected;
 
+    void Awake() => GameStateManager.OnGameOver += Despawn;
+
+    void OnDestroy() => GameStateManager.OnGameOver -= Despawn;
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             OnExpCollected?.Invoke(exp);
-            PoolManager.Despawn(gameObject);
+            Despawn();
         }
     }
+
+    void Despawn() => PoolManager.Despawn(gameObject);
 }
