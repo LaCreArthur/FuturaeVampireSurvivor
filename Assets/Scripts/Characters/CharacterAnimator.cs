@@ -9,7 +9,11 @@ public class CharacterAnimator : MonoBehaviour
     bool _walking;
     bool _previousWalking;
 
-    void Awake() => _animator = GetComponent<Animator>();
+    void Awake()
+    {
+        _animator = GetComponent<Animator>();
+        GameStateManager.OnGameOver += StopWalking;
+    }
 
     void Update()
     {
@@ -20,4 +24,8 @@ public class CharacterAnimator : MonoBehaviour
             _previousWalking = _walking;
         }
     }
+
+    void OnDestroy() => GameStateManager.OnGameOver -= StopWalking;
+
+    void StopWalking() => _animator.SetBool(Walking, false);
 }
