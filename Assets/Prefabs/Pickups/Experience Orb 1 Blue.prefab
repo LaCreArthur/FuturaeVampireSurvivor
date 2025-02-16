@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 941c2b40c8b096946962086ac72145d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -137,7 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1653075302469135174, guid: 40b2ff0a24a28d843ad5d5afb5d95c3f, type: 3}
       propertyPath: m_Name
-      value: Experience Orb
+      value: Experience Orb 1 Blue
       objectReference: {fileID: 0}
     - target: {fileID: 1653075302469135174, guid: 40b2ff0a24a28d843ad5d5afb5d95c3f, type: 3}
       propertyPath: m_Layer

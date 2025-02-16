@@ -1726,7 +1726,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 3
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1834,7 +1834,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellSize: 10
-  cellPrefab: {fileID: 6638166349142818006, guid: 486f282bdc31c00479c1bceda69cd7c9, type: 3}
+  cellPrefab:
+  - {fileID: 5597588995405332916, guid: fbf71b421a9da0542af6b9b732a2d119, type: 3}
+  - {fileID: 2822537820030884602, guid: 41b9bdaeb9eb2924e94794e22ebd6ca6, type: 3}
+  - {fileID: 8315034486198187091, guid: 8b05f33969854cd4cb4170c87a9ba9e8, type: 3}
+  - {fileID: 9072499702594601540, guid: 060974c9945ac3644a343c0b0c88757c, type: 3}
+  - {fileID: 8435494440683985526, guid: 6d13090716cdb094e830030dca136b3f, type: 3}
+  - {fileID: 3348687200182572998, guid: 88a863dcf2941384286c02438138a022, type: 3}
+  - {fileID: 7808815863447945595, guid: 4e6ba5fca0c02f545978f01b917b74d0, type: 3}
+  - {fileID: 6806701744274002634, guid: 02fb04f99eb308f43bf42774ee61737c, type: 3}
 --- !u!1 &673172436
 GameObject:
   m_ObjectHideFlags: 0
@@ -3316,7 +3324,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 34
-    OrthographicSize: 3
+    OrthographicSize: 7
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -5118,6 +5126,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 319907321013100283, guid: ce4e7249652e8a645ae20602c18c7276, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 507900469192221741, guid: ce4e7249652e8a645ae20602c18c7276, type: 3}
+      propertyPath: m_Mass
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 507900469192221741, guid: ce4e7249652e8a645ae20602c18c7276, type: 3}
+      propertyPath: m_BodyType
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6785265474079788035, guid: ce4e7249652e8a645ae20602c18c7276, type: 3}

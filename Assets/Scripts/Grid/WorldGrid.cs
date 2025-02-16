@@ -4,7 +4,7 @@ using UnityEngine;
 public class WorldGrid : MonoBehaviour
 {
     public float cellSize;
-    public GameObject cellPrefab;
+    public GameObject[] cellPrefab;
 
     readonly Dictionary<Vector2Int, GameObject> _cells = new Dictionary<Vector2Int, GameObject>(32);
     readonly HashSet<Vector2Int> _removalSet = new HashSet<Vector2Int>(32);
@@ -55,7 +55,7 @@ public class WorldGrid : MonoBehaviour
             if (_cells.ContainsKey(cellPos)) continue;
 
             Vector3 worldPos = Grid.GetWorldPos(Vector3.zero, cellSize, cellPos.x, cellPos.y, true);
-            GameObject cell = PoolManager.Spawn(cellPrefab, worldPos, Quaternion.identity, transform);
+            GameObject cell = PoolManager.Spawn(cellPrefab.GetRandom(), worldPos, Quaternion.identity, transform);
             _cells[cellPos] = cell;
         }
     }
