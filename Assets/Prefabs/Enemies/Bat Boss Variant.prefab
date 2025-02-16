@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: orbPrefab
       value: 
       objectReference: {fileID: 3201429453588429922, guid: 018ca321475ff7244ad6691962930865, type: 3}
+    - target: {fileID: 8125363437882018264, guid: 326262f3ec0524d4e9771d22e8241957, type: 3}
+      propertyPath: 'pickables.Array.data[0]'
+      value: 
+      objectReference: {fileID: 3201429453588429922, guid: 018ca321475ff7244ad6691962930865, type: 3}
     m_RemovedComponents:
     - {fileID: 3210486010771630360, guid: 326262f3ec0524d4e9771d22e8241957, type: 3}
     m_RemovedGameObjects: []

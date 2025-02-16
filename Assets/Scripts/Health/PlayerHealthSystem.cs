@@ -16,6 +16,7 @@ public class PlayerHealthSystem : HealthSystem
         MaxHpChanged += OnMaxHpChanged;
         CharacterSelector.CharacterChanged += OnCharacterChanged;
         ModifierSystem.CharacterModifiersUpdated += OnModifiersUpdated;
+        Chicken.ChickenCollected += OnChickenCollected;
     }
 
     void Update()
@@ -33,7 +34,9 @@ public class PlayerHealthSystem : HealthSystem
         MaxHpChanged -= OnMaxHpChanged;
         CharacterSelector.CharacterChanged -= OnCharacterChanged;
         ModifierSystem.CharacterModifiersUpdated -= OnModifiersUpdated;
+        Chicken.ChickenCollected -= OnChickenCollected;
     }
+    void OnChickenCollected(int hp) => CurrentHp += hp;
 
     void OnModifiersUpdated(Modifiers stats)
     {

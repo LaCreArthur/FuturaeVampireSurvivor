@@ -138,6 +138,10 @@ PrefabInstance:
       propertyPath: orbPrefab
       value: 
       objectReference: {fileID: 3201429453588429922, guid: c9dc6d59e81674e40860dd2dea07c4e6, type: 3}
+    - target: {fileID: -4919716830023649551, guid: 4f641a7b77b47e34ab88c41919eea4da, type: 3}
+      propertyPath: 'pickables.Array.data[0]'
+      value: 
+      objectReference: {fileID: 3201429453588429922, guid: c9dc6d59e81674e40860dd2dea07c4e6, type: 3}
     - target: {fileID: -428592269783731494, guid: 4f641a7b77b47e34ab88c41919eea4da, type: 3}
       propertyPath: maxHealth
       value: 30

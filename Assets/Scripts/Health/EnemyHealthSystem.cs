@@ -4,6 +4,16 @@ public class EnemyHealthSystem : HealthSystem, IPoolable
 {
     [SerializeField] float knockbackFactor;
 
+    PickableSpawner pickableSpawner;
+
+    void Awake()
+    {
+        pickableSpawner = GetComponent<PickableSpawner>();
+        GameStateManager.OnGameOver += Despawn;
+    }
+
+    void OnDestroy() => GameStateManager.OnGameOver -= Despawn;
+
     public void OnSpawn() => CurrentHp = MaxHp;
 
     public void TakeDamage(int amount, float knockback = 0)
@@ -15,9 +25,11 @@ public class EnemyHealthSystem : HealthSystem, IPoolable
         }
         if (CurrentHp <= 0)
         {
-            PoolManager.Despawn(gameObject);
+            pickableSpawner.SpawnPickable();
+            Despawn();
         }
     }
+    void Despawn() => PoolManager.Despawn(gameObject);
 
     void ApplyKnockback(float knockback)
     {

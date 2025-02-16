@@ -8894,6 +8894,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7486349952240422475, guid: 5d5c0c406a3490a43a5144b68b866bf3, type: 3}
   m_PrefabInstance: {fileID: 7410461624109280126}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1082888317256280119 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7624610362771997513, guid: 5d5c0c406a3490a43a5144b68b866bf3, type: 3}
+  m_PrefabInstance: {fileID: 7410461624109280126}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e6b51095cae4e5fbb0f21190699ee9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8104047671143609000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9291,13 +9302,36 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1921446752315985123, guid: 3a1b34cf189aa0044bc3573b136397ec, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5344901255940809156}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3314965191567040610, guid: 3a1b34cf189aa0044bc3573b136397ec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4747764378310283661}
   m_SourcePrefab: {fileID: 100100000, guid: 3a1b34cf189aa0044bc3573b136397ec, type: 3}
 --- !u!4 &4936939766092160190 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3815908860312743446, guid: 3a1b34cf189aa0044bc3573b136397ec, type: 3}
   m_PrefabInstance: {fileID: 8104047671143609000}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6806701744274002634 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3314965191567040610, guid: 3a1b34cf189aa0044bc3573b136397ec, type: 3}
+  m_PrefabInstance: {fileID: 8104047671143609000}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4747764378310283661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6806701744274002634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c5a31f7dfd42e2a422b905390728b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 8249847000413014807, guid: f503acda126698b48989baeafab22360, type: 3}
+  spots:
+  - {fileID: 1082888317256280119}
 --- !u!4 &7700317326365163083 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1921446752315985123, guid: 3a1b34cf189aa0044bc3573b136397ec, type: 3}

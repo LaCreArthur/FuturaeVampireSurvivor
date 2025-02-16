@@ -143,7 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a6c9e168aea4e1798be5175ffc1e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orbPrefab: {fileID: 4066669073714927098, guid: 2143da3208593d54e929ddb34b5d84ae, type: 3}
+  pickables:
+  - {fileID: 4066669073714927098, guid: 2143da3208593d54e929ddb34b5d84ae, type: 3}
 --- !u!114 &-7822626620388458889
 MonoBehaviour:
   m_ObjectHideFlags: 0

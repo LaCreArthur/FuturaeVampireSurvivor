@@ -12,6 +12,7 @@ public class GameStateManager : MonoBehaviour
 
     IEnumerator Start()
     {
+        // delay set state to Home so that all the Awake and Start methods are called and all the events are subscribed
         yield return new WaitForEndOfFrame();
         SetState(GameState.Home);
     }
