@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies:
   - {fileID: 1877273807043639096, guid: 326262f3ec0524d4e9771d22e8241957, type: 3}
-  spawnRate: 0.3
-  maxSpawned: 200
+  spawnRate: 0.2
+  maxSpawned: 300
   burst: 0

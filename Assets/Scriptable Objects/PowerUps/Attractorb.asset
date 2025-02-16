@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34385ee4f1bf46d79c6ef4a86840dc53, type: 3}
-  m_Name: Crown
+  m_Name: Attractorb
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 326d6d70be2da1247af1affbd16d30fc, type: 3}
-  prefab: {fileID: 3133912357716758111, guid: 7d69744c4879f2747abb4ebc06d7a14f, type: 3}
-  baseDescription: Increase exp gain by 10%
+  sprite: {fileID: 21300000, guid: d4dd01229d9bde545b141ae4f338b09f, type: 3}
+  prefab: {fileID: 3133912357716758111, guid: 8c017f1568bab424eb8185b21b4cc5e5, type: 3}
+  baseDescription: Character pickups items from further away
   levelData:
   - maxHealth: 0
     recovery: 0
     armor: 0
     moveSpeed: 0
-    growth: 10
-    attractionRange: 0
+    growth: 0
+    attractionRange: 100
     might: 0
     area: 0
     speed: 0
@@ -31,8 +31,8 @@ MonoBehaviour:
     recovery: 0
     armor: 0
     moveSpeed: 0
-    growth: 20
-    attractionRange: 0
+    growth: 0
+    attractionRange: 200
     might: 0
     area: 0
     speed: 0
@@ -42,8 +42,8 @@ MonoBehaviour:
     recovery: 0
     armor: 0
     moveSpeed: 0
-    growth: 30
-    attractionRange: 0
+    growth: 0
+    attractionRange: 300
     might: 0
     area: 0
     speed: 0
@@ -53,8 +53,8 @@ MonoBehaviour:
     recovery: 0
     armor: 0
     moveSpeed: 0
-    growth: 40
-    attractionRange: 0
+    growth: 0
+    attractionRange: 400
     might: 0
     area: 0
     speed: 0
@@ -64,8 +64,8 @@ MonoBehaviour:
     recovery: 0
     armor: 0
     moveSpeed: 0
-    growth: 50
-    attractionRange: 0
+    growth: 0
+    attractionRange: 500
     might: 0
     area: 0
     speed: 0

@@ -71,3 +71,4 @@ MonoBehaviour:
     speed: 0
     amount: 0
     cooldown: 0
+  levelMax: 5

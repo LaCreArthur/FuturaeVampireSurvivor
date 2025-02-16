@@ -155,6 +155,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bat Boss Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 2142936997958564973, guid: 326262f3ec0524d4e9771d22e8241957, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6221948099550663721, guid: 326262f3ec0524d4e9771d22e8241957, type: 3}
       propertyPath: m_Sprite
       value: 

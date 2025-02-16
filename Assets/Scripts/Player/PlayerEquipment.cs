@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerEquipment : SingletonMono<PlayerEquipment>
 {
+    public const int MAX_SLOTS = 4;
+
     public static readonly List<Weapon> Weapons = new List<Weapon>();
     public static readonly List<PowerUp> PowerUps = new List<PowerUp>();
 
@@ -13,6 +15,9 @@ public class PlayerEquipment : SingletonMono<PlayerEquipment>
     public static event Action<UpgradableSO> OnUpgradableAdded;
     public static event Action<UpgradableSO> OnUpgradableUpgraded;
 
+    public static bool CanAddWeapon => Weapons.Count < MAX_SLOTS;
+    public static bool CanAddPowerUp => PowerUps.Count < MAX_SLOTS;
+
     protected override void OnAwake()
     {
         s_weaponParent = weaponParent;
@@ -20,6 +25,7 @@ public class PlayerEquipment : SingletonMono<PlayerEquipment>
     }
 
     void OnDestroy() => CharacterSelector.CharacterChanged -= OnCharacterChanged;
+
     void OnCharacterChanged(CharacterSO characterSO)
     {
         RemoveAllEquipment();
@@ -64,7 +70,7 @@ public class PlayerEquipment : SingletonMono<PlayerEquipment>
         return PowerUps.Find(p => p.upgradable == upgradableSO);
     }
 
-    public static Upgradable Add(UpgradableSO upgradableSO)
+    public static void Add(UpgradableSO upgradableSO)
     {
         GameObject go = Instantiate(upgradableSO.prefab, s_weaponParent.position, Quaternion.identity, s_weaponParent);
         var upgradable = go.GetComponent<Upgradable>();
@@ -80,7 +86,6 @@ public class PlayerEquipment : SingletonMono<PlayerEquipment>
 
         Debug.Log($"PlayerEquipment: Added {upgradableSO.name}");
         OnUpgradableAdded?.Invoke(upgradableSO);
-        return upgradable;
     }
     public static void Upgrade(UpgradableSO upgradableSO)
     {

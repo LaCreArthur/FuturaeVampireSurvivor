@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LevelUpUI : MonoBehaviour
@@ -10,35 +11,43 @@ public class LevelUpUI : MonoBehaviour
 
     void OnEnable()
     {
-        DespawnOldChoices();
-        SpawnChoices();
+        ClearChoices();
+        CreateNewChoices();
     }
 
-    void DespawnOldChoices()
+    void ClearChoices()
     {
         foreach (LevelUpChoiceUI choice in _choices)
-        {
             PoolManager.Despawn(choice.gameObject);
-        }
         _choices.Clear();
     }
 
-    void SpawnChoices()
+    void CreateNewChoices()
     {
-        List<UpgradableSO> choices = upgradables.GetRandoms(3, true);
-        for (int i = 0; i < 3; i++)
+        List<UpgradableSO> validChoices = GetValidChoices();
+        List<UpgradableSO> selections = validChoices.GetRandoms(Mathf.Min(3, validChoices.Count), true);
+
+        foreach (UpgradableSO selection in selections)
         {
-            // if the max level is reached, don't show the weapon
-            Upgradable upgradable = PlayerEquipment.GetInstance(choices[i]);
-            int currentLevel = upgradable != null ? upgradable.CurrentLevel : -1;
-            if (currentLevel == upgradable?.MaxLevel) continue;
+            var choiceUI = PoolManager.Spawn(choicePrefab, Vector3.zero, Quaternion.identity, transform)
+                .GetComponent<LevelUpChoiceUI>();
 
-            Debug.Log($"SpawnChoices: {choices[i].name}, cl: {currentLevel}, ml: {upgradable?.MaxLevel}");
+            choiceUI.SetData(selection,
+                PlayerEquipment.GetInstance(selection)?.CurrentLevel ?? -1);
 
-            GameObject choiceGO = PoolManager.Spawn(choicePrefab, Vector3.zero, Quaternion.identity, transform);
-            var choiceUI = choiceGO.GetComponent<LevelUpChoiceUI>();
-            choiceUI.SetData(choices[i], currentLevel);
             _choices.Add(choiceUI);
         }
     }
+
+    List<UpgradableSO> GetValidChoices() => upgradables.Where(u =>
+    {
+        Upgradable instance = PlayerEquipment.GetInstance(u);
+
+        // Already equipped - check if upgradeable
+        if (instance != null)
+            return instance.CurrentLevel < instance.MaxLevel;
+
+        // Not equipped - check slot availability
+        return u is PowerUpSO ? PlayerEquipment.CanAddPowerUp : PlayerEquipment.CanAddWeapon;
+    }).ToList();
 }
